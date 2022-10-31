@@ -11,6 +11,7 @@ const userReducer: Reducer = (state = {}, action) => {
 
     switch (type) {
         case constants.USER_ON_LOGIN_REQUESTED:
+        case constants.USER_ON_SIGN_UP_REQUESTED:
             return {
                 ...state,
                 loading: true
@@ -24,6 +25,8 @@ const userReducer: Reducer = (state = {}, action) => {
             }
 
         case constants.USER_ON_LOGIN_FAILED:
+        case constants.USER_ON_SIGN_UP_SUCCEEDED:
+        case constants.USER_ON_SIGN_UP_FAILED:
             return {
                 ...state,
                 loading: false

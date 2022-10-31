@@ -1,16 +1,27 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import LoginContainer from './containers/LoginContainer';
+import history from './helpers/history';
+import { Route, Routes, Navigate, unstable_HistoryRouter as HistoryRoute } from 'react-router-dom';
+import SignupCommunityContainer from './containers/SignupCommunityContainer';
+import LoginCommunityContainer from './containers/LoginCommunityContainer';
+import LoginUserContainer from './containers/LoginUserContainer';
+import SignupUserContainer from './containers/SignupUserContainer';
 
 function App() {
   return (
-
-    <BrowserRouter>
+    <HistoryRoute history={history}>
       <Routes>
-        <Route path="/" element={<LoginContainer />} />
+        <Route path="/" element={<SignupCommunityContainer />} />
+        <Route path="/signupUser" element={<SignupUserContainer />} />
+        <Route path="/loginCommunity" element={<LoginCommunityContainer />} />
+        <Route path="/loginUser" element={<LoginUserContainer />} />
+
+        <Route
+          path="*"
+          element={<Navigate to="/" replace />}
+        />
       </Routes>
-    </BrowserRouter>
+    </HistoryRoute>
 
   );
 }
