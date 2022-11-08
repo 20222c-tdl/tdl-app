@@ -4,7 +4,6 @@ import { ISignupUserFormData } from "../views/SignupUser/types";
 import { post } from "./api";
 
 export async function signupUser(formData: ISignupUserFormData): Promise<AxiosResponse> {
-    console.log("🚀 ~ formData", formData)
     const response = await post("/users", formData);
     return response;
 }

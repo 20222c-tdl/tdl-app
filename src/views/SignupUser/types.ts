@@ -1,9 +1,12 @@
+import { ICommunity } from "types/community.types";
+
 export interface ISignupUserProps {
     onSignupClick: (formData: ISignupUserFormData) => void;
-    onGoToSignIn: () => void;
-    communities: any[];
+    onGoToSignupCommunity: () => void;
+    onGoToSigninCommunity: () => void;
+    onGoToSigninUser: () => void;
+    allCommunities: ICommunity[];
 }
-
 export interface ISignupUserFormData {
     firstName: string;
     lastName: string;
@@ -11,6 +14,7 @@ export interface ISignupUserFormData {
     password: string;
     repeatPassword?: string;
     address: string;
-    community: string;
+    communityId?: string;
+    community?: string;
     phoneNumber: number;
 }

@@ -46,3 +46,25 @@ export function onSignupCommunityFailed(error: unknown): AnyAction {
         error
     };
 }
+
+// onGetAllCommunities
+export function onGetAllCommunitiesRequested(): AnyAction {
+    return {
+        type: constants.ON_GET_ALL_COMMUNITIES_REQUESTED,
+    };
+}
+
+export function onGetAllCommunitiesSucceeded(data: unknown): AnyAction {
+    return {
+        type: constants.ON_GET_ALL_COMMUNITIES_SUCCEEDED,
+        data
+    };
+}
+
+export function onGetAllCommunitiesFailed(error: unknown): AnyAction {
+    return {
+        type: constants.ON_GET_ALL_COMMUNITIES_FAILED,
+        error
+    };
+}
+

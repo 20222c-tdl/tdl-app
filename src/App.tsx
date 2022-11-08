@@ -6,15 +6,17 @@ import SignupCommunityContainer from './containers/SignupCommunityContainer';
 import LoginCommunityContainer from './containers/LoginCommunityContainer';
 import LoginUserContainer from './containers/LoginUserContainer';
 import SignupUserContainer from './containers/SignupUserContainer';
+import ClaimsContainer from 'containers/ClaimsContainer';
 
 function App() {
   return (
     <HistoryRoute history={history}>
       <Routes>
-        <Route path="/" element={<SignupCommunityContainer />} />
-        <Route path="/signupUser" element={<SignupUserContainer />} />
+        <Route path="/" element={<SignupUserContainer />} />
+        <Route path="/signupCommunity" element={<SignupCommunityContainer />} />
         <Route path="/loginCommunity" element={<LoginCommunityContainer />} />
         <Route path="/loginUser" element={<LoginUserContainer />} />
+        <Route path="/claims" element={<ClaimsContainer />} />
 
         <Route
           path="*"

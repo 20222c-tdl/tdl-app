@@ -1,6 +1,6 @@
 
 import { FunctionComponent } from 'react';
-import { CustomForm, SignupContainer, TitleContainer, Button, ButtonContainer, ButtonSignUp, ButtonContainerSignUp } from './styles';
+import { CustomForm, SignupContainer, TitleContainer, Button, ButtonContainer, ButtonSignUp, ButtonContainerSignUp, RowDiv } from './styles';
 import { ISignupCommunityProps } from './types';
 import { Form, Field } from 'react-final-form';
 import Input from '../../components/Input/Input';
@@ -8,13 +8,21 @@ import { requiredValidation } from '../../helpers/validations';
 
 
 const SignupCommunity: FunctionComponent<ISignupCommunityProps> = (props: ISignupCommunityProps) => {
-    const { onSignupClick, onGoToSignIn } = props;
+    const { onSignupClick, onGoToSigninUser, onGoToSignupUser, onGoToSigninCommunity } = props;
 
     return (
         <SignupContainer>
-            <ButtonContainerSignUp>
-                <ButtonSignUp onClick={onGoToSignIn}>Sign in</ButtonSignUp>
-            </ButtonContainerSignUp>
+            <RowDiv>
+                <ButtonContainerSignUp>
+                    <ButtonSignUp onClick={onGoToSigninCommunity}>Sign in as Community</ButtonSignUp>
+                </ButtonContainerSignUp>
+                <ButtonContainerSignUp>
+                    <ButtonSignUp onClick={onGoToSignupUser}>Sign up as User</ButtonSignUp>
+                </ButtonContainerSignUp>
+                <ButtonContainerSignUp>
+                    <ButtonSignUp onClick={onGoToSigninUser}>Sign in as User</ButtonSignUp>
+                </ButtonContainerSignUp>
+            </RowDiv>
 
             <TitleContainer>
                 <p>Sign up</p>
@@ -25,7 +33,7 @@ const SignupCommunity: FunctionComponent<ISignupCommunityProps> = (props: ISignu
             <Form
                 onSubmit={onSignupClick}
                 initialValues={{}}
-                render={({ handleSubmit}) => (
+                render={({ handleSubmit }) => (
                     <CustomForm onSubmit={handleSubmit}>
                         <div>
                             <label>Community name</label>

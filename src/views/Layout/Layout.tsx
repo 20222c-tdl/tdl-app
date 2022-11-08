@@ -18,7 +18,7 @@ const Layout: FunctionComponent<ILayoutProps> = (props: ILayoutProps) => {
     const { name, children } = props;
     const [input, setInput] = useState('');
     const [isCollapsed, setIsCollapsed] = useState(true);
-    
+
     return (
         <>
             <TopNav>
@@ -34,12 +34,18 @@ const Layout: FunctionComponent<ILayoutProps> = (props: ILayoutProps) => {
             </TopNav>
             <Block isCollapsed={isCollapsed} >
                 {!name ?
-                    <a href="/login">Login</a>
+                    <>
+                        <a href="/">Login</a>
+                        <a href="/loginUser">Login</a>
+                    </>
                     :
                     <a href="/profile">Profile</a>
                 }
-                <a href="/services">Services</a>
-                {!!name && <p onClick={() => {}}>Logout</p>}
+                <>
+                    <a href="/home">Home</a>
+                    <a href="/claims">Claims</a>
+                </>
+                {!!name && <p onClick={() => { }}>Logout</p>}
             </Block>
             {children}
         </>

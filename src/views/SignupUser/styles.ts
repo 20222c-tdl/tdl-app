@@ -65,3 +65,11 @@ export const SignupContainer = styled.div`
 export const ButtonContainerSignUp = styled.div`
   width: 100%;
 `;
+
+export const RowDiv = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    margin-right: 50px;
+`;

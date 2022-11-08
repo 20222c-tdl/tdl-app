@@ -1,6 +1,6 @@
 
 import { FunctionComponent } from 'react';
-import { CustomForm, SignupContainer, TitleContainer, Button, ButtonContainer, ButtonSignUp, ButtonContainerSignUp } from './styles';
+import { CustomForm, SignupContainer, TitleContainer, Button, ButtonContainer, ButtonSignUp, ButtonContainerSignUp, RowDiv } from './styles';
 import { Form, Field } from 'react-final-form';
 import Input from '../../components/Input/Input';
 import { requiredValidation } from '../../helpers/validations';
@@ -9,21 +9,36 @@ import Select from '../../components/Select/Select';
 
 
 const SignupUser: FunctionComponent<ISignupUserProps> = (props: ISignupUserProps) => {
-    const { onSignupClick, onGoToSignIn, communities } = props;
+  const { onSignupClick, onGoToSignupCommunity, onGoToSigninCommunity, onGoToSigninUser, allCommunities } = props;
 
-    return (
-        <SignupContainer>
-            <ButtonContainerSignUp>
-                <ButtonSignUp onClick={onGoToSignIn}>Sign in</ButtonSignUp>
-            </ButtonContainerSignUp>
+  const communitiesNames = allCommunities && allCommunities.map((community) => {
+    return {
+      label: community.name,
+      value: community.name
+    }
+  });
 
-            <TitleContainer>
-                <p>Sign up</p>
-            </TitleContainer>
+  return (
+    <SignupContainer>
+      <RowDiv>
+        <ButtonContainerSignUp>
+          <ButtonSignUp onClick={onGoToSignupCommunity}>Sign up as Community</ButtonSignUp>
+        </ButtonContainerSignUp>
+        <ButtonContainerSignUp>
+          <ButtonSignUp onClick={onGoToSigninCommunity}>Sign in as Community</ButtonSignUp>
+        </ButtonContainerSignUp>
+        <ButtonContainerSignUp>
+          <ButtonSignUp onClick={onGoToSigninUser}>Sign in as User</ButtonSignUp>
+        </ButtonContainerSignUp>
+      </RowDiv>
 
-            <h3> We welcome you to Denunci.AR</h3>
+      <TitleContainer>
+        <p>Sign up</p>
+      </TitleContainer>
 
-            <Form
+      <h3> We welcome you to Denunci.AR</h3>
+
+      <Form
         onSubmit={onSignupClick}
         initialValues={{}}
         render={({ handleSubmit, form, submitting, pristine, values }) => (
@@ -99,7 +114,7 @@ const SignupUser: FunctionComponent<ISignupUserProps> = (props: ISignupUserProps
                   <div style={{ marginBottom: 10 }}>
                     <Select
                       disabled
-                      options={communities}
+                      options={communitiesNames}
                       showError={false}
                       input={input}
                       meta={meta}
@@ -119,7 +134,7 @@ const SignupUser: FunctionComponent<ISignupUserProps> = (props: ISignupUserProps
                 type="number"
               />
             </div>
-            
+
             <ButtonContainer>
               <Button type="submit">Sign up</Button>
             </ButtonContainer>
@@ -128,8 +143,8 @@ const SignupUser: FunctionComponent<ISignupUserProps> = (props: ISignupUserProps
         )}
 
       />
-        </SignupContainer>
-    );
+    </SignupContainer>
+  );
 }
 
 export default SignupUser;

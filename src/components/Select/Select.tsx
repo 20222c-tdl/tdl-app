@@ -31,7 +31,7 @@ const Select: FunctionComponent<ISelectProps> = (props: ISelectProps) => {
         renderValue={(showValue: unknown) => showValue as string}
         error={hasError}
       >
-        {options.map((option: any) => (
+        {options && options.map((option: any) => (
           <MenuItem key={option.value} value={option.value}>
             {option.label}
           </MenuItem>

@@ -18,15 +18,24 @@ const SignupCommunityContainer: FunctionComponent = () => {
         dispatch(onSignupCommunityRequested(data));
     }
 
-    const onGoToSignIn = () => {
-        history.push('/login'); 
+    const onGoToSigninUser = () => {
+        history.push('/loginUser');
     }
 
+    const onGoToSignupUser = () => {
+        history.push('/');
+    }
+
+    const onGoToSigninCommunity = () => {
+        history.push('/loginCommunity');
+    }
     return (
         <Layout name={"Name"}>
             <SignupCommunity
                 onSignupClick={onSignupClick}
-                onGoToSignIn={onGoToSignIn}
+                onGoToSigninUser={onGoToSigninUser}
+                onGoToSignupUser={onGoToSignupUser}
+                onGoToSigninCommunity={onGoToSigninCommunity}
             />
         </Layout>
     )

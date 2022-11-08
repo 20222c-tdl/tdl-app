@@ -3,11 +3,13 @@ import * as constants from '../constants/user.constants';
 
 const initialState = {
     loading: false,
-    data: null
+    data: null,
+    user: null
 }
 
 const userReducer: Reducer = (state = {}, action) => {
     const { type, data } = action;
+    console.log("🚀 ~ data2", data)
 
     switch (type) {
         case constants.USER_ON_LOGIN_REQUESTED:
@@ -18,9 +20,11 @@ const userReducer: Reducer = (state = {}, action) => {
             }
 
         case constants.USER_ON_LOGIN_SUCCEEDED:
+            console.log("🚀 ~ data3", data)
+
             return {
                 ...state,
-                data,
+                user: data,
                 loading: false
             }
 
