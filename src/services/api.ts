@@ -4,7 +4,6 @@ import { getCookie } from '../helpers/cookies';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
-  withCredentials: true,
 });
 
 async function getOptions() {
@@ -16,9 +15,7 @@ async function getOptions() {
       'Content-Type': 'application/json',
       Accept: 'application/json',
     },
-    credentials: 'include',
     mode: 'cors',
-    withCredentials: true,
   };
   return options;
 }
