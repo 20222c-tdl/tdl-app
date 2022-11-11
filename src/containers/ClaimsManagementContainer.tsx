@@ -9,11 +9,11 @@ import { onGetAllCommunitiesRequested } from "../redux/actions/community.actions
 export const ClaimsManagementContainer: FunctionComponent = () => {
     const dispatch = useDispatch();
 
-    const { claims } = useTypedSelector((state) => state.claims);
+    const { claims, loading } = useTypedSelector((state) => state.claims);
 
     useEffect(() => {
         dispatch(onGetAllCommunitiesRequested());
-    }, [dispatch])
+    }, [ dispatch ])
 
     const communityId = '3b82b641-d9dd-4906-a993-8d8abfff7744';
 
@@ -22,6 +22,6 @@ export const ClaimsManagementContainer: FunctionComponent = () => {
     }, [])
 
     return <Layout name={"Nombre"}>
-        <ClaimsManagementView claims={claims}/>
+        <ClaimsManagementView claims={claims} loading={loading}/>
     </Layout>
 }
