@@ -8,6 +8,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { IClaim } from "../../types/claims.types";
+import { CollapsibleRow } from "./CollapsibleRow";
 
 interface IClaimsViewProps {
     claims: IClaim[]
@@ -18,31 +19,18 @@ const ClaimsManagementView: FunctionComponent<IClaimsViewProps> = (props: IClaim
 
     return <Container fixed>
         <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <Table sx={{ minWidth: 650 }} aria-label="collapsible table">
                 <TableHead>
                     <TableRow>
-                        <TableCell>userId </TableCell>
+                        <TableCell />
+                        <TableCell>userId</TableCell>
                         <TableCell align="center">Type</TableCell>
                         <TableCell align="center">Main Issue</TableCell>
-                        <TableCell align="center">Description</TableCell>
                         <TableCell align="center">Status</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {claims.map((claim) => (
-                        <TableRow
-                            key={claim.id}
-                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                        >
-                            <TableCell component="th" scope="row">
-                                {claim.userId}
-                            </TableCell>
-                            <TableCell align="center">{claim.type}</TableCell>
-                            <TableCell align="center">{claim.mainIssue}</TableCell>
-                            <TableCell align="center">{claim.description}</TableCell>
-                            <TableCell align="center">{claim.status}</TableCell>
-                        </TableRow>
-                    ))}
+                    {claims.map((claim) => <CollapsibleRow key={claim.id} row={claim}/>)}
                 </TableBody>
             </Table>
         </TableContainer>
