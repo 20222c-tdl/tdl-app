@@ -1,7 +1,7 @@
 import { ClaimsConstants } from '../constants/claims.constants'
 import { AnyAction } from "redux";
 
-export function onGetCommunityClaimsRequested(communityId: string) {
+export function onGetCommunityClaimsRequested(communityId: string): AnyAction {
     return {
         type: ClaimsConstants.ON_GET_COMMUNITY_CLAIMS_REQUESTED,
         communityId
