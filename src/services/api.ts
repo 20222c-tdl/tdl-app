@@ -62,3 +62,11 @@ export async function put(url: string, params = {}, headers = {}): Promise<any> 
     throw errorResponse(error);
   }
 }
+
+export async function patch(url: string) {
+  try {
+    return api.patch(url);
+  } catch (error) {
+    throw errorResponse(error);
+  }
+}

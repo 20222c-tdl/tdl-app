@@ -9,3 +9,8 @@ export interface IClaimFormData {
     mainIssue: string;
     description: string;
 }
+
+export interface IClaimStatusUpdate {
+    claimId: string;
+    status: string;
+}

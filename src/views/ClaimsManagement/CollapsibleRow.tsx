@@ -7,16 +7,25 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import { onUpdateClaimStatusRequested } from "../../redux/actions/claims.actions";
+import { useDispatch } from "react-redux";
+import { IClaimStatusUpdate } from "../Claims/types";
 
 export function CollapsibleRow(props: { row: IClaim }) {
     const { row } = props;
     const [ open, setOpen ] = React.useState(false);
+    const dispatch = useDispatch();
 
     const handleStatusChange = (
         event: React.MouseEvent<HTMLElement>,
         newStatus: string,
     ) => {
-        console.log(`new status: ${newStatus}`)
+        const data: IClaimStatusUpdate = {
+            claimId: row.id,
+            status: newStatus
+        }
+        console.log(data)
+        dispatch(onUpdateClaimStatusRequested(data))
     };
 
     return <React.Fragment>
