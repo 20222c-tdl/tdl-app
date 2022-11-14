@@ -2,13 +2,6 @@ import { AnyAction } from "redux";
 import { ClaimsConstants } from "../constants/claims.constants";
 import { IClaim, ClaimsState } from "../../types/claims.types";
 
-export interface ClaimsState {
-    claims: IClaim[],
-    error: unknown,
-    loading: boolean,
-    claimHasChanged: boolean,
-}
-
 const initialState: ClaimsState = {
     claims: [],
     loading: false,
