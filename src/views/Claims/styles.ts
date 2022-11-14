@@ -59,7 +59,7 @@ export const RowDiv = styled.div`
 `;
 
 export const Title = styled.p`
-  font-size: 24px;
+  font-size: 28px;
   margin: 0;
   font-weight: bold;
   text-align: center;
@@ -82,7 +82,7 @@ export const Subtitle = styled.p`
 ;`
 
 export const Claim = styled.div`
-    margin: 10px;
+    margin: 1px;
     display: flex;
     flex-direction: column;
     cursor: pointer;
@@ -97,8 +97,8 @@ export const Text = styled.p`
     text-overflow: ellipsis;
 
     ${({ isBold }: { isBold?: boolean }) =>
-        isBold &&
-        css`
+    isBold &&
+    css`
         font-weight: bold;
         white-space: nowrap;
         text-overflow: ellipsis;
@@ -111,7 +111,7 @@ export const ColumnDiv = styled.div`
     align-items: flex-start;
     overflow: hidden;
     width:100%;
-    padding: 10px 0 10px 0;
+    padding: 10px 0 5px 0;
     text-overflow: ellipsis;
     & > p {
         margin: 0 5px 0 5px;
@@ -120,7 +120,7 @@ export const ColumnDiv = styled.div`
 
 export const Description = styled.p`
     margin: 0 5px 0 5px;
-    font-size: 16px;
+    font-size: 18px;
     overflow: hidden;
     text-overflow: ellipsis;
 `;
@@ -132,3 +132,53 @@ export const EditDiv = styled.div`
   display: flex;
   justify-content: flex-end;
 `
+export const Status = styled.div`
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+`
+
+const handleColorType = (color: any) => {
+  switch (color) {
+    case "OPEN":
+      return "#00B7FF";
+    case "TAKING_ACTION":
+      return "#FFD100";
+    case "RESOLVED":
+      return "#61FF7E";
+    case "CLOSED":
+      return "#F25407";
+    default:
+      return "#FFFFFF";
+  }
+};
+
+export const StatusText = styled.p`
+  font-size: 15px;
+  margin: 0;
+  padding: 10px 20px;
+  text-overflow: ellipsis;
+  border-radius: 10px;
+  background-color: ${({ color }) => handleColorType(color)};
+`;
+
+export const ButtonModal = styled.button`
+    padding: 5px 10px;
+    font-size: 20px;
+    border-radius: 8px;
+    border: none;
+    font-family: 'OpenSans';
+    margin-top: 10px;
+    cursor: pointer;
+    background-color: ${COLORS.violetRed};
+    color: ${COLORS.white};
+
+    ${({ isInverted }: { isInverted?: boolean }) =>
+        isInverted &&
+        css`
+        background-color: white;
+        color: ${COLORS.violetRed};
+        border: 1px solid ${COLORS.violetRed};
+    `};
+`;

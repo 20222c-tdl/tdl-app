@@ -21,6 +21,7 @@ const userReducer: Reducer = (state = {}, action) => {
                 loading: true
             }
         case constants.USER_ON_REGISTER_A_CLAIM_REQUESTED:
+        case constants.USER_ON_EDIT_CLAIM_REQUESTED:
             return {
                 ...state,
                 loading: true,
@@ -39,6 +40,7 @@ const userReducer: Reducer = (state = {}, action) => {
                 claims: data.data,
             }
         case constants.USER_ON_REGISTER_A_CLAIM_SUCCEEDED:
+        case constants.USER_ON_EDIT_CLAIM_SUCCEEDED:
             return {
                 ...state,
                 loading: true,
@@ -50,6 +52,7 @@ const userReducer: Reducer = (state = {}, action) => {
         case constants.USER_ON_REGISTER_A_CLAIM_SUCCEEDED:
         case constants.USER_ON_REGISTER_A_CLAIM_FAILED:
         case constants.USER_ON_GET_CLAIMS_FAILED:
+        case constants.USER_ON_EDIT_CLAIM_FAILED:
             return {
                 ...state,
                 loading: false

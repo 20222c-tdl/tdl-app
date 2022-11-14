@@ -1,7 +1,7 @@
 import { AnyAction } from 'redux';
 import { call, put, takeLatest, all } from 'redux-saga/effects';
-import { getClaims, loginUser, registerClaim, signupUser } from '../../services/user.services';
-import { onLoginUserFailed, onLoginUserSucceeded, onRegisterAClaimFailed, onRegisterAClaimSucceeded, onSignupUserFailed, onSignupUserSucceeded, onUserGetClaimsFailed, onUserGetClaimsSucceeded } from '../actions/user.actions';
+import { editClaim, getClaims, loginUser, registerClaim, signupUser } from '../../services/user.services';
+import { onEditClaimFailed, onEditClaimSucceeded, onLoginUserFailed, onLoginUserSucceeded, onRegisterAClaimFailed, onRegisterAClaimSucceeded, onSignupUserFailed, onSignupUserSucceeded, onUserGetClaimsFailed, onUserGetClaimsSucceeded } from '../actions/user.actions';
 import * as constants from '../constants/user.constants';
 
 export function* userSignUp(action: AnyAction) {
@@ -40,11 +40,21 @@ export function* userGetClaims(action: AnyAction) {
     }
 }
 
+export function* userEditClaim(action: AnyAction) {
+    try {
+        const data: unknown  = yield call(editClaim, action.formData);
+        yield put(onEditClaimSucceeded(data));
+    } catch (error) {
+        yield put(onEditClaimFailed(error));
+    }
+}
+
 export function* watchUsers(): Generator {
     yield all([
         takeLatest(constants.USER_ON_SIGN_UP_REQUESTED, userSignUp),
         takeLatest(constants.USER_ON_LOGIN_REQUESTED, userLogin),
         takeLatest(constants.USER_ON_REGISTER_A_CLAIM_REQUESTED, userRegisterClaim),
         takeLatest(constants.USER_ON_GET_CLAIMS_REQUESTED, userGetClaims),
+        takeLatest(constants.USER_ON_EDIT_CLAIM_REQUESTED, userEditClaim),
     ])
 }

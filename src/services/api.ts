@@ -63,10 +63,13 @@ export async function put(url: string, params = {}, headers = {}): Promise<any> 
   }
 }
 
-export async function patch(url: string) {
+export async function patch(url: string, params = {}, headers = {}): Promise<any> {
   try {
-    return api.patch(url);
-  } catch (error) {
+    const getToken = await getOptions();
+    const options = { ...getToken, ...headers };
+    const response = await api.patch(url, params, options);
+    return response;
+  } catch (error: any) {
     throw errorResponse(error);
   }
 }

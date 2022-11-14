@@ -3,15 +3,24 @@ import { FunctionComponent, useState } from 'react';
 import { Form, Field } from 'react-final-form';
 import Input from '../../components/Input/Input';
 import { requiredValidation } from '../../helpers/validations';
-import { IClaimsProps } from './types';
-import { Arrow, Box, Button, ButtonContainer, Claim, ClaimsContainer, Container, CustomForm, RowDiv, Subtitle, Title, Text, ColumnDiv, Description, EditDiv } from './styles';
+import { IClaimFormData, IClaimsProps } from './types';
+import { Arrow, Box, Button, ButtonContainer, Claim, ClaimsContainer, Container, CustomForm, RowDiv, Subtitle, Title, Text, ColumnDiv, Description, EditDiv, Status, StatusText } from './styles';
 import { Edit } from '@mui/icons-material';
+import { Modal } from 'components/Modal/Modal';
+import ClaimInfoForm from './ClaimInfoForm';
 
 
 const Claims: FunctionComponent<IClaimsProps> = (props: IClaimsProps) => {
     const { onRegisterAClaim, claims, onEditClaim } = props;
     const [isRegisterClaimsCollapsed, setIsRegisterClaimsCollapsed] = useState(true);
+    const [isEditable, setIsEditable] = useState(false);
+    const [currentClaim, setCurrentClaim] = useState<any>(null);
 
+
+    const submitForm = (formData: IClaimFormData) => {
+        setIsEditable(false);
+        onEditClaim(formData);
+    }
 
     const renderRegisterClaims = () => (
         <>
@@ -71,30 +80,42 @@ const Claims: FunctionComponent<IClaimsProps> = (props: IClaimsProps) => {
             }
             {(claims && !claims.length)
                 ?
-                <Title>There are no saved accommodations yet</Title>
+                <Title>There are no claims yet</Title>
                 :
                 <ClaimsContainer>
                     <Title>Your claims </Title>
                     {claims && claims.map((claim) => {
                         return (
-                            <Claim key={claim.id}>
-                                <ColumnDiv>
-                                    <RowDiv>
-                                        <Text isBold>{claim.mainIssue}</Text>
-                                        <EditDiv>
-                                            <Edit onClick={(event) => {
-                                                onEditClaim()
-                                                event.stopPropagation()
-                                            }} />
-                                        </EditDiv>
-                                    </RowDiv>
+                            <>
+                                <Claim key={claim.id}>
                                     <ColumnDiv>
-                                        <Description>Type: {claim.type} </Description>
-                                        <Description>Description: {claim.description}</Description>
+                                        <RowDiv>
+                                            <Text isBold>{claim.mainIssue}</Text>
+                                            <EditDiv>
+                                                <Edit onClick={() => {
+                                                    setIsEditable(true)
+                                                    setCurrentClaim(claim)
+                                                }} />
+                                            </EditDiv>
+                                        </RowDiv>
+                                        <ColumnDiv>
+                                            <Description>Type: {claim.type} </Description>
+                                            <Description>Description: {claim.description}</Description>
+                                        </ColumnDiv>
+                                        <Status>
+                                            <StatusText color={claim.status}>{claim.status}</StatusText>
+                                        </Status>
                                     </ColumnDiv>
-
-                                </ColumnDiv>
-                            </Claim>)
+                                </Claim>
+                                <Modal
+                                    isOpen={!!isEditable}
+                                    onClose={() => setIsEditable(false)}
+                                    title="Edit claim information"
+                                >
+                                    <ClaimInfoForm onSubmit={submitForm} claim={currentClaim} goBack={() => setIsEditable(false)} />
+                                </Modal>
+                            </>
+                        )
                     })}
                 </ClaimsContainer>
             }
