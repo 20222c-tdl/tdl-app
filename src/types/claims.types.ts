@@ -5,24 +5,21 @@ export interface IClaim {
     type: string;
     mainIssue: string;
     description: string;
-    status: number;
+    status: string;
+    user: any   // TODO debería ser un IUser pero no coincide con lo que trae la API
 }
 
 export const CLAIMS_STATUS = Object.freeze([
     {
-        value: 1,
+        value: 'OPEN',
         text: "Open"
     },
     {
-        value: 2,
+        value: 'TAKING_ACTION',
         text: "Taking Action"
     },
     {
-        value: 4,
+        value: 'RESOLVED',
         text: "Resolved"
-    },
-    {
-        value: 5,
-        text: "Closed"
     },
 ])

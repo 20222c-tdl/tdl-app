@@ -20,12 +20,14 @@ export function CollapsibleRow(props: { row: IClaim }) {
         event: React.MouseEvent<HTMLElement>,
         newStatus: string,
     ) => {
-        const data: IClaimStatusUpdate = {
-            claimId: row.id,
-            status: newStatus
+        console.log(event, newStatus)
+        if (newStatus !== null) {
+            const data: IClaimStatusUpdate = {
+                claimId: row.id,
+                status: newStatus
+            }
+            dispatch(onUpdateClaimStatusRequested(data))
         }
-        console.log(data)
-        dispatch(onUpdateClaimStatusRequested(data))
     };
 
     return <React.Fragment>
@@ -42,14 +44,20 @@ export function CollapsibleRow(props: { row: IClaim }) {
                 </IconButton>
             </TableCell>
             <TableCell component="th" scope="row">
-                {row.userId}
+                {row.id}
+            </TableCell>
+            <TableCell component="th" scope="row">
+                {row.user.firstName}
+            </TableCell>
+            <TableCell component="th" scope="row">
+                {row.user.lastName}
             </TableCell>
             <TableCell align="center">{row.type}</TableCell>
             <TableCell align="center">{row.mainIssue}</TableCell>
             <TableCell align="center">{row.status}</TableCell>
         </TableRow>
         <TableRow>
-            <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+            <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={12}>
                 <Collapse in={open} timeout="auto" unmountOnExit>
                     <Box sx={{ margin: 1 }}>
                         <Grid container spacing={2}>

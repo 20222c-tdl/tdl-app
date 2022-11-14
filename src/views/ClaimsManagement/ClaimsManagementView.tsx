@@ -30,7 +30,9 @@ const ClaimsManagementView: FunctionComponent<ClaimsViewProps> = (props: ClaimsV
                         <TableHead>
                             <TableRow>
                                 <TableCell/>
-                                <TableCell>userId</TableCell>
+                                <TableCell>Id</TableCell>
+                                <TableCell>First Name</TableCell>
+                                <TableCell>Last Name</TableCell>
                                 <TableCell align="center">Type</TableCell>
                                 <TableCell align="center">Main Issue</TableCell>
                                 <TableCell align="center">Status</TableCell>
