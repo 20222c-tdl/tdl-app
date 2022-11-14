@@ -33,18 +33,11 @@ const Layout: FunctionComponent<ILayoutProps> = (props: ILayoutProps) => {
                 <CustomAccountCircleIcon onClick={() => setIsCollapsed(!isCollapsed)} />
             </TopNav>
             <Block isCollapsed={isCollapsed} >
-                {!name ?
-                    <>
-                        <a href="/">Login</a>
-                        <a href="/loginUser">Login</a>
-                    </>
-                    :
-                    <a href="/profile">Profile</a>
-                }
-                <>
-                    <a href="/home">Home</a>
-                    <a href="/claims">Claims</a>
-                </>
+                <a href="/home">Home</a>
+                {!name && <a onClick={() => history.push('/')}>Sign up</a>}
+                {!name && <a onClick={() => history.push('/loginUser')}>Login</a>}
+                {!!name && <a onClick={() => history.push('/profile')}>Profile</a>}
+                {!!name && <a onClick={() => history.push('/claims')}>Claims</a>}
                 {!!name && <p onClick={() => { }}>Logout</p>}
             </Block>
             {children}

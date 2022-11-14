@@ -1,7 +1,6 @@
 import React, { FunctionComponent, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import Layout from '../views/Layout/Layout';
-import history from '../helpers/history';
 import { ISignupUserFormData } from '../views/SignupUser/types';
 import SignupUser from '../views/SignupUser/SignupUser';
 import { onSignupUserRequested } from '../redux/actions/user.actions';
@@ -12,7 +11,9 @@ const SignupUserContainer: FunctionComponent = () => {
     const dispatch = useDispatch();
 
     const { allCommunities } = useTypedSelector((state) => state.community);
+    const { user } = useTypedSelector((state) => state.user);
   
+
     useEffect(() => {
         dispatch(onGetAllCommunitiesRequested());
     }, [dispatch])
@@ -31,25 +32,10 @@ const SignupUserContainer: FunctionComponent = () => {
         dispatch(onSignupUserRequested(data));
     }
 
-    const onGoToSigninUser = () => {
-        history.push('/loginUser');
-    }
-
-    const onGoToSignupCommunity = () => {
-        history.push('/signupCommunity');
-    }
-
-    const onGoToSigninCommunity = () => {
-        history.push('/loginCommunity');
-    }
-
     return (
-        <Layout name={"Name"}>
+        <Layout name={user && user.firstName}>
             <SignupUser
                 onSignupClick={onSignupClick}
-                onGoToSigninUser={onGoToSigninUser}
-                onGoToSignupCommunity={onGoToSignupCommunity}
-                onGoToSigninCommunity={onGoToSigninCommunity}
                 allCommunities={allCommunities}
             />
         </Layout>

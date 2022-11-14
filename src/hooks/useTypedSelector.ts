@@ -1,10 +1,12 @@
 import { TypedUseSelectorHook, useSelector } from 'react-redux';
 import { CommunityInterface } from 'types/community.types';
+import { ProvidersInterface } from 'types/providers.types';
 import { UserInterface } from '../types/user.types';
 
 interface IRootState {
   user: UserInterface,
-  community: CommunityInterface
+  community: CommunityInterface,
+  providers: ProvidersInterface,
 }
 
 const useTypedSelector: TypedUseSelectorHook<IRootState> = useSelector;

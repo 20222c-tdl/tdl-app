@@ -7,10 +7,6 @@ export const CustomForm = styled.form`
     flex-direction: column;
     align-items: flex-start;
     font-size: 20px;
-
-    & > div {
-      width: 500px;
-    }
 ;`
 
 export const ButtonContainer = styled.div`
@@ -21,55 +17,77 @@ export const ButtonContainer = styled.div`
 `;
 
 export const TitleContainer = styled.div`
-  border-bottom: 1px solid ${COLORS.grayPlaceholder};
+  border-bottom: 1px solid ${COLORS.grayAlto};
   text-align: center;
   font-weight: bold ;
   font-size: 24px;
   width: 100%;
+  margin-bottom: 10px;
+
+  & > p {
+    margin: 10px 0;
+  }
 ;`
 
 export const Button = styled.button`
-  padding: 7px 30%;
+  padding: 7px 16%;
   font-size: 20px;
-  border: 1px solid #ccc;
-  font-weight: bold ;
+  border: none;
   border-radius: 8px;
   margin-top: 10px;
   cursor: pointer;
-  background-color: ${COLORS.blue};
+  background-color: ${COLORS.blueFire};
   color: ${COLORS.white};
-;`
+  font-family: 'OpenSans';
 
-export const ButtonSignUp = styled.div`
-  float: right;
-  border-radius: 8px;
-  border-width: 2px;
-  padding: 9px 13px;
-  margin: 5px;
-  font-weight: bold ;
-  cursor: pointer;
-  background-color: ${COLORS.blue};
-  color: ${COLORS.white};
-`;
+  &:hover {
+    background-color: ${COLORS.violetPigment};
+  }
+;`
 
 export const SignupContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content:center;
-  background: ${COLORS.lightBlue};
-  margin: 1% 10%;
+  justify-content: center;
+  margin: 5% 10%;
   border-radius: 8px;
+  max-width: 1024px;
+  margin: 0 auto;
 `;
 
-export const ButtonContainerSignUp = styled.div`
+export const Label = styled.p`
+  font-size: 16px;
+  font-family: 'OpenSans';
+  margin: 0;
+`;
+
+export const FormFields = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 20px;
+
+  & > div {
+      width: 400px;
+  }
+`;
+
+export const Box = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
   width: 100%;
-`;
+  font-size: 18px;
 
-export const RowDiv = styled.div`
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 100%;
-    margin-right: 50px;
+  & > p {
+    margin: 0 5px 0 0;
+    font-family: 'OpenSans', sans-serif;
+  }
+
+  & > a {
+    text-decoration: none;
+    color: ${COLORS.blueFire};
+    font-style: italic;
+  }
 `;

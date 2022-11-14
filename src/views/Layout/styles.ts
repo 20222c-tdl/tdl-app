@@ -6,7 +6,7 @@ import COLORS from '../../helpers/colors';
 
 
 export const TopNav = styled.div`
-  background-color: ${COLORS.lightGray};
+  background-color: ${COLORS.lightBlueLilac};
   border-bottom: 1px solid ${COLORS.greyMystic};
   align-items: center;
   display: flex;
@@ -87,12 +87,13 @@ export const CustomAccountCircleIcon = styled(AccountCircleIcon)`
 
 export const Block = styled.div`
   position: absolute;
+  z-index: 5;
   top: 55px;
   right: 20px;
   display: block;
   box-shadow: 0 2px 4px rgba(0,0,0,0.18);
   border-radius: 8px;
-  background-color: ${COLORS.grayPlaceholder};
+  background-color: ${COLORS.white};
   padding: 10px 20px;
   text-align: center;
 

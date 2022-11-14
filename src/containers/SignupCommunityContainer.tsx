@@ -1,13 +1,14 @@
+import useTypedSelector from 'hooks/useTypedSelector';
 import React, { FunctionComponent } from 'react';
 import { useDispatch } from 'react-redux';
 import { onSignupCommunityRequested } from '../redux/actions/community.actions';
 import Layout from '../views/Layout/Layout';
 import SignupCommunity from '../views/SignupCommunity/SignupCommunity';
 import { ISignupCommunityFormData } from '../views/SignupCommunity/types';
-import history from '../helpers/history';
 
 const SignupCommunityContainer: FunctionComponent = () => {
     const dispatch = useDispatch();
+    const { user } = useTypedSelector((state) => state.user);
 
     const onSignupClick = (formData: ISignupCommunityFormData) => {
         const data = {
@@ -18,24 +19,10 @@ const SignupCommunityContainer: FunctionComponent = () => {
         dispatch(onSignupCommunityRequested(data));
     }
 
-    const onGoToSigninUser = () => {
-        history.push('/loginUser');
-    }
-
-    const onGoToSignupUser = () => {
-        history.push('/');
-    }
-
-    const onGoToSigninCommunity = () => {
-        history.push('/loginCommunity');
-    }
     return (
-        <Layout name={"Name"}>
+        <Layout name={user && user.firstName}>
             <SignupCommunity
                 onSignupClick={onSignupClick}
-                onGoToSigninUser={onGoToSigninUser}
-                onGoToSignupUser={onGoToSignupUser}
-                onGoToSigninCommunity={onGoToSigninCommunity}
             />
         </Layout>
     )

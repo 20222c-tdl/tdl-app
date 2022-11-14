@@ -2,9 +2,6 @@ import { ICommunity } from "types/community.types";
 
 export interface ISignupUserProps {
     onSignupClick: (formData: ISignupUserFormData) => void;
-    onGoToSignupCommunity: () => void;
-    onGoToSigninCommunity: () => void;
-    onGoToSigninUser: () => void;
     allCommunities: ICommunity[];
 }
 export interface ISignupUserFormData {

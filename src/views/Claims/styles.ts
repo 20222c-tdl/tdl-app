@@ -1,35 +1,30 @@
 import COLORS from "helpers/colors";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+import { KeyboardArrowDown } from "@mui/icons-material";
 
-export const TitleContainer = styled.div`
-  border-bottom: 1px solid ${COLORS.grayPlaceholder};
-  text-align: center;
-  font-weight: bold ;
-  font-size: 24px;
-  width: 100%;
-;`
-
-export const ClaimContainer = styled.div`
+export const ClaimsContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content:center;
-  background: ${COLORS.lightBlue};
-  margin: 1% 10%;
+  justify-content: center;
+  margin: 30px 10%;
   border-radius: 8px;
+  max-width: 1024px;
+  margin: 0 auto;
 `;
 
 export const CustomForm = styled.form`
     line-height: 2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    font-size: 20px;
-
-    & > div {
-      width: 500px;
-    }
+    font-size: 17px;
+    width: 100%;
+    align-items: center;
 ;`
+
+export const Container = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 1rem;
+`;
 
 export const ButtonContainer = styled.div`
   justify-content: center;
@@ -39,13 +34,101 @@ export const ButtonContainer = styled.div`
 `;
 
 export const Button = styled.button`
-  padding: 7px 30%;
+  padding: 7px 16%;
   font-size: 20px;
-  border: 1px solid #ccc;
-  font-weight: bold ;
+  border: none;
   border-radius: 8px;
   margin-top: 10px;
   cursor: pointer;
-  background-color: ${COLORS.blue};
+  background-color: ${COLORS.blueFire};
   color: ${COLORS.white};
+  font-family: 'OpenSans';
 ;`
+
+export const Box = styled.div`
+    padding: 20px 0;
+    max-width: 1024px;
+    width: 100%;
+`;
+
+export const RowDiv = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%
+`;
+
+export const Title = styled.p`
+  font-size: 24px;
+  margin: 0;
+  font-weight: bold;
+  text-align: center;
+  font-family: 'OpenSans';
+  display: flex;
+  flex: 1;
+  justify-content: center;
+;`
+
+export const Arrow = styled(KeyboardArrowDown)`
+  cursor: pointer;
+  width: 30px;
+;`
+
+export const Subtitle = styled.p`
+  font-size: 20px;
+  margin: 0;
+  text-align: center;
+  font-family: 'OpenSans';
+;`
+
+export const Claim = styled.div`
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    width: 80%;
+    padding-bottom: 20px;
+    border-bottom: 2px solid ${COLORS.greyMystic};
+`;
+
+export const Text = styled.p`
+    font-size: 20px;
+    margin: 0 5px 0 5px;
+    text-overflow: ellipsis;
+
+    ${({ isBold }: { isBold?: boolean }) =>
+        isBold &&
+        css`
+        font-weight: bold;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    `};
+`;
+
+export const ColumnDiv = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    overflow: hidden;
+    width:100%;
+    padding: 10px 0 10px 0;
+    text-overflow: ellipsis;
+    & > p {
+        margin: 0 5px 0 5px;
+    }
+`;
+
+export const Description = styled.p`
+    margin: 0 5px 0 5px;
+    font-size: 16px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+`;
+
+export const EditDiv = styled.div`
+  color: ${COLORS.black};
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+`

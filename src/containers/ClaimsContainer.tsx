@@ -1,36 +1,40 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import Layout from '../views/Layout/Layout';
-import history from '../helpers/history';
-import { ISignupUserFormData } from '../views/SignupUser/types';
-import SignupUser from '../views/SignupUser/SignupUser';
-import { onSignupUserRequested } from '../redux/actions/user.actions';
 import useTypedSelector from 'hooks/useTypedSelector';
 import { IClaimFormData } from 'views/Claims/types';
 import Claims from 'views/Claims/Claims';
+import { onRegisterAClaimRequested, onUserGetClaimsRequested } from 'redux/actions/user.actions';
 
 const ClaimsContainer: FunctionComponent = () => {
     const dispatch = useDispatch();
-    const { data, user } = useTypedSelector((state) => state.user);
+    const { user, changeClaimsList, claims } = useTypedSelector((state) => state.user);
 
-    const userHardcode = {
-        id: 'asdf',
-        communityId: "dafdsf"
-    }
+    useEffect(() => {
+        if (user) {
+            dispatch(onUserGetClaimsRequested(user.id));
+        }
+    }, [dispatch, changeClaimsList, user])
 
     const onRegisterAClaim = (formData: IClaimFormData) => {
-        const data = {
-            userId: userHardcode.id,
-            communityId: userHardcode.communityId,
+        const info = {
+            userId: user.id,
+            communityId: user.communityId,
             ...formData
         }
-        //dispatch(onSignupUserRequested(data));
+        dispatch(onRegisterAClaimRequested(info));
+    }
+
+    const onEditClaim = () => {
+        //dispatch(onEditClaim(claimId))
     }
 
     return (
-        <Layout name={"Name"}>
+        <Layout name={user && user.firstName}>
             <Claims
                 onRegisterAClaim={onRegisterAClaim}
+                claims={claims}
+                onEditClaim={onEditClaim}
             />
         </Layout>
     )

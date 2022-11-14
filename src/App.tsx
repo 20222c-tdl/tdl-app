@@ -7,6 +7,9 @@ import LoginCommunityContainer from './containers/LoginCommunityContainer';
 import LoginUserContainer from './containers/LoginUserContainer';
 import SignupUserContainer from './containers/SignupUserContainer';
 import ClaimsContainer from 'containers/ClaimsContainer';
+import HomeContainer from 'containers/HomeContainer';
+import LoginProviderContainer from 'containers/LoginProviderContainer';
+import SignupProviderContainer from 'containers/SignupProviderContainer';
 
 function App() {
   return (
@@ -14,9 +17,14 @@ function App() {
       <Routes>
         <Route path="/" element={<SignupUserContainer />} />
         <Route path="/signupCommunity" element={<SignupCommunityContainer />} />
+        <Route path="/signupProvider" element={<SignupProviderContainer />} />
         <Route path="/loginCommunity" element={<LoginCommunityContainer />} />
         <Route path="/loginUser" element={<LoginUserContainer />} />
+        <Route path="/loginProvider" element={<LoginProviderContainer />} />
+        <Route path="/loginProvider" element={<LoginProviderContainer />} />
         <Route path="/claims" element={<ClaimsContainer />} />
+        <Route path="/home" element={<HomeContainer />} />
+
 
         <Route
           path="*"
