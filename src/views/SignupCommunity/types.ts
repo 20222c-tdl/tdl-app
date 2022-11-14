@@ -1,8 +1,5 @@
 export interface ISignupCommunityProps {
     onSignupClick: (formData: ISignupCommunityFormData) => void;
-    onGoToSigninUser: () => void;
-    onGoToSignupUser: () => void;
-    onGoToSigninCommunity: () => void;
 }
 
 export interface ISignupCommunityFormData {

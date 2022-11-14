@@ -9,8 +9,7 @@ import { ILoginFormData } from '../views/Login/types';
 
 const LoginUserContainer: FunctionComponent = () => {
   const dispatch = useDispatch();
-  const { data, user } = useTypedSelector((state) => state.user);
-  console.log("🚀 ~ user", user)
+  const { user } = useTypedSelector((state) => state.user);
   
 
   const onLoginClick = (formData: ILoginFormData) => {
@@ -18,7 +17,7 @@ const LoginUserContainer: FunctionComponent = () => {
   }
 
   return (
-    <Layout name={data && data.firstName}>
+    <Layout name={user && user.firstName}>
       <Login onLoginClick={onLoginClick}/>
     </Layout>
   )

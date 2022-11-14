@@ -28,4 +28,5 @@ export interface ClaimsState {
     claims: IClaim[],
     error: unknown
     loading: boolean
+    claimHasChanged: boolean,
 }

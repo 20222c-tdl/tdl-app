@@ -1,6 +1,6 @@
 
 import { FunctionComponent } from 'react';
-import { CustomForm, SignupContainer, TitleContainer, Button, ButtonContainer, ButtonSignUp, ButtonContainerSignUp, RowDiv } from './styles';
+import { CustomForm, SignupContainer, TitleContainer, Button, ButtonContainer, Box, FormFields, Label } from './styles';
 import { ISignupCommunityProps } from './types';
 import { Form, Field } from 'react-final-form';
 import Input from '../../components/Input/Input';
@@ -8,76 +8,78 @@ import { requiredValidation } from '../../helpers/validations';
 
 
 const SignupCommunity: FunctionComponent<ISignupCommunityProps> = (props: ISignupCommunityProps) => {
-    const { onSignupClick, onGoToSigninUser, onGoToSignupUser, onGoToSigninCommunity } = props;
+    const { onSignupClick } = props;
 
     return (
         <SignupContainer>
-            <RowDiv>
-                <ButtonContainerSignUp>
-                    <ButtonSignUp onClick={onGoToSigninCommunity}>Sign in as Community</ButtonSignUp>
-                </ButtonContainerSignUp>
-                <ButtonContainerSignUp>
-                    <ButtonSignUp onClick={onGoToSignupUser}>Sign up as User</ButtonSignUp>
-                </ButtonContainerSignUp>
-                <ButtonContainerSignUp>
-                    <ButtonSignUp onClick={onGoToSigninUser}>Sign in as User</ButtonSignUp>
-                </ButtonContainerSignUp>
-            </RowDiv>
-
             <TitleContainer>
-                <p>Sign up</p>
+                <p>Sign up as Community</p>
             </TitleContainer>
-
-            <h3> We welcome you to Denunci.AR</h3>
-
+            <Box>
+                <p>You want to signup as a </p>
+                <a href="/">User </a>
+                <p>  </p>
+                <p> or as a </p>
+                <a href="/signupProvider">Provider</a>
+            </Box>
             <Form
                 onSubmit={onSignupClick}
                 initialValues={{}}
                 render={({ handleSubmit }) => (
                     <CustomForm onSubmit={handleSubmit}>
-                        <div>
-                            <label>Community name</label>
-                            <Field
-                                render={Input}
-                                label="Community name"
-                                name="name"
-                                validate={requiredValidation}
-                                type="text"
-                            />
-                        </div>
-                        <div>
-                            <label>Email</label>
-                            <Field
-                                render={Input}
-                                label="Email address"
-                                name="email"
-                                validate={requiredValidation}
-                                type="email"
-                            />
-                        </div>
-                        <div>
-                            <label>Password</label>
-                            <Field
-                                render={Input}
-                                label="Password"
-                                name="password"
-                                validate={requiredValidation}
-                                type="password"
-                            />
-                        </div>
-                        <div>
-                            <label>Repeat password</label>
-                            <Field
-                                render={Input}
-                                label="Repeat password"
-                                name="repeatPassword"
-                                validate={requiredValidation}
-                                type="password"
-                            />
-                        </div>
+                        <FormFields>
+                            <div>
+                                <Label>Community name</Label>
+                                <Field
+                                    render={Input}
+                                    label="Community name"
+                                    name="name"
+                                    validate={requiredValidation}
+                                    type="text"
+                                />
+                            </div>
+                            <div>
+                                <Label>Email</Label>
+                                <Field
+                                    render={Input}
+                                    label="Email address"
+                                    name="email"
+                                    validate={requiredValidation}
+                                    type="email"
+                                />
+                            </div>
+                            <div>
+                                <Label>Password</Label>
+                                <Field
+                                    render={Input}
+                                    label="Password"
+                                    name="password"
+                                    validate={requiredValidation}
+                                    type="password"
+                                />
+                            </div>
+                            <div>
+                                <Label>Repeat password</Label>
+                                <Field
+                                    render={Input}
+                                    label="Repeat password"
+                                    name="repeatPassword"
+                                    validate={requiredValidation}
+                                    type="password"
+                                />
+                            </div>
+                        </FormFields>
                         <ButtonContainer>
                             <Button type="submit">Sign up</Button>
                         </ButtonContainer>
+                        <Box>
+                            <p>Do you want to login as a </p>
+                            <a href="/loginUser">User</a>
+                            <p>,</p>
+                            <a href="/loginProvider"> Provider</a>
+                            <p>or as</p>
+                            <a href="/loginCommunity">Community</a>
+                        </Box>
                     </CustomForm>
                 )}
             />

@@ -7,9 +7,11 @@ const COLORS = {
     greyMystic: '#898989',
     blueFire: '#101AEC',
     black: '#000000',
-    black: '#000000',
-    black: '#000000',
-
+    violetRed: '#c02fac',
+    grayAlto: '#DDDDDD',
+    violetPigment: '#871e79',
+    lightBlueCharlot: '#B2E8F5',
+    lightBlueLilac: '#F0EFFA',
   };
   
   export default COLORS;

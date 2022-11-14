@@ -1,4 +1,5 @@
 import {AnyAction} from 'redux';
+import { IClaimFormData } from 'views/Claims/types';
 import { ILoginFormData } from '../../views/Login/types';
 import { ISignupUserFormData } from '../../views/SignupUser/types';
 import * as constants from '../constants/user.constants';
@@ -46,3 +47,48 @@ export function onSignupUserFailed(error: unknown): AnyAction {
         error
     };
 }
+
+// onRegisterAClaim
+export function onRegisterAClaimRequested(formData: IClaimFormData): AnyAction {
+    return {
+        type: constants.USER_ON_REGISTER_A_CLAIM_REQUESTED,
+        formData
+    };
+}
+
+export function onRegisterAClaimSucceeded(data: unknown): AnyAction {
+    return {
+        type: constants.USER_ON_REGISTER_A_CLAIM_SUCCEEDED,
+        data
+    };
+}
+
+export function onRegisterAClaimFailed(error: unknown): AnyAction {
+    return {
+        type: constants.USER_ON_REGISTER_A_CLAIM_FAILED,
+        error
+    };
+}
+
+// onUserGetClaims
+export function onUserGetClaimsRequested(userId: string): AnyAction {
+    return {
+        type: constants.USER_ON_GET_CLAIMS_REQUESTED,
+        userId
+    };
+}
+
+export function onUserGetClaimsSucceeded(data: unknown): AnyAction {
+    return {
+        type: constants.USER_ON_GET_CLAIMS_SUCCEEDED,
+        data
+    };
+}
+
+export function onUserGetClaimsFailed(error: unknown): AnyAction {
+    return {
+        type: constants.USER_ON_GET_CLAIMS_FAILED,
+        error
+    };
+}
+
