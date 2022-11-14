@@ -1,6 +1,6 @@
 import { AnyAction } from "redux";
 import { ClaimsConstants } from "../constants/claims.constants";
-import { IClaim } from "../../types/claims.types";
+import { IClaim, ClaimsState } from "../../types/claims.types";
 
 export interface ClaimsState {
     claims: IClaim[],

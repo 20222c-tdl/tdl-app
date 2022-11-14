@@ -23,3 +23,9 @@ export const CLAIMS_STATUS = Object.freeze([
         text: "Resolved"
     },
 ])
+
+export interface ClaimsState {
+    claims: IClaim[],
+    error: unknown
+    loading: boolean
+}
