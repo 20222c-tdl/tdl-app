@@ -1,7 +1,7 @@
 export interface IClaimsProps {
     onRegisterAClaim: (formData: IClaimFormData) => void;
     claims: IClaimFormData[];
-    onEditClaim: () => void;
+    onEditClaim: (formData: IClaimFormData) => void;
 }
 
 export interface IClaimFormData {
@@ -17,4 +17,10 @@ export interface IClaimFormData {
 export interface IClaimStatusUpdate {
     claimId: string;
     status: string;
+}
+
+export interface IClaimInfoFormdataProps {
+    goBack: () => void;
+    claim: IClaimFormData;
+    onSubmit: (formData: IClaimFormData) => void;
 }

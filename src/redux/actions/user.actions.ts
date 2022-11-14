@@ -92,3 +92,25 @@ export function onUserGetClaimsFailed(error: unknown): AnyAction {
     };
 }
 
+// onEditClaim
+export function onEditClaimRequested(formData: IClaimFormData): AnyAction {
+    return {
+        type: constants.USER_ON_EDIT_CLAIM_REQUESTED,
+        formData
+    };
+}
+
+export function onEditClaimSucceeded(data: unknown): AnyAction {
+    return {
+        type: constants.USER_ON_EDIT_CLAIM_SUCCEEDED,
+        data
+    };
+}
+
+export function onEditClaimFailed(error: unknown): AnyAction {
+    return {
+        type: constants.USER_ON_EDIT_CLAIM_FAILED,
+        error
+    };
+}
+

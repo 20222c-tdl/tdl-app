@@ -4,7 +4,7 @@ import Layout from '../views/Layout/Layout';
 import useTypedSelector from 'hooks/useTypedSelector';
 import { IClaimFormData } from 'views/Claims/types';
 import Claims from 'views/Claims/Claims';
-import { onRegisterAClaimRequested, onUserGetClaimsRequested } from 'redux/actions/user.actions';
+import { onEditClaimRequested, onRegisterAClaimRequested, onUserGetClaimsRequested } from 'redux/actions/user.actions';
 
 const ClaimsContainer: FunctionComponent = () => {
     const dispatch = useDispatch();
@@ -25,8 +25,8 @@ const ClaimsContainer: FunctionComponent = () => {
         dispatch(onRegisterAClaimRequested(info));
     }
 
-    const onEditClaim = () => {
-        //dispatch(onEditClaim(claimId))
+    const onEditClaim = (formData: IClaimFormData) => {
+        dispatch(onEditClaimRequested(formData))
     }
 
     return (
