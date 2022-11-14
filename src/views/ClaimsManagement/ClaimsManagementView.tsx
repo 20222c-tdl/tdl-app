@@ -1,7 +1,6 @@
 import React, { FunctionComponent } from "react";
 
 import { CollapsibleRow } from "./CollapsibleRow";
-import { ClaimsState } from "../../redux/reducers/claims.reducer";
 import {
     Container,
     Paper,
@@ -13,6 +12,7 @@ import {
     TableHead,
     TableRow
 } from "@mui/material";
+import { ClaimsState } from "../../types/claims.types";
 
 
 type ClaimsViewProps = Pick<ClaimsState, "claims" | "loading">
