@@ -4,7 +4,6 @@ import { getCookie } from '../helpers/cookies';
 
 const api = axios.create({
   baseURL: API_BASE_URL,
-  withCredentials: true,
 });
 
 async function getOptions() {
@@ -16,9 +15,7 @@ async function getOptions() {
       'Content-Type': 'application/json',
       Accept: 'application/json',
     },
-    credentials: 'include',
     mode: 'cors',
-    withCredentials: true,
   };
   return options;
 }
@@ -61,6 +58,14 @@ export async function put(url: string, params = {}, headers = {}): Promise<any> 
     const options = { ...getToken, ...headers };
     const { data } = await api.put(url, params, options);
     return data;
+  } catch (error) {
+    throw errorResponse(error);
+  }
+}
+
+export async function patch(url: string) {
+  try {
+    return api.patch(url);
   } catch (error) {
     throw errorResponse(error);
   }

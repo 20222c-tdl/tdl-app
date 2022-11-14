@@ -1,10 +1,8 @@
-export interface ILoginViewProps{
-    name: string;
-    lastname?: string;
-    onLoginClick: () => void;
-}
+export interface ILoginProps {
+    onLoginClick: (formData: ILoginFormData) => void;
 
-export interface ILoginFormData{
+}
+export interface ILoginFormData {
     email: string;
     password: string;
 }
