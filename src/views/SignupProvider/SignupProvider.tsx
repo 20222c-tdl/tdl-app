@@ -24,8 +24,11 @@ const SignupProvider: FunctionComponent<ISignupProviderProps> = (props: ISignupP
                 <p>Sign up as Provider</p>
             </TitleContainer>
             <Box>
-                <p>You want to signup as a User?</p>
-                <a href="/">Sign up</a>
+                <p>You want to signup as a </p>
+                <a href="/">User</a>
+                <p>  </p>
+                <p>or as a</p>
+                <a href="/signupCommunity">Community</a>
             </Box>
             <Form
                 onSubmit={onSignupClick}
@@ -129,13 +132,13 @@ const SignupProvider: FunctionComponent<ISignupProviderProps> = (props: ISignupP
                             <Button type="submit">Sign up</Button>
                         </ButtonContainer>
                         <Box>
-                            <p>Already have an User account?</p>
-                            <a href="/loginUser">Login</a>
-                        </Box>
-                        <Box>
-                            <p>Already have a Community account?</p>
-                            <a href="/loginCommunity">Login</a>
-                        </Box>
+                    <p>Do you want to login as a </p>
+                    <a href="/loginUser">User</a>
+                    <p>,</p>
+                    <a href="/loginProvider"> Provider</a>
+                    <p>or as</p>
+                    <a href="/loginCommunity">Community</a>
+                </Box>
                     </CustomForm>
                 )}
             />

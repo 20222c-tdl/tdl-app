@@ -23,7 +23,7 @@ const providersReducer: Reducer = (state = {}, action) => {
         case constants.ON_GET_ALL_CATEGORIES_SUCCEEDED:
             return {
                 ...state,
-                allCategories: data,
+                allCategories: data.data,
                 loading: false
             }
         case constants.PROVIDER_ON_LOGIN_SUCCEEDED:

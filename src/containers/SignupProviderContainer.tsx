@@ -16,7 +16,7 @@ const SignupProviderContainer: FunctionComponent = () => {
     }, [dispatch])
 
     const onSignupClick = (formData: ISignupProviderFormData) => {
-        const idCategoryChoosed = allCategories.filter(x => x.name === formData.categoryName).map(x => x.id);
+        const idCategoryChoosed = allCategories.filter(x => x.name === formData.category).map(x => x.id);
         const data = {
             firstName: formData.firstName,
             lastName: formData.lastName,

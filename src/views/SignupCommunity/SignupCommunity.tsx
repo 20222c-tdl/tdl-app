@@ -16,8 +16,11 @@ const SignupCommunity: FunctionComponent<ISignupCommunityProps> = (props: ISignu
                 <p>Sign up as Community</p>
             </TitleContainer>
             <Box>
-                <p>You want to signup as a User?</p>
-                <a href="/">Sign up</a>
+                <p>You want to signup as a </p>
+                <a href="/">User </a>
+                <p>  </p>
+                <p> or as a </p>
+                <a href="/signupProvider">Provider</a>
             </Box>
             <Form
                 onSubmit={onSignupClick}
@@ -70,12 +73,12 @@ const SignupCommunity: FunctionComponent<ISignupCommunityProps> = (props: ISignu
                             <Button type="submit">Sign up</Button>
                         </ButtonContainer>
                         <Box>
-                            <p>Already have an User account?</p>
-                            <a href="/loginUser">Login</a>
-                        </Box>
-                        <Box>
-                            <p>Already have a Community account?</p>
-                            <a href="/loginCommunity">Login</a>
+                            <p>Do you want to login as a </p>
+                            <a href="/loginUser">User</a>
+                            <p>,</p>
+                            <a href="/loginProvider"> Provider</a>
+                            <p>or as</p>
+                            <a href="/loginCommunity">Community</a>
                         </Box>
                     </CustomForm>
                 )}

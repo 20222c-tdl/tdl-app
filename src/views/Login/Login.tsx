@@ -49,6 +49,14 @@ const Login: FunctionComponent<ILoginProps> = (props: ILoginProps) => {
                     <a href="/signupCommunity">Community</a>
 
                 </Box>
+                <Box>
+                    <p>Do you want to login as a </p>
+                    <a href="/loginUser">User</a>
+                    <p>,</p>
+                    <a href="/loginProvider"> Provider</a>
+                    <p>or as</p>
+                    <a href="/loginCommunity">Community</a>
+                </Box>
             </CustomForm>
         )}
     />

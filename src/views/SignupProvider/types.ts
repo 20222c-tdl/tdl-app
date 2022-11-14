@@ -14,5 +14,5 @@ export interface ISignupProviderFormData {
     identityNumber: string;
     phoneNumber: string;
     categoryId?: string;
-    categoryName?: string
+    category?: string
 }
