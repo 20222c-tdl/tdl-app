@@ -68,3 +68,24 @@ export function onGetAllProvidersCategoriesFailed(error: unknown): AnyAction {
     };
 }
 
+// onFilterCategory
+export function onFilterCategoryRequested(category: string): AnyAction {
+    return {
+        type: constants.ON_FILTER_CATEGORY_REQUESTED,
+        category
+    };
+}
+
+export function onFilterCategorySucceeded(data: unknown): AnyAction {
+    return {
+        type: constants.ON_FILTER_CATEGORY_SUCCEEDED,
+        data
+    };
+}
+
+export function onFilterCategoryFailed(error: unknown): AnyAction {
+    return {
+        type: constants.ON_FILTER_CATEGORY_FAILED,
+        error
+    };
+}

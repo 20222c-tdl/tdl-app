@@ -14,6 +14,12 @@ export async function loginProvider(formData: ISignupProviderFormData): Promise<
 
 export async function getAllCategories(): Promise<AxiosResponse> {
     const response = await get(`/providers/categories?page=1&take=10`);
+    return response;
+}
 
+
+export async function filterCategory(idCategoryChoosed: string): Promise<any> {
+    //const response = await get(`/providers/categories?page=1&take=10`);
+    const response = await get(`/providers?page=1&take=10`);
     return response;
 }

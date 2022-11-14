@@ -11,8 +11,14 @@ import HomeContainer from 'containers/HomeContainer';
 import LoginProviderContainer from 'containers/LoginProviderContainer';
 import SignupProviderContainer from 'containers/SignupProviderContainer';
 import { ClaimsManagementContainer } from 'containers/ClaimsManagementContainer';
+import { useDispatch } from 'react-redux';
+import { userOnInitializeRequested } from 'redux/actions/user.actions';
 
 function App() {
+
+  const dispatch = useDispatch();
+  dispatch(userOnInitializeRequested());
+
   return (
     <HistoryRoute history={history}>
       <Routes>

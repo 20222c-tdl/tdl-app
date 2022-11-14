@@ -4,6 +4,27 @@ import { ILoginFormData } from '../../views/Login/types';
 import { ISignupUserFormData } from '../../views/SignupUser/types';
 import * as constants from '../constants/user.constants';
 
+// userOnInitialize
+export function userOnInitializeRequested(): AnyAction {
+    return{
+        type: constants.USER_ON_INITIALIZE_REQUESTED,
+    };
+}
+
+export function userOnInitializeSucceeded(data: unknown): AnyAction {
+    return{
+        type: constants.USER_ON_INITIALIZE_SUCCEEDED,
+        data
+    };
+}
+
+export function userOnInitializeFailed(error: unknown): AnyAction {
+    return{
+        type: constants.USER_ON_INITIALIZE_FAILED,
+        error
+    };
+}
+
 // onLogin
 export function onLoginUserRequested(formData: ILoginFormData): AnyAction {
     return{

@@ -5,7 +5,6 @@ import { onLoginCommunityRequested } from '../redux/actions/community.actions';
 import Layout from '../views/Layout/Layout';
 import Login from '../views/Login/Login';
 import { ILoginFormData } from '../views/Login/types';
-import history from '../helpers/history';
 
 const LoginCommunityContainer: FunctionComponent = () => {
   const dispatch = useDispatch();

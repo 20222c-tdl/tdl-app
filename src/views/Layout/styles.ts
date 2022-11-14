@@ -6,7 +6,7 @@ import COLORS from '../../helpers/colors';
 
 
 export const TopNav = styled.div`
-  background-color: ${COLORS.lightBlueLilac};
+  background-color: ${COLORS.jellyBean};
   border-bottom: 1px solid ${COLORS.greyMystic};
   align-items: center;
   display: flex;
