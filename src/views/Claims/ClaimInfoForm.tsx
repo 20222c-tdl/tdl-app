@@ -2,7 +2,7 @@ import Input from 'components/Input/Input';
 import { requiredValidation } from 'helpers/validations';
 import React from 'react';
 import { Form, Field } from 'react-final-form';
-import { Button, ButtonContainer, ButtonModal, Container, CustomForm } from './styles';
+import { ButtonContainer, ButtonModal, Container, CustomForm } from './styles';
 import { IClaimInfoFormdataProps } from './types';
 
 

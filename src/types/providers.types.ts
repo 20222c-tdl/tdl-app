@@ -4,9 +4,11 @@ export interface ProvidersInterface {
     data: any;
     providerData: IProvider;
     allCategories: ICategory[];
+    providers: IProvider[];
 }
 
 export interface IProvider {
+    id: string;
     email: string;
     password: string;
     firstName: string;

@@ -12,6 +12,13 @@ const COLORS = {
     violetPigment: '#871e79',
     lightBlueCharlot: '#B2E8F5',
     lightBlueLilac: '#F0EFFA',
+    gold: '#FFD600',
+    blumine: '#1A5276',
+    jellyBean: '#2471A3',
+    danube: '#5499C7',
+    seagull: '#85C1E9',
+    hummingBird: '#D6EAF8',
+    lightBlueSqueeze: '#EAF2F8',
   };
   
   export default COLORS;
