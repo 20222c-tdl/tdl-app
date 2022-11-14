@@ -4,6 +4,7 @@ import * as constants from '../constants/community.constants';
 const initialState = {
     loading: false,
     data: null,
+    communityInfo: null,
     allCommunities: null,
 }
 
@@ -22,7 +23,7 @@ const communityReducer: Reducer = (state = {}, action) => {
             return {
                 ...state,
                 loading: false,
-                data
+                communityInfo: data
             }
         case constants.ON_GET_ALL_COMMUNITIES_SUCCEEDED:
             return {

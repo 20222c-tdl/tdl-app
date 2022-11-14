@@ -8,15 +8,17 @@ import useTypedSelector from "../hooks/useTypedSelector";
 export const ClaimsManagementContainer: FunctionComponent = () => {
     const dispatch = useDispatch();
 
-    const { claims, loading } = useTypedSelector((state) => state.claims);
-
-    const communityId = '3b82b641-d9dd-4906-a993-8d8abfff7744';
+    const { claims, loading, claimHasChanged } = useTypedSelector((state) => state.claims);
+    const { communityInfo } = useTypedSelector((state) => state.community);
 
     useEffect(() => {
-        dispatch(onGetCommunityClaimsRequested(communityId))
-    }, [ dispatch ])
+        if (communityInfo) {
+            dispatch(onGetCommunityClaimsRequested(communityInfo.id))
+        }
+    }, [dispatch, claimHasChanged])
+
 
     return <Layout name={"Nombre"}>
-        <ClaimsManagementView claims={claims} loading={loading}/>
+        <ClaimsManagementView claims={claims} loading={loading} />
     </Layout>
 }

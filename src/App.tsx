@@ -10,6 +10,7 @@ import ClaimsContainer from 'containers/ClaimsContainer';
 import HomeContainer from 'containers/HomeContainer';
 import LoginProviderContainer from 'containers/LoginProviderContainer';
 import SignupProviderContainer from 'containers/SignupProviderContainer';
+import { ClaimsManagementContainer } from 'containers/ClaimsManagementContainer';
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
         <Route path="/loginCommunity" element={<LoginCommunityContainer />} />
         <Route path="/loginUser" element={<LoginUserContainer />} />
         <Route path="/loginProvider" element={<LoginProviderContainer />} />
-        <Route path="/loginProvider" element={<LoginProviderContainer />} />
+        <Route path="/claimsManagment" element={<ClaimsManagementContainer />} />
         <Route path="/claims" element={<ClaimsContainer />} />
         <Route path="/home" element={<HomeContainer />} />
 

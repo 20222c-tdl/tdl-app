@@ -17,7 +17,7 @@ const redirectMiddleware = () => (next: any) => (action: any) => {
             history.push('/loginCommunity');
             break;
         case communityConstants.COMMUNITY_ON_LOGIN_SUCCEEDED:
-                history.push('/home');
+                history.push('/claimsManagment');
                 break;
         default:
             break;
