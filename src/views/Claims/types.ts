@@ -13,3 +13,8 @@ export interface IClaimFormData {
     description: string;
     status?: string;
 }
+
+export interface IClaimStatusUpdate {
+    claimId: string;
+    status: string;
+}
