@@ -1,7 +1,7 @@
 import { TypedUseSelectorHook, useSelector } from 'react-redux';
 import { CommunityInterface } from 'types/community.types';
 import { UserInterface } from '../types/user.types';
-import { ClaimsState } from "../redux/reducers/claims.reducer";
+import { ClaimsState } from "../types/claims.types";
 
 interface IRootState {
     user: UserInterface,
