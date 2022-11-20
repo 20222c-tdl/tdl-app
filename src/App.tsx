@@ -13,6 +13,7 @@ import SignupProviderContainer from 'containers/SignupProviderContainer';
 import { ClaimsManagementContainer } from 'containers/ClaimsManagementContainer';
 import { useDispatch } from 'react-redux';
 import { userOnInitializeRequested } from 'redux/actions/user.actions';
+import ProviderContainer from 'containers/ProviderContainer';
 
 function App() {
 
@@ -31,8 +32,7 @@ function App() {
         <Route path="/claimsManagment" element={<ClaimsManagementContainer />} />
         <Route path="/claims" element={<ClaimsContainer />} />
         <Route path="/home" element={<HomeContainer />} />
-
-
+        <Route path="/providers/:id" element={<ProviderContainer />} />
         <Route
           path="*"
           element={<Navigate to="/" replace />}

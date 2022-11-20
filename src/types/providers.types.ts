@@ -5,6 +5,7 @@ export interface ProvidersInterface {
     providerData: IProvider;
     allCategories: ICategory[];
     providers: IProvider[];
+    allProviders: IProvider[];
 }
 
 export interface IProvider {
@@ -16,9 +17,20 @@ export interface IProvider {
     identityNumber: string;
     phoneNumber: string;
     categoryId: string;
+    category: ICategory;
+    averageCalification: number;
+    reviews: IReview[];
+    services: any[]
 }
 
 export interface ICategory {
     id: string;
     name: string;
+}
+export interface IReview {
+    reviewId: string;
+    calification: number;
+    reviewDescription: string;
+    username: string;
+    lastname: string;
 }
