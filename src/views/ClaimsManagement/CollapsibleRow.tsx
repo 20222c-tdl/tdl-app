@@ -20,7 +20,6 @@ export function CollapsibleRow(props: { row: IClaim }) {
         event: React.MouseEvent<HTMLElement>,
         newStatus: string,
     ) => {
-        console.log(event, newStatus)
         if (newStatus !== null) {
             const data: IClaimStatusUpdate = {
                 claimId: row.id,

@@ -29,19 +29,12 @@ export const Navbar = styled.nav`
   color: ${COLORS.violetPigment};
   display: flex;
   align-items: center;
+  height: 45px;
   justify-content: space-between;
   a { color: ${COLORS.black}; 
     text-decoration: none;
    }
  `;
-
-export const Brand = styled.a`
-  font-size: 18px;
-  font-weight: bold;
-  font-style: italic;
-  margin-left: 1rem;
-  padding-right: 1rem;
-`;
 
 export const Text = styled.p`
   font-size: 18px;
@@ -55,14 +48,14 @@ export const Text = styled.p`
 export const ProvidersContainer = styled.div`
     display: grid;
     margin: 1% 10%;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     align-items: center;
     grid-gap: 10px;
     max-width: 1024px;
 `;
 
 export const Provider = styled.div`
-    width: calc(100vw/4 - 20px);
+    width: calc(100vw/4 - 30px);
     padding: 25px;
     border-radius: 10px;
     border: 1px solid ${COLORS.grayAlto};
@@ -121,10 +114,50 @@ export const StarDiv = styled.div`
   width: 100%;
   display: flex;
   justify-content: flex-end;
+  align-items: center;
 `
 export const RowDiv = styled.div`
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 100%
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%
+`;
+
+export const CalificationText = styled.p`
+  font-size: 18px;
+  margin: 0;
+  text-overflow: ellipsis;
+  font-family: 'OpenSans';
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+`;
+
+export const ReviewsText = styled.p`
+  font-size: 16px;
+  margin: 0 2px 2px;
+  text-overflow: ellipsis;
+  font-family: 'OpenSans';
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  color: ${COLORS.greyMystic};
+`;
+
+
+export const CategoryText = styled.p`
+  font-size: 18px;
+  padding-right: 50px;
+  text-overflow: ellipsis;
+  font-style: italic;
+  color: ${COLORS.black};
+  cursor: pointer;
+
+    ${({ isSelected }: { isSelected?: boolean }) =>
+    isSelected &&
+    css`
+        font-weight: bold;
+        font-size: 20px;
+        white-space: nowrap;
+    `};
 `;

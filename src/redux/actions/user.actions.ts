@@ -135,3 +135,24 @@ export function onEditClaimFailed(error: unknown): AnyAction {
     };
 }
 
+// onMakeReservation
+export function onMakeReservationRequested(data: any): AnyAction {
+    return {
+        type: constants.USER_ON_MAKE_RESERVATION_REQUESTED,
+        data
+    };
+}
+
+export function onMakeReservationSucceeded(data: unknown): AnyAction {
+    return {
+        type: constants.USER_ON_MAKE_RESERVATION_SUCCEEDED,
+        data
+    };
+}
+
+export function onMakeReservationFailed(error: unknown): AnyAction {
+    return {
+        type: constants.USER_ON_MAKE_RESERVATION_FAILED,
+        error
+    };
+}

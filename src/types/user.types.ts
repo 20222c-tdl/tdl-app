@@ -1,4 +1,5 @@
 import { IClaimFormData } from "views/Claims/types";
+import { IProvider } from "./providers.types";
 
 export interface UserInterface {
     loading: boolean;

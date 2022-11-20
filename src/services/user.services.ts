@@ -12,7 +12,7 @@ export async function initializeUser(): Promise<any> {
         email: "tardarocio@gmail.com",
         address: "Paseo Colon 850",
         phoneNumber: "1234566",
-        communityId: "6e6fe0b3-e44a-41d3-8059-73faca54ca47"
+        communityId: "396487df-0837-4073-91e6-3267b9538010"
     };
     return (
         response
@@ -46,6 +46,14 @@ export async function getClaims(userId: string): Promise<AxiosResponse> {
 
 export async function editClaim(formData: IClaimFormData): Promise<AxiosResponse> {
     const response = await patch(`/claims/${formData.id}`, formData);
+    return (
+        response
+    )
+}
+
+export async function makeReservation(data: any): Promise<AxiosResponse> {
+    //const response = await patch(`/reservation/${data.userId}`, data);
+    const response = data;
     return (
         response
     )

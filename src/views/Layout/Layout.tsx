@@ -22,7 +22,7 @@ const Layout: FunctionComponent<ILayoutProps> = (props: ILayoutProps) => {
     return (
         <>
             <TopNav>
-                <RowDiv onClick={() => history.push('/')}>
+                <RowDiv onClick={() => history.push('/home')}>
                     <Logo src={LogoImg} alt="logo" />
                     <p>Denunci.AR</p>
                 </RowDiv>

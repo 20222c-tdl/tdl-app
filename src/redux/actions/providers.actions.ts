@@ -89,3 +89,46 @@ export function onFilterCategoryFailed(error: unknown): AnyAction {
         error
     };
 }
+
+// onGetAllProviders
+export function onGetAllProvidersRequested(): AnyAction {
+    return {
+        type: constants.ON_GET_ALL_PROVIDERS_REQUESTED
+    };
+}
+
+export function onGetAllProvidersSucceeded(data: unknown): AnyAction {
+    return {
+        type: constants.ON_GET_ALL_PROVIDERS_SUCCEEDED,
+        data
+    };
+}
+
+export function onGetAllProvidersFailed(error: unknown): AnyAction {
+    return {
+        type: constants.ON_GET_ALL_PROVIDERS_FAILED,
+        error
+    };
+}
+
+// onGetProviderInfo
+export function onGetProviderInfoRequested(providerId: string): AnyAction {
+    return {
+        type: constants.ON_GET_PROVIDER_INFO_REQUESTED,
+        providerId
+    };
+}
+
+export function onGetProviderInfoSucceeded(data: unknown): AnyAction {
+    return {
+        type: constants.ON_GET_PROVIDER_INFO_SUCCEEDED,
+        data
+    };
+}
+
+export function onGetProviderInfoFailed(error: unknown): AnyAction {
+    return {
+        type: constants.ON_GET_PROVIDER_INFO_FAILED,
+        error
+    };
+}
