@@ -18,6 +18,7 @@ const userReducer: Reducer = (state = {}, action) => {
         case constants.USER_ON_GET_CLAIMS_REQUESTED:
         case constants.USER_ON_INITIALIZE_REQUESTED:
         case constants.USER_ON_MAKE_RESERVATION_REQUESTED:
+        case constants.USER_ON_POST_COMMENT_REQUESTED:
             return {
                 ...state,
                 loading: true
@@ -64,6 +65,8 @@ const userReducer: Reducer = (state = {}, action) => {
         case constants.USER_ON_EDIT_CLAIM_FAILED:
         case constants.USER_ON_MAKE_RESERVATION_SUCCEEDED:
         case constants.USER_ON_MAKE_RESERVATION_FAILED:
+        case constants.USER_ON_POST_COMMENT_SUCCEEDED:
+        case constants.USER_ON_POST_COMMENT_FAILED:
             return {
                 ...state,
                 loading: false

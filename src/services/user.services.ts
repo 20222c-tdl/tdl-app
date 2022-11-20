@@ -6,7 +6,7 @@ import { post, get, patch } from "./api";
 
 export async function initializeUser(): Promise<any> {
     const response = {
-        id: "5d8b9511-ed57-4221-8174-816d0abcdfb8",
+        id: "7bfb5d31-9918-40a4-a418-00346b92f4db",
         firstName: "Rocio",
         lastName: "Tarda",
         email: "tardarocio@gmail.com",
@@ -52,7 +52,15 @@ export async function editClaim(formData: IClaimFormData): Promise<AxiosResponse
 }
 
 export async function makeReservation(data: any): Promise<AxiosResponse> {
-    //const response = await patch(`/reservation/${data.userId}`, data);
+    //const response = await post(`/reservation/${data.userId}`, data);
+    const response = data;
+    return (
+        response
+    )
+}
+
+export async function postComment(data: any): Promise<AxiosResponse> {
+    //const response = await post(`/makeComment/${data.userId}`, data);
     const response = data;
     return (
         response

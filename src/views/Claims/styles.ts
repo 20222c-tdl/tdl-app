@@ -87,7 +87,7 @@ export const Claim = styled.div`
     flex-direction: column;
     cursor: pointer;
     width: 80%;
-    padding-bottom: 20px;
+    padding-bottom: 5px;
     border-bottom: 2px solid ${COLORS.greyMystic};
 `;
 
@@ -132,6 +132,7 @@ export const EditDiv = styled.div`
   display: flex;
   justify-content: flex-end;
 `
+
 export const Status = styled.div`
   cursor: pointer;
   width: 100%;
@@ -175,10 +176,66 @@ export const ButtonModal = styled.button`
     color: ${COLORS.white};
 
     ${({ isInverted }: { isInverted?: boolean }) =>
-        isInverted &&
-        css`
+    isInverted &&
+    css`
         background-color: white;
         color: ${COLORS.violetRed};
         border: 1px solid ${COLORS.violetRed};
     `};
 `;
+
+export const CommentsButton = styled.button`
+  font-size: 15px;
+  margin: 0;
+  font-family: 'OpenSans';
+  color: ${COLORS.blueFire};
+  text-decoration: underline;
+  border: 0;
+  background-color: white;
+;`
+
+export const CommentsDiv = styled.div`
+  cursor: pointer;
+  width: 200px;
+  div:last-child{
+    border-bottom: 10px solid ${COLORS.grayPlaceholder};
+  }
+`
+export const Comment = styled.div`
+    margin: 1px 1px 1px 40px;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    width: 80%;
+    padding-bottom: 5px;
+    border-bottom: 1px solid ${COLORS.grayPlaceholder};
+`;
+
+export const CommentCustomForm = styled.form`
+    line-height: 2rem;
+    font-size: 17px;
+    width: 100%;
+    align-items: center;
+;`
+
+export const LeaveACommentDiv = styled.div`
+  width: 70%;
+`;
+
+export const CommentButtonContainer = styled.div`
+  justify-content: center;
+  text-align: center;
+  width: 20%;
+`;
+
+export const CommentButton = styled.button`
+  padding: 7px 16%;
+  margin: 0 0 4px 3px;
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: ${COLORS.blueFire};
+  color: ${COLORS.white};
+  font-family: 'OpenSans';
+;`
