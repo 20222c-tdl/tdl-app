@@ -156,3 +156,25 @@ export function onMakeReservationFailed(error: unknown): AnyAction {
         error
     };
 }
+
+// onPostComment
+export function onPostCommentRequested(data: any): AnyAction {
+    return {
+        type: constants.USER_ON_POST_COMMENT_REQUESTED,
+        data
+    };
+}
+
+export function onPostCommentSucceeded(data: unknown): AnyAction {
+    return {
+        type: constants.USER_ON_POST_COMMENT_SUCCEEDED,
+        data
+    };
+}
+
+export function onPostCommentFailed(error: unknown): AnyAction {
+    return {
+        type: constants.USER_ON_POST_COMMENT_FAILED,
+        error
+    };
+}

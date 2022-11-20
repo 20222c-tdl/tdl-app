@@ -1,5 +1,6 @@
 export interface IClaimsProps {
     onRegisterAClaim: (formData: IClaimFormData) => void;
+    onPostComment: (formData: any) => void;
     claims: IClaimFormData[];
     onEditClaim: (formData: IClaimFormData) => void;
 }
@@ -12,6 +13,7 @@ export interface IClaimFormData {
     mainIssue: string;
     description: string;
     status?: string;
+    comments?: any[];
 }
 
 export interface IClaimStatusUpdate {

@@ -1,7 +1,7 @@
 import { AnyAction } from 'redux';
 import { call, put, takeLatest, all } from 'redux-saga/effects';
-import { editClaim, getClaims, initializeUser, loginUser, registerClaim, signupUser, makeReservation } from '../../services/user.services';
-import { onEditClaimFailed, onEditClaimSucceeded, onLoginUserFailed, onLoginUserSucceeded, onMakeReservationFailed, onMakeReservationSucceeded, onRegisterAClaimFailed, onRegisterAClaimSucceeded, onSignupUserFailed, onSignupUserSucceeded, onUserGetClaimsFailed, onUserGetClaimsSucceeded, userOnInitializeFailed, userOnInitializeSucceeded } from '../actions/user.actions';
+import { editClaim, getClaims, initializeUser, loginUser, registerClaim, signupUser, makeReservation, postComment } from '../../services/user.services';
+import { onEditClaimFailed, onEditClaimSucceeded, onLoginUserFailed, onLoginUserSucceeded, onMakeReservationFailed, onMakeReservationSucceeded, onPostCommentFailed, onPostCommentSucceeded, onRegisterAClaimFailed, onRegisterAClaimSucceeded, onSignupUserFailed, onSignupUserSucceeded, onUserGetClaimsFailed, onUserGetClaimsSucceeded, userOnInitializeFailed, userOnInitializeSucceeded } from '../actions/user.actions';
 import * as constants from '../constants/user.constants';
 
 export function* userInitialize(action: AnyAction) {
@@ -67,6 +67,15 @@ export function* userMakeReservation(action: AnyAction) {
     }
 }
 
+export function* userPostComment(action: AnyAction) {
+    try {
+        const data: unknown = yield call(postComment, action.data);
+        yield put(onPostCommentSucceeded(data));
+    } catch (error) {
+        yield put(onPostCommentFailed(error));
+    }
+}
+
 export function* watchUsers(): Generator {
     yield all([
         takeLatest(constants.USER_ON_INITIALIZE_REQUESTED, userInitialize),
@@ -76,5 +85,6 @@ export function* watchUsers(): Generator {
         takeLatest(constants.USER_ON_GET_CLAIMS_REQUESTED, userGetClaims),
         takeLatest(constants.USER_ON_EDIT_CLAIM_REQUESTED, userEditClaim),
         takeLatest(constants.USER_ON_MAKE_RESERVATION_REQUESTED, userMakeReservation),
+        takeLatest(constants.USER_ON_POST_COMMENT_REQUESTED, userPostComment),
     ])
 }

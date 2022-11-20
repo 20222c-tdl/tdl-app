@@ -4,11 +4,27 @@ import Layout from '../views/Layout/Layout';
 import useTypedSelector from 'hooks/useTypedSelector';
 import { IClaimFormData } from 'views/Claims/types';
 import Claims from 'views/Claims/Claims';
-import { onEditClaimRequested, onRegisterAClaimRequested, onUserGetClaimsRequested } from 'redux/actions/user.actions';
+import { onEditClaimRequested, onPostCommentRequested, onRegisterAClaimRequested, onUserGetClaimsRequested } from 'redux/actions/user.actions';
 
 const ClaimsContainer: FunctionComponent = () => {
     const dispatch = useDispatch();
     const { user, changeClaimsList, claims } = useTypedSelector((state) => state.user);
+
+    const claimsWithComments = claims && claims.map((claim) => (
+        {
+            ...claim,
+            comments: [{
+                id: 1,
+                userName: "Yo",
+                comment: "Me gustaria saber el estado de mi reclamo",
+            },
+            {
+                id: 2,
+                userName: "Admin",
+                comment: "Aun esta siendo evaluado, a penas tengamos novedades le avisaremos por este medio",
+            }]
+        }
+    ))
 
     useEffect(() => {
         if (user) {
@@ -29,12 +45,22 @@ const ClaimsContainer: FunctionComponent = () => {
         dispatch(onEditClaimRequested(formData))
     }
 
+    const onPostComment = (formData: any) => {
+        const data = {
+            ...formData,
+            username: user.firstName
+        }
+        dispatch(onPostCommentRequested(data))
+        dispatch(onUserGetClaimsRequested(user.id));
+    }
+
     return (
         <Layout name={user && user.firstName}>
             <Claims
                 onRegisterAClaim={onRegisterAClaim}
-                claims={claims}
+                claims={claimsWithComments}
                 onEditClaim={onEditClaim}
+                onPostComment={onPostComment}
             />
         </Layout>
     )
