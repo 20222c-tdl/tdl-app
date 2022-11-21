@@ -19,6 +19,7 @@ const userReducer: Reducer = (state = {}, action) => {
         case constants.USER_ON_INITIALIZE_REQUESTED:
         case constants.USER_ON_MAKE_RESERVATION_REQUESTED:
         case constants.USER_ON_POST_COMMENT_REQUESTED:
+        case constants.USER_ON_GET_PROFILE_INFO_REQUESTED:
             return {
                 ...state,
                 loading: true
@@ -32,6 +33,7 @@ const userReducer: Reducer = (state = {}, action) => {
                 changeClaimsList: false,
             }
         case constants.USER_ON_LOGIN_SUCCEEDED:
+        case constants.USER_ON_GET_PROFILE_INFO_SUCCEEDED:
             return {
                 ...state,
                 user: data.data,
@@ -58,6 +60,7 @@ const userReducer: Reducer = (state = {}, action) => {
             }
         case constants.USER_ON_LOGIN_FAILED:
         case constants.USER_ON_INITIALIZE_FAILED:
+        case constants.USER_ON_GET_PROFILE_INFO_FAILED:
         case constants.USER_ON_SIGN_UP_SUCCEEDED:
         case constants.USER_ON_SIGN_UP_FAILED:
         case constants.USER_ON_REGISTER_A_CLAIM_FAILED:

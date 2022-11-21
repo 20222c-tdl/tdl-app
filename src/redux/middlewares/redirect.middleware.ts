@@ -2,13 +2,20 @@ import history from '../../helpers/history';
 import * as userConstants from '../constants/user.constants';
 import * as communityConstants from '../constants/community.constants';
 import * as providersConstants from '../constants/providers.constants';
+import { setCookie, removeCookie } from 'helpers/cookies';
+import { IJWT } from 'types/user.types';
 
 
 
 const redirectMiddleware = () => (next: any) => (action: any) => {
-    const { type } = action;
+    const { data, type } = action;
     switch (type) {
         case userConstants.USER_ON_SIGN_UP_SUCCEEDED:
+            const decoded: IJWT = jwt_decode(data.token);
+            setCookie('accessToken', data.token, {
+                path: '/',
+                maxAge: decoded.exp,
+            });
             history.push('/loginUser');
             break;
         case userConstants.USER_ON_LOGIN_SUCCEEDED:
@@ -33,3 +40,7 @@ const redirectMiddleware = () => (next: any) => (action: any) => {
 };
 
 export default redirectMiddleware;
+function jwt_decode(token: any): IJWT {
+    throw new Error('Function not implemented.');
+}
+

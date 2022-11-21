@@ -25,6 +25,28 @@ export function userOnInitializeFailed(error: unknown): AnyAction {
     };
 }
 
+// onGetProfileInfo
+export function onGetProfileInfoRequested(userId: number): AnyAction {
+    return {
+        type: constants.USER_ON_GET_PROFILE_INFO_REQUESTED,
+        userId
+    };
+}
+
+export function onGetProfileInfoSucceeded(data: unknown): AnyAction {
+    return {
+        type: constants.USER_ON_GET_PROFILE_INFO_SUCCEEDED,
+        data
+    };
+}
+
+export function onGetProfileInfoFailed(error: unknown): AnyAction {
+    return {
+        type: constants.USER_ON_GET_PROFILE_INFO_FAILED,
+        error
+    };
+}
+
 // onLogin
 export function onLoginUserRequested(formData: ILoginFormData): AnyAction {
     return{

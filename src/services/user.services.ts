@@ -18,6 +18,14 @@ export async function initializeUser(): Promise<any> {
         response
     )
 }
+
+
+export async function getProfileInfo(userId: number): Promise<AxiosResponse> {
+    //const response = await get(`/user?id=${userId}`);
+    const response:any = {};
+    return response;
+}
+
 export async function signupUser(formData: ISignupUserFormData): Promise<AxiosResponse> {
     const response = await post("/users", formData);
     return response;
