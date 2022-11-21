@@ -18,13 +18,29 @@ export async function initializeUser(): Promise<any> {
         response
     )
 }
+
+
+export async function getProfileInfo(userId: string): Promise<AxiosResponse> {
+    //const response = await get(`/user?id=${userId}`);
+    const response: any = {
+        id: "7bfb5d31-9918-40a4-a418-00346b92f4db",
+        firstName: "Rocio",
+        lastName: "Tarda",
+        email: "tardarocio@gmail.com",
+        address: "Paseo Colon 850",
+        phoneNumber: "1234566",
+        communityId: "396487df-0837-4073-91e6-3267b9538010"
+    };
+    return response;
+}
+
 export async function signupUser(formData: ISignupUserFormData): Promise<AxiosResponse> {
     const response = await post("/users", formData);
     return response;
 }
 
 export async function loginUser(formData: ILoginFormData): Promise<AxiosResponse> {
-    const response = await post("/users/user/login", formData);
+    const response = await post("/auth/users/login", formData);
     return (
         response
     )

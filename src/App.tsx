@@ -2,6 +2,9 @@ import React from 'react';
 import './App.css';
 import history from './helpers/history';
 import { Route, Routes, Navigate, unstable_HistoryRouter as HistoryRoute } from 'react-router-dom';
+import jwtDecode from 'jwt-decode';
+import { IJWT } from 'types/user.types';
+
 import SignupCommunityContainer from './containers/SignupCommunityContainer';
 import LoginCommunityContainer from './containers/LoginCommunityContainer';
 import LoginUserContainer from './containers/LoginUserContainer';
@@ -12,13 +15,23 @@ import LoginProviderContainer from 'containers/LoginProviderContainer';
 import SignupProviderContainer from 'containers/SignupProviderContainer';
 import { ClaimsManagementContainer } from 'containers/ClaimsManagementContainer';
 import { useDispatch } from 'react-redux';
-import { userOnInitializeRequested } from 'redux/actions/user.actions';
+import { onGetProfileInfoRequested, userOnInitializeRequested } from 'redux/actions/user.actions';
 import ProviderContainer from 'containers/ProviderContainer';
+import { getCookie } from 'helpers/cookies';
 
 function App() {
 
   const dispatch = useDispatch();
-  dispatch(userOnInitializeRequested());
+  //dispatch(userOnInitializeRequested());
+
+  const token = getCookie('access_token');
+  let decodedToken;
+
+  if (token) {
+    decodedToken = jwtDecode<IJWT>(token);
+    dispatch(onGetProfileInfoRequested(decodedToken.sub));
+
+  }
 
   return (
     <HistoryRoute history={history}>

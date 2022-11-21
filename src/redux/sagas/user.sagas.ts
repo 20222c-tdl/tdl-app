@@ -1,15 +1,25 @@
 import { AnyAction } from 'redux';
 import { call, put, takeLatest, all } from 'redux-saga/effects';
-import { editClaim, getClaims, initializeUser, loginUser, registerClaim, signupUser, makeReservation, postComment } from '../../services/user.services';
-import { onEditClaimFailed, onEditClaimSucceeded, onLoginUserFailed, onLoginUserSucceeded, onMakeReservationFailed, onMakeReservationSucceeded, onPostCommentFailed, onPostCommentSucceeded, onRegisterAClaimFailed, onRegisterAClaimSucceeded, onSignupUserFailed, onSignupUserSucceeded, onUserGetClaimsFailed, onUserGetClaimsSucceeded, userOnInitializeFailed, userOnInitializeSucceeded } from '../actions/user.actions';
+import { editClaim, getClaims, initializeUser, loginUser, registerClaim, signupUser, makeReservation, postComment, getProfileInfo } from '../../services/user.services';
+import { onEditClaimFailed, onEditClaimSucceeded, onGetProfileInfoFailed, onGetProfileInfoSucceeded, onLoginUserFailed, onLoginUserSucceeded, onMakeReservationFailed, onMakeReservationSucceeded, onPostCommentFailed, onPostCommentSucceeded, onRegisterAClaimFailed, onRegisterAClaimSucceeded, onSignupUserFailed, onSignupUserSucceeded, onUserGetClaimsFailed, onUserGetClaimsSucceeded, userOnInitializeFailed, userOnInitializeSucceeded } from '../actions/user.actions';
 import * as constants from '../constants/user.constants';
 
 export function* userInitialize(action: AnyAction) {
     try {
-        const data:unknown  = yield call(initializeUser);
+        const data: unknown = yield call(initializeUser);
         yield put(userOnInitializeSucceeded(data));
     } catch (error) {
         yield put(userOnInitializeFailed(error));
+    }
+}
+
+
+export function* userGetProfileInfo(action: AnyAction): Generator {
+    try {
+        const data: any = yield call(getProfileInfo, action.userId);
+        yield put(onGetProfileInfoSucceeded(data));
+    } catch (error) {
+        yield put(onGetProfileInfoFailed(error));
     }
 }
 
@@ -24,7 +34,7 @@ export function* userSignUp(action: AnyAction) {
 
 export function* userLogin(action: AnyAction) {
     try {
-        const data: unknown = yield call(loginUser, action.formData);
+        const { data } = yield call(loginUser, action.formData);
         yield put(onLoginUserSucceeded(data));
     } catch (error) {
         yield put(onLoginUserFailed(error));
@@ -79,6 +89,7 @@ export function* userPostComment(action: AnyAction) {
 export function* watchUsers(): Generator {
     yield all([
         takeLatest(constants.USER_ON_INITIALIZE_REQUESTED, userInitialize),
+        takeLatest(constants.USER_ON_GET_PROFILE_INFO_REQUESTED, userGetProfileInfo),
         takeLatest(constants.USER_ON_SIGN_UP_REQUESTED, userSignUp),
         takeLatest(constants.USER_ON_LOGIN_REQUESTED, userLogin),
         takeLatest(constants.USER_ON_REGISTER_A_CLAIM_REQUESTED, userRegisterClaim),
