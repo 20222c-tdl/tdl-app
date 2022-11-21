@@ -21,5 +21,7 @@ export interface IUser {
 export interface IJWT {
     id: number;
     exp: number;
+    sub: string;
+    role: string;
 }
 

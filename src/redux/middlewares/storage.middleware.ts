@@ -8,8 +8,8 @@ const storageMiddleware = () => (next: any) => (action: any) => {
   const { data, type } = action;
   switch (type) {
     case constants.USER_ON_LOGIN_SUCCEEDED:
-      const decoded: IJWT = jwt_decode(data.token);
-      setCookie('access_token', data.token, {
+      const decoded: IJWT = jwt_decode(data.access_token);
+      setCookie('access_token', data.access_token, {
         path: '/',
         maxAge: decoded.exp,
       });

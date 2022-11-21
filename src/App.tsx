@@ -29,7 +29,7 @@ function App() {
 
   if (token) {
     decodedToken = jwtDecode<IJWT>(token);
-    dispatch(onGetProfileInfoRequested(decodedToken.id));
+    dispatch(onGetProfileInfoRequested(decodedToken.sub));
 
   }
 

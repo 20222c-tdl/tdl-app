@@ -6,7 +6,7 @@ import * as constants from '../constants/user.constants';
 
 export function* userInitialize(action: AnyAction) {
     try {
-        const data:unknown  = yield call(initializeUser);
+        const data: unknown = yield call(initializeUser);
         yield put(userOnInitializeSucceeded(data));
     } catch (error) {
         yield put(userOnInitializeFailed(error));
@@ -16,7 +16,7 @@ export function* userInitialize(action: AnyAction) {
 
 export function* userGetProfileInfo(action: AnyAction): Generator {
     try {
-        const { data }: any = yield call(getProfileInfo, action.userId);
+        const data: any = yield call(getProfileInfo, action.userId);
         yield put(onGetProfileInfoSucceeded(data));
     } catch (error) {
         yield put(onGetProfileInfoFailed(error));
@@ -34,7 +34,7 @@ export function* userSignUp(action: AnyAction) {
 
 export function* userLogin(action: AnyAction) {
     try {
-        const data: unknown = yield call(loginUser, action.formData);
+        const { data } = yield call(loginUser, action.formData);
         yield put(onLoginUserSucceeded(data));
     } catch (error) {
         yield put(onLoginUserFailed(error));

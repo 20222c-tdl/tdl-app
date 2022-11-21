@@ -26,7 +26,7 @@ export function userOnInitializeFailed(error: unknown): AnyAction {
 }
 
 // onGetProfileInfo
-export function onGetProfileInfoRequested(userId: number): AnyAction {
+export function onGetProfileInfoRequested(userId: string): AnyAction {
     return {
         type: constants.USER_ON_GET_PROFILE_INFO_REQUESTED,
         userId

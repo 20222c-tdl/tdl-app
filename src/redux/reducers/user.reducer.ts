@@ -36,7 +36,7 @@ const userReducer: Reducer = (state = {}, action) => {
         case constants.USER_ON_GET_PROFILE_INFO_SUCCEEDED:
             return {
                 ...state,
-                user: data.data,
+                user: data,
                 loading: false
             }
         case constants.USER_ON_INITIALIZE_SUCCEEDED:
