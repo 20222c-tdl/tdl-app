@@ -24,7 +24,7 @@ function App() {
   const dispatch = useDispatch();
   //dispatch(userOnInitializeRequested());
 
-  const token = getCookie('accessToken');
+  const token = getCookie('access_token');
   let decodedToken;
 
   if (token) {

@@ -32,7 +32,7 @@ export async function signupUser(formData: ISignupUserFormData): Promise<AxiosRe
 }
 
 export async function loginUser(formData: ILoginFormData): Promise<AxiosResponse> {
-    const response = await post("/users/user/login", formData);
+    const response = await post("/auth/users/login", formData);
     return (
         response
     )

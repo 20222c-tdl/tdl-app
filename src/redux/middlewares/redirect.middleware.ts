@@ -12,7 +12,7 @@ const redirectMiddleware = () => (next: any) => (action: any) => {
     switch (type) {
         case userConstants.USER_ON_SIGN_UP_SUCCEEDED:
             const decoded: IJWT = jwt_decode(data.token);
-            setCookie('accessToken', data.token, {
+            setCookie('access_token', data.token, {
                 path: '/',
                 maxAge: decoded.exp,
             });

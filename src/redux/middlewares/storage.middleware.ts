@@ -9,14 +9,14 @@ const storageMiddleware = () => (next: any) => (action: any) => {
   switch (type) {
     case constants.USER_ON_LOGIN_SUCCEEDED:
       const decoded: IJWT = jwt_decode(data.token);
-      setCookie('accessToken', data.token, {
+      setCookie('access_token', data.token, {
         path: '/',
         maxAge: decoded.exp,
       });
       break;
      
     case constants.USER_ON_LOGOUT_SUCCEEDED:
-      removeCookie('accessToken', { path: '/' });
+      removeCookie('access_token', { path: '/' });
       break;
      
     default:
