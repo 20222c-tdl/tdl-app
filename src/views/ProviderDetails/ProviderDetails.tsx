@@ -1,22 +1,21 @@
 import React, { FunctionComponent } from 'react';
 import { IProviderDetailsProps } from './types';
 import ReactDatePicker from "react-datepicker";
-import { Button, CalificationText, CategoryName, CircleButton, CircleButtonText, ColumnDiv, ColumnDivPrice, ColumnDivProviderInfo, ColumnDivReview, CustomForm, CustomImg, DescriptionText, MonetizationTypeText, NameText, PriceByDurationDiv, PriceText, ProviderContainer, ReviewsText, RowDiv, RowFormDiv, Service, ServicesColumn, ServicesContainer, ServiceTitle, StarDiv, StarIcon, TitleContainer, TotalPriceContainer, TotalPriceText } from './styles';
+import "react-datepicker/dist/react-datepicker.css";
+import { Button, CalificationText, CategoryName, CircleButton, CircleButtonText, ColumnDiv, ColumnDivPrice, ColumnDivProviderInfo, ColumnDivReview, CustomForm, CustomImg, DescriptionText, EmptyContainer, MonetizationTypeText, NameText, PriceByDurationDiv, PriceText, ProviderContainer, ReviewsText, RowDiv, RowFormDiv, Service, ServiceIcon, ServicesColumn, ServicesContainer, ServiceText, ServiceTitle, StarDiv, StarIcon, TitleContainer, TotalPriceContainer, TotalPriceText } from './styles';
 import person from "../../assets/person.jpg";
 import COLORS from 'helpers/colors';
 
 const ProviderDetails: FunctionComponent<any> = (props: IProviderDetailsProps) => {
-    const { provider, hiredServices, setHiredServices, onMakeReservation, date, setDate } = props;
-    const services = provider.services;
-
+    const { provider, hiredServices, providerServices, providerReviews, setHiredServices, onMakeReservation, date, setDate } = props;
 
     const getTotalPrice = () => {
         let totalPrice = 0;
         hiredServices && hiredServices.forEach((service: any, index: number) => {
             if (service.isFixed && service.duration > 0) {
-                totalPrice += services[index].pricePerHour;
+                totalPrice += providerServices[index].price;
             } else {
-                totalPrice += service.duration * services[index].pricePerHour;
+                totalPrice += service.duration * providerServices[index].price;
             }
         });
         return totalPrice;
@@ -41,20 +40,19 @@ const ProviderDetails: FunctionComponent<any> = (props: IProviderDetailsProps) =
                     </ColumnDivProviderInfo>
                     <ColumnDivReview>
                         <StarDiv>
-                            <CalificationText>9</CalificationText>
+                            <CalificationText>{providerReviews ? providerReviews.totalRating : 0}</CalificationText>
                             <StarIcon />
                         </StarDiv >
-                        <ReviewsText>7 REVIEWS</ReviewsText>
+                        <ReviewsText>{providerReviews ? providerReviews.reviews.length : 0} REVIEWS</ReviewsText>
                     </ColumnDivReview>
                 </RowDiv>
-
                 <ServicesColumn>
                     <TitleContainer> Services </TitleContainer>
                     <ServicesContainer>
-                        {services && services.map((service: any, index: number) => {
-                            const isByDuration = service.monetizationType === 'byDuration';
+                        {providerServices && providerServices.map((service: any, index: number) => {
+                            const isByDuration = service.monetizationType === 'BY_THE_HOUR';
                             const sameService = hiredServices && hiredServices.find((hiredService: any) => {
-                                return hiredService.serviceId === service.serviceId
+                                return hiredService.id === service.id
                             })
                             return sameService && (
                                 <Service key={index} >
@@ -62,8 +60,8 @@ const ProviderDetails: FunctionComponent<any> = (props: IProviderDetailsProps) =
                                     <DescriptionText>{service.description}</DescriptionText>
                                     <RowDiv>
                                         <ColumnDivPrice>
-                                            <PriceText>$ {service.pricePerHour} /per hour</PriceText>
-                                            <MonetizationTypeText>{service.monetizationType === "fixed" ? "Price fixed" : "Price by duration"}</MonetizationTypeText>
+                                            <PriceText>$ {service.price} /per hour</PriceText>
+                                            <MonetizationTypeText>{service.monetizationType === "FIXED" ? "Price fixed" : "Price by duration"}</MonetizationTypeText>
                                         </ColumnDivPrice>
                                         {isByDuration ?
                                             <ColumnDiv>
@@ -71,7 +69,7 @@ const ProviderDetails: FunctionComponent<any> = (props: IProviderDetailsProps) =
                                                     {sameService.duration > 0 ?
                                                         <CircleButton onClick={() => {
                                                             const services = [...hiredServices];
-                                                            const index = services.findIndex((hiredService: any) => hiredService.serviceId === service.serviceId);
+                                                            const index = services.findIndex((hiredService: any) => hiredService.id === service.id);
                                                             services[index].duration -= 1;
                                                             setHiredServices(services);
                                                         }}>
@@ -80,14 +78,13 @@ const ProviderDetails: FunctionComponent<any> = (props: IProviderDetailsProps) =
                                                         :
                                                         <div style={{ width: 40 }} />
                                                     }
-                                                    <PriceText>${service.pricePerHour * hiredServices[index].duration}</PriceText>
+                                                    <PriceText>${service.price * hiredServices[index].duration}</PriceText>
                                                     {
                                                         sameService.duration < 10
                                                             ?
                                                             <CircleButton onClick={() => {
-
                                                                 const services = [...hiredServices];
-                                                                const index = services.findIndex((hiredService: any) => hiredService.serviceId === service.serviceId);
+                                                                const index = services.findIndex((hiredService: any) => hiredService.id === service.id);
                                                                 services[index].duration += 1;
                                                                 setHiredServices(services);
 
@@ -112,26 +109,28 @@ const ProviderDetails: FunctionComponent<any> = (props: IProviderDetailsProps) =
                                                 <CircleButton isClicked={sameService.duration === 0}
                                                     onClick={() => {
                                                         const services = [...hiredServices];
-                                                        const index = services.findIndex((hiredService: any) => hiredService.serviceId === service.serviceId);
-                                                        services[index].duration === 0 ? services[index].duration = provider.services[index].duration || 1 : services[index].duration = 0;
+                                                        const index = services.findIndex((hiredService: any) => hiredService.id === service.id);
+                                                        services[index].duration === 0 ? services[index].duration = providerServices[index].duration || 1 : services[index].duration = 0;
                                                         setHiredServices(services);
                                                     }}>
-                                                    <CircleButtonText style={{ fontSize: 16, lineHeight: 20 }}>✓</CircleButtonText>
+                                                    <CircleButtonText style={{ fontSize: 16, lineHeight: "27px" }}>✓</CircleButtonText>
                                                 </CircleButton>
                                             </RowDiv>
                                         }
                                     </RowDiv>
-
-
-
-
                                 </Service>
                             )
                         })}
                     </ServicesContainer>
+                    {(!providerServices || !providerServices.length) &&
+                <EmptyContainer>
+                    <ServiceIcon />
+                    <ServiceText isBold>There are no services yet</ServiceText>
+                </EmptyContainer>
+            }
                 </ServicesColumn>
 
-                <TotalPriceContainer>
+                {providerServices && providerServices.length > 0 && <TotalPriceContainer>
                     <RowDiv>
                         <ColumnDiv style={{ width: '53%' }}>
                             <RowDiv>
@@ -164,8 +163,7 @@ const ProviderDetails: FunctionComponent<any> = (props: IProviderDetailsProps) =
                             <Button isDisabled={date < new Date()} onClick={() => onMakeReservation()}>Make reservation</Button>
                         </CustomForm>
                     </RowDiv>
-                </TotalPriceContainer>
-
+                </TotalPriceContainer>}
             </ProviderContainer>
         </>
     );

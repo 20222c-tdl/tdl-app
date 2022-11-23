@@ -111,6 +111,28 @@ export function onGetAllProvidersFailed(error: unknown): AnyAction {
     };
 }
 
+// onGetAllProvidersReviews
+export function onGetAllProvidersReviewsRequested(providerId:string): AnyAction {
+    return {
+        type: constants.ON_GET_ALL_PROVIDERS_REVIEWS_REQUESTED,
+        providerId
+    };
+}
+
+export function onGetAllProvidersReviewsSucceeded(data: unknown): AnyAction {
+    return {
+        type: constants.ON_GET_ALL_PROVIDERS_REVIEWS_SUCCEEDED,
+        data
+    };
+}
+
+export function onGetAllProvidersReviewsFailed(error: unknown): AnyAction {
+    return {
+        type: constants.ON_GET_ALL_PROVIDERS_REVIEWS_FAILED,
+        error
+    };
+}
+
 // onGetProviderInfo
 export function onGetProviderInfoRequested(providerId: string): AnyAction {
     return {
@@ -129,6 +151,28 @@ export function onGetProviderInfoSucceeded(data: unknown): AnyAction {
 export function onGetProviderInfoFailed(error: unknown): AnyAction {
     return {
         type: constants.ON_GET_PROVIDER_INFO_FAILED,
+        error
+    };
+}
+
+// onGetProviderServices
+export function onGetProviderServicesRequested(providerId: string): AnyAction {
+    return {
+        type: constants.ON_GET_PROVIDER_SERVICES_REQUESTED,
+        providerId
+    };
+}
+
+export function onGetProviderServicesSucceeded(data: unknown): AnyAction {
+    return {
+        type: constants.ON_GET_PROVIDER_SERVICES_SUCCEEDED,
+        data
+    };
+}
+
+export function onGetProviderServicesFailed(error: unknown): AnyAction {
+    return {
+        type: constants.ON_GET_PROVIDER_SERVICES_FAILED,
         error
     };
 }

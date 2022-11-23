@@ -5,7 +5,7 @@ import { IHomeProps } from './types';
 import { Star } from '@mui/icons-material';
 
 const Home: FunctionComponent<any> = (props: IHomeProps) => {
-    const { categoryNames, onFilterCategory, providers, allProviders } = props;
+    const { categoryNames, onFilterCategory, allProviders, onClearFilter } = props;
     const [categoryName, setCategoryName] = useState("");
 
     const handleFilterCategory = (category: string) => {
@@ -14,6 +14,7 @@ const Home: FunctionComponent<any> = (props: IHomeProps) => {
     }
     const handleCleanFilter = () => {
         setCategoryName("")
+        onClearFilter()
     }
 
     const NavLinks: any = () => categoryNames && categoryNames.map((category: any) =>
@@ -25,48 +26,30 @@ const Home: FunctionComponent<any> = (props: IHomeProps) => {
                 <Text onClick={() => { handleCleanFilter() }}>Categories:</Text>
                 <NavLinks />
             </Navbar >
-            {categoryName === "" && allProviders && allProviders.length &&
+            { allProviders && allProviders.length &&
                 <ColumnDiv>
                     <TitleContainer> All providers available</TitleContainer>
                     <ProvidersContainer>
-                        {allProviders && allProviders.map((provider) => (
-                            <Provider key={provider.id} onClick={() => history.push(`/providers/${provider.id}`)}>
+                        {allProviders && allProviders.map((providerObj) => {
+                        const userProvider = providerObj.provider;
+                            return (<Provider key={userProvider.id} onClick={() => history.push(`/providers/${userProvider.id}`)}>
                                 <RowDiv>
-                                    <ProviderText isBold>{provider.firstName} {provider.lastName}</ProviderText>
+                                    <ProviderText isBold>{userProvider.firstName} {userProvider.lastName}</ProviderText>
                                     <StarDiv>
-                                        <CalificationText>6.7</CalificationText>
+                                        <CalificationText>{providerObj.totalRating}</CalificationText>
                                         <Star />
                                     </StarDiv>
                                 </RowDiv>
                                 <RowDiv>
-                                    <ReviewsText>{provider.category.name} - </ReviewsText>
-                                    <ReviewsText>7 REVIEWS</ReviewsText>
+                                    <ReviewsText>{userProvider.category.name} - </ReviewsText>
+                                    <ReviewsText>{providerObj.reviewCount} REVIEWS</ReviewsText>
                                 </RowDiv>
-                            </Provider>
-                        ))}
-                    </ProvidersContainer>
-                </ColumnDiv>
-            }
-            {categoryName && providers && providers.length &&
-                <ColumnDiv>
-                    <TitleContainer> Providers available</TitleContainer>
-                    <ProvidersContainer>
-                        {providers && providers.map((provider) => {
-                            return (<Provider key={provider.id} onClick={() => history.push(`/providers/${provider.id}`)}>
-                                <RowDiv>
-                                    <ProviderText isBold>{provider.firstName} {provider.lastName}</ProviderText>
-                                    <StarDiv>
-                                        <CalificationText>6.7</CalificationText>
-                                        <Star />
-                                    </StarDiv>
-                                </RowDiv>
-                                <ReviewsText>7 REVIEWS</ReviewsText>
                             </Provider>)
                         })}
                     </ProvidersContainer>
                 </ColumnDiv>
             }
-            {((!allProviders || !allProviders.length) && (!providers || !providers.length)) &&
+            {(!allProviders || !allProviders.length) &&
                 <EmptyContainer>
                     <ProviderIcon />
                     <ProviderText isBold>There are no providers that match your filters</ProviderText>

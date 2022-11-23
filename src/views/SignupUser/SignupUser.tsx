@@ -1,6 +1,6 @@
 
 import { FunctionComponent } from 'react';
-import { Box, Button, ButtonContainer, CustomForm, FormFields, Label, SignupContainer, TitleContainer } from './styles';
+import { Box, Button, ButtonContainer, CustomForm, FormFields, ImageContainer, Label, SignupContainer, TitleContainer } from './styles';
 import { Form, Field } from 'react-final-form';
 import Input from '../../components/Input/Input';
 import { requiredValidation } from '../../helpers/validations';
@@ -128,8 +128,20 @@ const SignupUser: FunctionComponent<ISignupUserProps> = (props: ISignupUserProps
                   type="number"
                 />
               </div>
-
             </FormFields>
+            <ImageContainer>
+              <Label>Profile picture </Label>
+              <Field name="base64Picture" validate={requiredValidation}>
+                {({ input: { value, onChange, ...input } }) => (
+                  <input
+                    {...input}
+                    type="file"
+                    onChange={({ target }) => onChange(target.files)} // instead of the default target.value
+                    {...props}
+                  />
+                )}
+              </Field>
+            </ImageContainer>
             <ButtonContainer>
               <Button type="submit">Sign up</Button>
             </ButtonContainer>

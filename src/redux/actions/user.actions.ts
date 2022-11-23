@@ -69,6 +69,13 @@ export function onLoginUserFailed(error: unknown): AnyAction {
     };
 }
 
+//onLogout
+export function onLogout(): AnyAction {
+    return {
+        type: constants.USER_ON_LOGOUT,
+    };
+}
+
 // onSignup
 export function onSignupUserRequested(formData: ISignupUserFormData): AnyAction {
     return {
@@ -197,6 +204,50 @@ export function onPostCommentSucceeded(data: unknown): AnyAction {
 export function onPostCommentFailed(error: unknown): AnyAction {
     return {
         type: constants.USER_ON_POST_COMMENT_FAILED,
+        error
+    };
+}
+
+//onGetAllReservations
+export function onGetAllReservationsRequested(userId: string): AnyAction {
+    return {
+        type: constants.USER_ON_GET_ALL_RESERVATIONS_REQUESTED,
+        userId
+    };
+}
+
+export function onGetAllReservationsSucceeded(data: unknown): AnyAction {
+    return {
+        type: constants.USER_ON_GET_ALL_RESERVATIONS_SUCCEEDED,
+        data
+    };
+}
+
+export function onGetAllReservationsFailed(error: unknown): AnyAction {
+    return {
+        type: constants.USER_ON_GET_ALL_RESERVATIONS_FAILED,
+        error
+    };
+}
+
+// onCancelReservation
+export function onCancelReservationRequested(reservationId: number): AnyAction {
+    return {
+        type: constants.USER_ON_CANCEL_RESERVATION_REQUESTED,
+        reservationId
+    };
+}
+
+export function onCancelReservationSucceded(data: unknown): AnyAction {
+    return {
+        type: constants.USER_ON_CANCEL_RESERVATION_SUCCEEDED,
+        data
+    };
+}
+
+export function onCancelReservationFailed(error: unknown): AnyAction {
+    return {
+        type: constants.USER_ON_CANCEL_RESERVATION_FAILED,
         error
     };
 }

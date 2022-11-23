@@ -14,11 +14,12 @@ const storageMiddleware = () => (next: any) => (action: any) => {
         maxAge: decoded.exp,
       });
       break;
-     
-    case constants.USER_ON_LOGOUT_SUCCEEDED:
+
+    case constants.USER_ON_LOGOUT:
+
       removeCookie('access_token', { path: '/' });
       break;
-     
+
     default:
       break;
   }

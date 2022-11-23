@@ -8,6 +8,8 @@ const initialState = {
     allCategories: null,
     providers: null,
     allProviders: null,
+    providerServices: null,
+    providerReviews: null,
 }
 
 const providersReducer: Reducer = (state = {}, action) => {
@@ -20,6 +22,8 @@ const providersReducer: Reducer = (state = {}, action) => {
         case constants.ON_FILTER_CATEGORY_REQUESTED:
         case constants.ON_GET_ALL_PROVIDERS_REQUESTED:
         case constants.ON_GET_PROVIDER_INFO_REQUESTED:
+        case constants.ON_GET_PROVIDER_SERVICES_REQUESTED:
+        case constants.ON_GET_ALL_PROVIDERS_REVIEWS_REQUESTED:
             return {
                 ...state,
                 loading: true
@@ -34,13 +38,13 @@ const providersReducer: Reducer = (state = {}, action) => {
         case constants.ON_GET_PROVIDER_INFO_SUCCEEDED:
             return {
                 ...state,
-                providerData: data,
+                providerData: data.data,
                 loading: false
             }
         case constants.ON_FILTER_CATEGORY_SUCCEEDED:
             return {
                 ...state,
-                providers: data.data.data,
+                allProviders: data.data,
                 loading: false
             }
         case constants.ON_GET_ALL_PROVIDERS_SUCCEEDED:
@@ -49,6 +53,18 @@ const providersReducer: Reducer = (state = {}, action) => {
                 loading: false,
                 allProviders: data.data.data,
             }
+        case constants.ON_GET_PROVIDER_SERVICES_SUCCEEDED:
+            return {
+                ...state,
+                loading: false,
+                providerServices: data.data,
+            }
+        case constants.ON_GET_ALL_PROVIDERS_REVIEWS_SUCCEEDED:
+            return {
+                ...state,
+                loading: false,
+                providerReviews: data.data,
+            }
         case constants.ON_GET_ALL_CATEGORIES_FAILED:
         case constants.PROVIDER_ON_SIGN_UP_SUCCEEDED:
         case constants.PROVIDER_ON_SIGN_UP_FAILED:
@@ -56,6 +72,8 @@ const providersReducer: Reducer = (state = {}, action) => {
         case constants.ON_FILTER_CATEGORY_FAILED:
         case constants.ON_GET_ALL_PROVIDERS_FAILED:
         case constants.ON_GET_PROVIDER_INFO_FAILED:
+        case constants.ON_GET_PROVIDER_SERVICES_FAILED:
+        case constants.ON_GET_ALL_PROVIDERS_REVIEWS_FAILED:
             return {
                 ...state,
                 loading: false

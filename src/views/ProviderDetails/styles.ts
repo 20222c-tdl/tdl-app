@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
 import COLORS from "helpers/colors";
 import { Star } from '@mui/icons-material';
+import EngineeringIcon from '@mui/icons-material/Engineering';
 import { ICircleButtonProps } from "./types";
 
 export const Text = styled.p`
@@ -183,12 +184,12 @@ export const PriceText = styled.p`
 `;
 
 export const CircleButton = styled.div`
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
   border-radius: 50%;
-  background-color: ${COLORS.black};
+  background-color: ${COLORS.blueFire};
   text-align: center;
-  margin: 0;
+  margin: 0 4px;
 
   ${(props: ICircleButtonProps) => props.isClicked
     && css`
@@ -199,7 +200,8 @@ export const CircleButton = styled.div`
 
 export const CircleButtonText = styled.div`
   font-size: 30px;
-  line-height: ${(props: ICircleButtonProps) => (props.isMinus ? '31px' : '33px')};
+  line-height: ${(props: ICircleButtonProps) => (props.isMinus ? '18px' : '22px')};
+  padding: ${(props: ICircleButtonProps) => (props.isMinus ? '0px 7px' : '0 4px')};
   font-family: 'Montserrat_500Medium';
   color: ${COLORS.white};
 
@@ -287,5 +289,38 @@ export const Button = styled.button`
         background-color: ${COLORS.greyMystic};
         color: ${COLORS.grayPlaceholder};
         border: 1px solid ${COLORS.grayPlaceholder};
+    `};
+`;
+
+export const EmptyContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0 20px 0;
+    height: 100%;
+    width: 100%;
+`;
+
+export const ServiceIcon = styled(EngineeringIcon)`
+    width: 150px !important;
+    height: 150px !important;
+`;
+
+export const ServiceText = styled.p`
+    font-size: 18px;
+    margin: 0 0 2px;
+    text-overflow: ellipsis;
+    font-family: 'OpenSans';
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+
+    ${({ isBold }: { isBold?: boolean }) =>
+    isBold &&
+    css`
+        font-weight: bold;
+        font-size: 20px;
+        white-space: nowrap;
     `};
 `;

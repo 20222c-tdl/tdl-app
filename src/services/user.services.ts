@@ -19,9 +19,8 @@ export async function initializeUser(): Promise<any> {
     )
 }
 
-
 export async function getProfileInfo(userId: string): Promise<AxiosResponse> {
-    //const response = await get(`/user?id=${userId}`);
+    //const response = await get(`/auth/profile`);
     const response: any = {
         id: "7bfb5d31-9918-40a4-a418-00346b92f4db",
         firstName: "Rocio",
@@ -81,4 +80,16 @@ export async function postComment(data: any): Promise<AxiosResponse> {
     return (
         response
     )
+}
+
+export async function getReservations(userId: string): Promise<AxiosResponse> {
+    //const response = await get(`/user/${userId}/reserves`);
+    const response: any = userId;
+    return response;
+}
+
+export async function cancelReservation(reservationId: number): Promise<AxiosResponse> {
+    //const response = await requestDelete(`/reservation/${id}`);
+    const response: any = reservationId;
+    return response;
 }

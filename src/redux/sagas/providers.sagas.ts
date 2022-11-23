@@ -1,7 +1,7 @@
 import { AnyAction } from 'redux';
 import { call, put, takeLatest, all } from 'redux-saga/effects';
-import { onFilterCategoryFailed, onFilterCategorySucceeded, onGetAllProvidersCategoriesFailed, onGetAllProvidersCategoriesSucceeded, onGetAllProvidersFailed, onGetAllProvidersSucceeded, onGetProviderInfoFailed, onGetProviderInfoSucceeded, onLoginProviderFailed, onLoginProviderSucceeded, onSignupProviderFailed, onSignupProviderSucceeded } from 'redux/actions/providers.actions';
-import { loginProvider, signupProvider, getAllCategories, filterCategory, getAllProviders, getProviderInfo } from '../../services/providers.services';
+import { onFilterCategoryFailed, onFilterCategorySucceeded, onGetAllProvidersCategoriesFailed, onGetAllProvidersCategoriesSucceeded, onGetAllProvidersFailed, onGetAllProvidersReviewsFailed, onGetAllProvidersReviewsSucceeded, onGetAllProvidersSucceeded, onGetProviderInfoFailed, onGetProviderInfoSucceeded, onGetProviderServicesFailed, onGetProviderServicesSucceeded, onLoginProviderFailed, onLoginProviderSucceeded, onSignupProviderFailed, onSignupProviderSucceeded } from 'redux/actions/providers.actions';
+import { loginProvider, signupProvider, getAllCategories, filterCategory, getAllProviders, getProviderInfo, getAllProvidersReviews, getProviderServices } from '../../services/providers.services';
 import * as constants from '../constants/providers.constants';
 
 export function* providerSignup(action: AnyAction) {
@@ -33,7 +33,7 @@ export function* getCategories(action: AnyAction) {
 
 export function* onFilterCategory(action: AnyAction) {
     try {
-        const data: unknown = yield call(filterCategory, action.categoryId);
+        const {data} = yield call(filterCategory, action.category);
         yield put(onFilterCategorySucceeded(data));
     } catch (error) {
         yield put(onFilterCategoryFailed(error));
@@ -58,6 +58,24 @@ export function* onGetProviderInfo(action: AnyAction) {
     }
 }
 
+export function* onGetProviderReviews(action: AnyAction) {
+    try {
+        const data: unknown = yield call(getAllProvidersReviews, action.providerId);
+        yield put(onGetAllProvidersReviewsSucceeded(data));
+    } catch (error) {
+        yield put(onGetAllProvidersReviewsFailed(error));
+    }
+}
+
+export function* onGetProviderServices(action: AnyAction) {
+    try {
+        const data: unknown = yield call(getProviderServices, action.providerId);
+        yield put(onGetProviderServicesSucceeded(data));
+    } catch (error) {
+        yield put(onGetProviderServicesFailed(error));
+    }
+}
+
 export function* watchProviders(): Generator {
     yield all([
         takeLatest(constants.PROVIDER_ON_SIGN_UP_REQUESTED, providerSignup),
@@ -66,5 +84,7 @@ export function* watchProviders(): Generator {
         takeLatest(constants.ON_FILTER_CATEGORY_REQUESTED, onFilterCategory),
         takeLatest(constants.ON_GET_ALL_PROVIDERS_REQUESTED, onGetAllProviders),
         takeLatest(constants.ON_GET_PROVIDER_INFO_REQUESTED, onGetProviderInfo),
+        takeLatest(constants.ON_GET_ALL_PROVIDERS_REVIEWS_REQUESTED, onGetProviderReviews),
+        takeLatest(constants.ON_GET_PROVIDER_SERVICES_REQUESTED, onGetProviderServices),
     ])
 }
