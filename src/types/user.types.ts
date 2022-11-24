@@ -9,6 +9,7 @@ export interface UserInterface {
     changeClaimsList: boolean;
     reservations: any[]
     changeReservations: boolean;
+    userReviews: any[];
 }
 
 export interface IUser {

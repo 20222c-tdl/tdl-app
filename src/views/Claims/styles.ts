@@ -172,24 +172,25 @@ export const ButtonModal = styled.button`
     font-family: 'OpenSans';
     margin-top: 10px;
     cursor: pointer;
-    background-color: ${COLORS.violetRed};
+    background-color: ${COLORS.cerulean};
     color: ${COLORS.white};
 
     ${({ isInverted }: { isInverted?: boolean }) =>
     isInverted &&
     css`
         background-color: white;
-        color: ${COLORS.violetRed};
-        border: 1px solid ${COLORS.violetRed};
+        color: ${COLORS.black};
+        border: 1px solid ${COLORS.cerulean};
     `};
 `;
 
 export const CommentsButton = styled.button`
-  font-size: 15px;
+  font-size: 17px;
   margin: 0;
   font-family: 'OpenSans';
-  color: ${COLORS.blueFire};
+  color: ${COLORS.cerulean};
   text-decoration: underline;
+  font-weight: bold;
   border: 0;
   background-color: white;
 ;`
@@ -235,7 +236,7 @@ export const CommentButton = styled.button`
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  background-color: ${COLORS.blueFire};
+  background-color: ${COLORS.azure};
   color: ${COLORS.white};
   font-family: 'OpenSans';
 ;`

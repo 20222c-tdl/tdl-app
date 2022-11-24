@@ -1,7 +1,7 @@
 import { AnyAction } from 'redux';
 import { call, put, takeLatest, all } from 'redux-saga/effects';
-import { editClaim, getClaims, initializeUser, loginUser, registerClaim, signupUser, makeReservation, postComment, getProfileInfo, getReservations, cancelReservation } from '../../services/user.services';
-import { onCancelReservationFailed, onCancelReservationSucceded, onEditClaimFailed, onEditClaimSucceeded, onGetAllReservationsFailed, onGetAllReservationsSucceeded, onGetProfileInfoFailed, onGetProfileInfoSucceeded, onLoginUserFailed, onLoginUserSucceeded, onMakeReservationFailed, onMakeReservationSucceeded, onPostCommentFailed, onPostCommentSucceeded, onRegisterAClaimFailed, onRegisterAClaimSucceeded, onSignupUserFailed, onSignupUserSucceeded, onUserGetClaimsFailed, onUserGetClaimsSucceeded, userOnInitializeFailed, userOnInitializeSucceeded } from '../actions/user.actions';
+import { editClaim, getClaims, initializeUser, loginUser, registerClaim, signupUser, makeReservation, postComment, getProfileInfo, getReservations, cancelReservation, getReviews } from '../../services/user.services';
+import { onCancelReservationFailed, onCancelReservationSucceded, onEditClaimFailed, onEditClaimSucceeded, onGetAllReservationsFailed, onGetAllReservationsSucceeded, onGetProfileInfoFailed, onGetProfileInfoSucceeded, onGetUserReviewsFailed, onGetUserReviewsSucceeded, onLoginUserFailed, onLoginUserSucceeded, onMakeReservationFailed, onMakeReservationSucceeded, onPostCommentFailed, onPostCommentSucceeded, onRegisterAClaimFailed, onRegisterAClaimSucceeded, onSignupUserFailed, onSignupUserSucceeded, onUserGetClaimsFailed, onUserGetClaimsSucceeded, userOnInitializeFailed, userOnInitializeSucceeded } from '../actions/user.actions';
 import * as constants from '../constants/user.constants';
 
 export function* userInitialize(action: AnyAction) {
@@ -104,6 +104,15 @@ export function* userCancelReservation(action: AnyAction): Generator {
     }
 }
 
+export function* userGetReviews(action: AnyAction): Generator {
+    try {
+        const { data }: any = yield call(getReviews, action.userId);
+        yield put(onGetUserReviewsSucceeded(data));
+    } catch (error) {
+        yield put(onGetUserReviewsFailed(error));
+    }
+}
+
 export function* watchUsers(): Generator {
     yield all([
         takeLatest(constants.USER_ON_INITIALIZE_REQUESTED, userInitialize),
@@ -117,5 +126,6 @@ export function* watchUsers(): Generator {
         takeLatest(constants.USER_ON_POST_COMMENT_REQUESTED, userPostComment),
         takeLatest(constants.USER_ON_GET_ALL_RESERVATIONS_REQUESTED, userGetReservations),
         takeLatest(constants.USER_ON_CANCEL_RESERVATION_REQUESTED, userCancelReservation),
+        takeLatest(constants.USER_ON_GET_REVIEWS_REQUESTED, userGetReviews),
     ])
 }

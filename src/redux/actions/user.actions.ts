@@ -1,4 +1,4 @@
-import {AnyAction} from 'redux';
+import { AnyAction } from 'redux';
 import { IClaimFormData } from 'views/Claims/types';
 import { ILoginFormData } from '../../views/Login/types';
 import { ISignupUserFormData } from '../../views/SignupUser/types';
@@ -6,20 +6,20 @@ import * as constants from '../constants/user.constants';
 
 // userOnInitialize
 export function userOnInitializeRequested(): AnyAction {
-    return{
+    return {
         type: constants.USER_ON_INITIALIZE_REQUESTED,
     };
 }
 
 export function userOnInitializeSucceeded(data: unknown): AnyAction {
-    return{
+    return {
         type: constants.USER_ON_INITIALIZE_SUCCEEDED,
         data
     };
 }
 
 export function userOnInitializeFailed(error: unknown): AnyAction {
-    return{
+    return {
         type: constants.USER_ON_INITIALIZE_FAILED,
         error
     };
@@ -49,21 +49,21 @@ export function onGetProfileInfoFailed(error: unknown): AnyAction {
 
 // onLogin
 export function onLoginUserRequested(formData: ILoginFormData): AnyAction {
-    return{
+    return {
         type: constants.USER_ON_LOGIN_REQUESTED,
         formData
     };
 }
 
 export function onLoginUserSucceeded(data: unknown): AnyAction {
-    return{
+    return {
         type: constants.USER_ON_LOGIN_SUCCEEDED,
         data
     };
 }
 
 export function onLoginUserFailed(error: unknown): AnyAction {
-    return{
+    return {
         type: constants.USER_ON_LOGIN_FAILED,
         error
     };
@@ -248,6 +248,28 @@ export function onCancelReservationSucceded(data: unknown): AnyAction {
 export function onCancelReservationFailed(error: unknown): AnyAction {
     return {
         type: constants.USER_ON_CANCEL_RESERVATION_FAILED,
+        error
+    };
+}
+
+//onGetUserReviews
+export function onGetUserReviewsRequested(userId: string): AnyAction {
+    return {
+        type: constants.USER_ON_GET_REVIEWS_REQUESTED,
+        userId
+    };
+}
+
+export function onGetUserReviewsSucceeded(data: unknown): AnyAction {
+    return {
+        type: constants.USER_ON_GET_REVIEWS_SUCCEEDED,
+        data
+    };
+}
+
+export function onGetUserReviewsFailed(error: unknown): AnyAction {
+    return {
+        type: constants.USER_ON_GET_REVIEWS_FAILED,
         error
     };
 }

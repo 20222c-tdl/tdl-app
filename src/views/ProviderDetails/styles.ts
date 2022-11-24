@@ -2,6 +2,7 @@ import styled, { css } from "styled-components";
 import COLORS from "helpers/colors";
 import { Star } from '@mui/icons-material';
 import EngineeringIcon from '@mui/icons-material/Engineering';
+import ReviewsIcon from '@mui/icons-material/Reviews';
 import { ICircleButtonProps } from "./types";
 
 export const Text = styled.p`
@@ -187,7 +188,7 @@ export const CircleButton = styled.div`
   width: 25px;
   height: 25px;
   border-radius: 50%;
-  background-color: ${COLORS.blueFire};
+  background-color: ${COLORS.brightTurquoise};
   text-align: center;
   margin: 0 4px;
 
@@ -203,7 +204,7 @@ export const CircleButtonText = styled.div`
   line-height: ${(props: ICircleButtonProps) => (props.isMinus ? '18px' : '22px')};
   padding: ${(props: ICircleButtonProps) => (props.isMinus ? '0px 7px' : '0 4px')};
   font-family: 'Montserrat_500Medium';
-  color: ${COLORS.white};
+  color: ${COLORS.black};
 
   ${(props: ICircleButtonProps) => props.isClicked
     && css`
@@ -277,7 +278,7 @@ export const Button = styled.button`
     margin-bottom: 10px;
     cursor: pointer;
     width: 90%;
-    background-color: ${COLORS.violetRed};
+    background-color: ${COLORS.azure};
     color: ${COLORS.white};
     text-decoration: none;
     border: none;
@@ -323,4 +324,60 @@ export const ServiceText = styled.p`
         font-size: 20px;
         white-space: nowrap;
     `};
+`;
+
+export const Review = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    flex: 1;
+    padding-bottom: 20px;
+    width: 70%
+`;
+
+export const ReviewUsernameTitle = styled.p`
+  font-size: 20px;
+  margin-bottom: 0px;
+  font-weight: bold;
+  margin: 0 5px;
+  flex: 1;
+;`
+
+export const CalificationReviewText = styled.p`
+  font-size: 22px;
+  margin: 0 0 0 5px;
+  text-overflow: ellipsis;
+  font-family: 'OpenSans';
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+`;
+
+export const CustomReviewImg = styled.img`
+  width: 100%;
+  max-width:65px;
+  height: 65px;
+  width: auto;
+  border-radius: 50%;
+`;
+
+export const ColumnReviewsDescription = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1px 8px;
+  width: 100%;
+`;
+
+export const ReviewsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1px 8px;
+  width: 100%;
+`;
+
+export const ReviewIcon = styled(ReviewsIcon)`
+    width: 150px !important;
+    height: 150px !important;
 `;

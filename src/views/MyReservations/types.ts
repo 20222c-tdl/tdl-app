@@ -1,4 +1,7 @@
 export interface MyReservationsProps {
-    onLeaveAReview: () => void;
-    onCancelReservation: () => void;
+    onLeaveAReview: (formData: FormData) => void;
+    onCancelReservation: (reservationId: string) => void;
+    reservations: any;
+    userReviews: any[];
+    setReservationId: (reservationId: string) => void
 }

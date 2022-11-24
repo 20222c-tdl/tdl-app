@@ -21,6 +21,9 @@ const redirectMiddleware = () => (next: any) => (action: any) => {
         case userConstants.USER_ON_LOGIN_SUCCEEDED:
             history.push('/home');
             break;
+        case userConstants.USER_ON_MAKE_RESERVATION_SUCCEEDED:
+            history.push('/reservations');
+            break;
         case communityConstants.COMMUNITY_ON_SIGN_UP_SUCCEEDED:
             history.push('/loginCommunity');
             break;

@@ -11,7 +11,6 @@ const ProviderContainer: FunctionComponent = () => {
     const dispatch = useDispatch();
     const { user } = useTypedSelector((state) => state.user);
     const { providerData, providerServices, providerReviews } = useTypedSelector((state) => state.providers);
-    console.log("🚀 ~ providerReviews", providerReviews)
 
     const params = useParams();
     const providerId = params.id;
@@ -40,18 +39,26 @@ const ProviderContainer: FunctionComponent = () => {
     }, [providerServices]);
 
     const onMakeReservation = () => {
+        const servicesToHire: any = [];
+
+        hiredServices.map((service: any) => {
+            if (service.duration > 0) {
+                servicesToHire.push({
+                    serviceId: service.id,
+                    hours: service.duration,
+                });
+            }
+
+        })
+
         const data = {
             userId: user.id,
             providerId: providerId,
-            reservedServices: hiredServices.map((service: any) => {
-                return ({
-                    serviceId: service.serviceId,
-                    duration: service.duration,
-                });
-            }),
+            hiredServices: servicesToHire,
             date: date
         }
-        dispatch(onMakeReservationRequested(data));
+        console.log("🚀 ~ onMakeReservation ~ data", data)
+        //dispatch(onMakeReservationRequested(data));
     }
 
     return (

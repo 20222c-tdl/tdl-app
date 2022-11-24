@@ -2,7 +2,7 @@ import React, { FunctionComponent } from 'react';
 import { IProviderDetailsProps } from './types';
 import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { Button, CalificationText, CategoryName, CircleButton, CircleButtonText, ColumnDiv, ColumnDivPrice, ColumnDivProviderInfo, ColumnDivReview, CustomForm, CustomImg, DescriptionText, EmptyContainer, MonetizationTypeText, NameText, PriceByDurationDiv, PriceText, ProviderContainer, ReviewsText, RowDiv, RowFormDiv, Service, ServiceIcon, ServicesColumn, ServicesContainer, ServiceText, ServiceTitle, StarDiv, StarIcon, TitleContainer, TotalPriceContainer, TotalPriceText } from './styles';
+import { Button, CalificationReviewText, CalificationText, CategoryName, CircleButton, CircleButtonText, ColumnDiv, ColumnDivPrice, ColumnDivProviderInfo, ColumnDivReview, ColumnReviewsDescription, CustomForm, CustomImg, CustomReviewImg, DescriptionText, EmptyContainer, MonetizationTypeText, NameText, PriceByDurationDiv, PriceText, ProviderContainer, Review, ReviewIcon, ReviewsContainer, ReviewsText, ReviewUsernameTitle, RowDiv, RowFormDiv, Service, ServiceIcon, ServicesColumn, ServicesContainer, ServiceText, ServiceTitle, StarDiv, StarIcon, TitleContainer, TotalPriceContainer, TotalPriceText } from './styles';
 import person from "../../assets/person.jpg";
 import COLORS from 'helpers/colors';
 
@@ -40,7 +40,7 @@ const ProviderDetails: FunctionComponent<any> = (props: IProviderDetailsProps) =
                     </ColumnDivProviderInfo>
                     <ColumnDivReview>
                         <StarDiv>
-                            <CalificationText>{providerReviews ? providerReviews.totalRating : 0}</CalificationText>
+                            <CalificationText>{providerReviews ? providerReviews.totalRating.toFixed(1) : 0}</CalificationText>
                             <StarIcon />
                         </StarDiv >
                         <ReviewsText>{providerReviews ? providerReviews.reviews.length : 0} REVIEWS</ReviewsText>
@@ -123,11 +123,11 @@ const ProviderDetails: FunctionComponent<any> = (props: IProviderDetailsProps) =
                         })}
                     </ServicesContainer>
                     {(!providerServices || !providerServices.length) &&
-                <EmptyContainer>
-                    <ServiceIcon />
-                    <ServiceText isBold>There are no services yet</ServiceText>
-                </EmptyContainer>
-            }
+                        <EmptyContainer>
+                            <ServiceIcon />
+                            <ServiceText isBold>There are no services yet</ServiceText>
+                        </EmptyContainer>
+                    }
                 </ServicesColumn>
 
                 {providerServices && providerServices.length > 0 && <TotalPriceContainer>
@@ -160,11 +160,41 @@ const ProviderDetails: FunctionComponent<any> = (props: IProviderDetailsProps) =
                                     className="datePicker"
                                 />
                             </RowFormDiv>
-                            <Button isDisabled={date < new Date()} onClick={() => onMakeReservation()}>Make reservation</Button>
+                            <Button isDisabled={date < new Date() || getTotalPrice()<= 0} onClick={() => onMakeReservation()}>Make reservation</Button>
                         </CustomForm>
                     </RowDiv>
                 </TotalPriceContainer>}
-            </ProviderContainer>
+
+                <ReviewsContainer>
+                    <TitleContainer> Reviews </TitleContainer>
+                    {providerReviews && providerReviews.reviews && providerReviews.reviews.map((reviewObj: any) => {
+                        return (
+                            <Review key={reviewObj.review.id}>
+                                <RowDiv>
+                                    <CustomReviewImg src={person} alt="Person" />
+                                    <ColumnReviewsDescription>
+                                        <RowDiv>
+                                            <StarDiv>
+                                                <CalificationReviewText>{reviewObj.review.rating ? reviewObj.review.rating.toFixed(1) : 0}</CalificationReviewText>
+                                                <StarIcon />
+                                            </StarDiv >
+                                            <ReviewUsernameTitle>{reviewObj.user.firstName} {reviewObj.user.lastName}</ReviewUsernameTitle>
+                                        </RowDiv>
+                                        <DescriptionText> {reviewObj.review.description}</DescriptionText>
+                                    </ColumnReviewsDescription>
+                                </RowDiv>
+                            </Review>
+                        )
+                    })}
+                    {(!providerReviews || !providerReviews.reviews || !providerReviews.reviews.length) &&
+                        <EmptyContainer>
+                            <ReviewIcon />
+                            <ServiceText isBold>There are no reviews yet</ServiceText>
+                        </EmptyContainer>
+                    }
+                </ReviewsContainer>
+
+            </ProviderContainer >
         </>
     );
 }

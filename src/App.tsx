@@ -19,6 +19,7 @@ import { onGetProfileInfoRequested, userOnInitializeRequested } from 'redux/acti
 import ProviderContainer from 'containers/ProviderContainer';
 import { getCookie } from 'helpers/cookies';
 import MyReservationsContainer from 'containers/MyReservationsContainer';
+import ProfileContainer from 'containers/ProfileContainer';
 
 function App() {
 
@@ -48,6 +49,7 @@ function App() {
         <Route path="/home" element={<HomeContainer />} />
         <Route path="/reservations" element={<MyReservationsContainer />} />
         <Route path="/providers/:id" element={<ProviderContainer />} />
+        <Route path="/profile" element={<ProfileContainer />} />
         <Route
           path="*"
           element={<Navigate to="/" replace />}

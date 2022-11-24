@@ -23,7 +23,7 @@ const Theme = {
 }
 
 export const Navbar = styled.nav`
-  background: ${COLORS.danube};
+  background: ${COLORS.cerulean};
   font-family: ${Theme.fonts.heading};
   padding: 1px 20px;
   color: ${COLORS.violetPigment};

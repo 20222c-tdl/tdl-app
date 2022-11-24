@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { onGetAllReservationsRequested } from 'redux/actions/user.actions';
+import { onGetAllReservationsRequested, onGetUserReviewsRequested } from 'redux/actions/user.actions';
 import MyReservations from 'views/MyReservations/MyReservations';
 import useTypedSelector from '../hooks/useTypedSelector';
 import Layout from '../views/Layout/Layout';
@@ -8,17 +8,22 @@ import Layout from '../views/Layout/Layout';
 
 const MyReservationsContainer: FunctionComponent = () => {
     const dispatch = useDispatch();
-    const { user } = useTypedSelector((state) => state.user);
+    const { user, reservations, userReviews } = useTypedSelector((state) => state.user);
+
+    const [reversationId, setReservationId] = useState("");
 
     useEffect(() => {
-        dispatch(onGetAllReservationsRequested(user.id))
+        if (user) {
+            dispatch(onGetAllReservationsRequested(user.id))
+            dispatch(onGetUserReviewsRequested(user.id))
+        }
     }, [dispatch, user]);
 
 
-    const onLeaveAReview = () => {
+    const onLeaveAReview = (formData: FormData) => {
     }
 
-    const onCancelReservation = () => {
+    const onCancelReservation = (reservationId: string) => {
     }
 
     return (
@@ -26,6 +31,9 @@ const MyReservationsContainer: FunctionComponent = () => {
             <MyReservations
                 onLeaveAReview={onLeaveAReview}
                 onCancelReservation={onCancelReservation}
+                reservations={reservations}
+                userReviews={userReviews}
+                setReservationId={setReservationId}
             />
         </Layout>
     )

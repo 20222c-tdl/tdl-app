@@ -9,6 +9,7 @@ const initialState = {
     changeClaimsList: false,
     reservations: null,
     changeReservations: false,
+    userReviews: null,
 }
 
 const userReducer: Reducer = (state = {}, action) => {
@@ -23,6 +24,7 @@ const userReducer: Reducer = (state = {}, action) => {
         case constants.USER_ON_POST_COMMENT_REQUESTED:
         case constants.USER_ON_GET_PROFILE_INFO_REQUESTED:
         case constants.USER_ON_GET_ALL_RESERVATIONS_REQUESTED:
+        case constants.USER_ON_GET_REVIEWS_REQUESTED:
             return {
                 ...state,
                 loading: true
@@ -78,6 +80,12 @@ const userReducer: Reducer = (state = {}, action) => {
                 loading: true,
                 changeReservations: true,
             }
+        case constants.USER_ON_GET_REVIEWS_SUCCEEDED:
+            return {
+                ...state,
+                loading: true,
+                userReviews: data.data,
+            }
         case constants.USER_ON_LOGIN_FAILED:
         case constants.USER_ON_INITIALIZE_FAILED:
         case constants.USER_ON_GET_PROFILE_INFO_FAILED:
@@ -92,6 +100,7 @@ const userReducer: Reducer = (state = {}, action) => {
         case constants.USER_ON_POST_COMMENT_FAILED:
         case constants.USER_ON_GET_ALL_RESERVATIONS_FAILED:
         case constants.USER_ON_CANCEL_RESERVATION_FAILED:
+        case constants.USER_ON_GET_REVIEWS_FAILED:
             return {
                 ...state,
                 loading: false
