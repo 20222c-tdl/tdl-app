@@ -19,9 +19,8 @@ export async function initializeUser(): Promise<any> {
     )
 }
 
-
 export async function getProfileInfo(userId: string): Promise<AxiosResponse> {
-    //const response = await get(`/user?id=${userId}`);
+    //const response = await get(`/auth/profile`);
     const response: any = {
         id: "7bfb5d31-9918-40a4-a418-00346b92f4db",
         firstName: "Rocio",
@@ -68,8 +67,7 @@ export async function editClaim(formData: IClaimFormData): Promise<AxiosResponse
 }
 
 export async function makeReservation(data: any): Promise<AxiosResponse> {
-    //const response = await post(`/reservation/${data.userId}`, data);
-    const response = data;
+    const response = await post(`/hired-services`, data);
     return (
         response
     )
@@ -81,4 +79,32 @@ export async function postComment(data: any): Promise<AxiosResponse> {
     return (
         response
     )
+}
+
+export async function getReservations(userId: string): Promise<AxiosResponse> {
+    const response = await get(`/hired-services/user/${userId}`);
+    return response;
+}
+
+export async function cancelReservation(reservationId: string): Promise<AxiosResponse> {
+    //const response = await requestDelete(`/reservation/${id}`);
+    const response: any = reservationId;
+    return response;
+}
+
+
+export async function getReviews(userId: string): Promise<AxiosResponse> {
+    const response = await get(`/reviews/user/${userId}`);
+    return response;
+}
+
+export async function leaveAReview(data: any): Promise<AxiosResponse> {
+    const response = await post(`/reviews`, data);
+    return response;
+}
+
+export async function payReservation(reservationId: string): Promise<AxiosResponse> {
+    //const response = await post(`/pay`, reservationId);
+    const response: any = payReservation;
+    return response;
 }

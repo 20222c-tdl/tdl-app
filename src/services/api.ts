@@ -7,10 +7,10 @@ const api = axios.create({
 });
 
 async function getOptions() {
-  const authToken = await getCookie('auth-token');
+  const access_token = await getCookie('access_token');
   const options = {
     headers: {
-      'auth-token': `${authToken}`,
+      'Authorization': `Bearer ${access_token}`,
       "Access-Control-Allow-Origin": "*",
       'Content-Type': 'application/json',
       Accept: 'application/json',

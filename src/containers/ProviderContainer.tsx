@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { onGetProviderInfoRequested } from 'redux/actions/providers.actions';
+import { onGetAllProvidersReviewsRequested, onGetProviderInfoRequested, onGetProviderServicesRequested, onSearchNameRequested } from 'redux/actions/providers.actions';
 import { onMakeReservationRequested } from 'redux/actions/user.actions';
 import ProviderDetails from 'views/ProviderDetails/ProviderDetails';
 import useTypedSelector from '../hooks/useTypedSelector';
@@ -10,7 +10,8 @@ import Layout from '../views/Layout/Layout';
 const ProviderContainer: FunctionComponent = () => {
     const dispatch = useDispatch();
     const { user } = useTypedSelector((state) => state.user);
-    const { providerData } = useTypedSelector((state) => state.providers);
+    const { providerData, providerServices, providerReviews } = useTypedSelector((state) => state.providers);
+
     const params = useParams();
     const providerId = params.id;
 
@@ -20,40 +21,58 @@ const ProviderContainer: FunctionComponent = () => {
     useEffect(() => {
         if (providerId) {
             dispatch(onGetProviderInfoRequested(providerId));
+            dispatch(onGetProviderServicesRequested(providerId));
+            dispatch(onGetAllProvidersReviewsRequested(providerId));
+
         }
     }, [dispatch, providerId])
 
     useEffect(() => {
-        const services = providerData && providerData.services.map((service: any) => {
+        const services = providerServices && providerServices.map((service: any) => {
             return ({
                 ...service,
                 duration: 0,
-                isFixed: service.monetizationType === 'fixed',
+                isFixed: service.monetizationType === 'FIXED',
             });
         });
         setHiredServices(services);
-    }, [providerData]);
+    }, [providerServices]);
 
     const onMakeReservation = () => {
+        const servicesToHire: any = [];
+
+        hiredServices.map((service: any) => {
+            if (service.duration > 0) {
+                servicesToHire.push({
+                    serviceId: service.id,
+                    hours: service.duration,
+                });
+            }
+
+        })
+
         const data = {
             userId: user.id,
             providerId: providerId,
-            reservedServices: hiredServices.map((service: any) => {
-                return ({
-                    serviceId: service.serviceId,
-                    duration: service.duration,
-                });
-            }),
+            hiredServices: servicesToHire,
             date: date
         }
         dispatch(onMakeReservationRequested(data));
     }
 
+    const onSearchNav = (searchName: string) => {
+        dispatch(onSearchNameRequested(searchName))
+    }
+
     return (
-        <Layout name={user && user.firstName}>
+        <Layout name={user && user.firstName}
+            onSearchNav={onSearchNav}>
+
             {
                 providerData && <ProviderDetails
                     provider={providerData}
+                    providerServices={providerServices}
+                    providerReviews={providerReviews}
                     hiredServices={hiredServices}
                     setHiredServices={setHiredServices}
                     onMakeReservation={onMakeReservation}

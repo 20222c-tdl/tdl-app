@@ -6,8 +6,8 @@ import COLORS from '../../helpers/colors';
 
 
 export const TopNav = styled.div`
-  background-color: ${COLORS.jellyBean};
-  border-bottom: 1px solid ${COLORS.greyMystic};
+  background-color: ${COLORS.cerulean};
+  border-bottom: 1px solid ${COLORS.black};
   align-items: center;
   display: flex;
   justify-content: space-between;
@@ -66,7 +66,7 @@ export const SearchInput = styled.input`
 `;
 
 export const CustomSearchIcon = styled(SearchIcon)`
-  background-color: ${COLORS.blueFire};
+  background-color: ${COLORS.azure};
   cursor: pointer;
   color: white;
   border-radius: 50%;

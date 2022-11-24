@@ -7,6 +7,10 @@ export interface UserInterface {
     user: IUser;
     claims: IClaimFormData[];
     changeClaimsList: boolean;
+    reservations: any[]
+    changeReservations: boolean;
+    userReviews: any[];
+    changeReviews: boolean;
 }
 
 export interface IUser {

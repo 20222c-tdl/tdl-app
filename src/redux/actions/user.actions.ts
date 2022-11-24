@@ -1,4 +1,4 @@
-import {AnyAction} from 'redux';
+import { AnyAction } from 'redux';
 import { IClaimFormData } from 'views/Claims/types';
 import { ILoginFormData } from '../../views/Login/types';
 import { ISignupUserFormData } from '../../views/SignupUser/types';
@@ -6,20 +6,20 @@ import * as constants from '../constants/user.constants';
 
 // userOnInitialize
 export function userOnInitializeRequested(): AnyAction {
-    return{
+    return {
         type: constants.USER_ON_INITIALIZE_REQUESTED,
     };
 }
 
 export function userOnInitializeSucceeded(data: unknown): AnyAction {
-    return{
+    return {
         type: constants.USER_ON_INITIALIZE_SUCCEEDED,
         data
     };
 }
 
 export function userOnInitializeFailed(error: unknown): AnyAction {
-    return{
+    return {
         type: constants.USER_ON_INITIALIZE_FAILED,
         error
     };
@@ -49,23 +49,30 @@ export function onGetProfileInfoFailed(error: unknown): AnyAction {
 
 // onLogin
 export function onLoginUserRequested(formData: ILoginFormData): AnyAction {
-    return{
+    return {
         type: constants.USER_ON_LOGIN_REQUESTED,
         formData
     };
 }
 
 export function onLoginUserSucceeded(data: unknown): AnyAction {
-    return{
+    return {
         type: constants.USER_ON_LOGIN_SUCCEEDED,
         data
     };
 }
 
 export function onLoginUserFailed(error: unknown): AnyAction {
-    return{
+    return {
         type: constants.USER_ON_LOGIN_FAILED,
         error
+    };
+}
+
+//onLogout
+export function onLogout(): AnyAction {
+    return {
+        type: constants.USER_ON_LOGOUT,
     };
 }
 
@@ -197,6 +204,116 @@ export function onPostCommentSucceeded(data: unknown): AnyAction {
 export function onPostCommentFailed(error: unknown): AnyAction {
     return {
         type: constants.USER_ON_POST_COMMENT_FAILED,
+        error
+    };
+}
+
+//onGetAllReservations
+export function onGetAllReservationsRequested(userId: string): AnyAction {
+    return {
+        type: constants.USER_ON_GET_ALL_RESERVATIONS_REQUESTED,
+        userId
+    };
+}
+
+export function onGetAllReservationsSucceeded(data: unknown): AnyAction {
+    return {
+        type: constants.USER_ON_GET_ALL_RESERVATIONS_SUCCEEDED,
+        data
+    };
+}
+
+export function onGetAllReservationsFailed(error: unknown): AnyAction {
+    return {
+        type: constants.USER_ON_GET_ALL_RESERVATIONS_FAILED,
+        error
+    };
+}
+
+// onCancelReservation
+export function onCancelReservationRequested(reservationId: string): AnyAction {
+    return {
+        type: constants.USER_ON_CANCEL_RESERVATION_REQUESTED,
+        reservationId
+    };
+}
+
+export function onCancelReservationSucceded(data: unknown): AnyAction {
+    return {
+        type: constants.USER_ON_CANCEL_RESERVATION_SUCCEEDED,
+        data
+    };
+}
+
+export function onCancelReservationFailed(error: unknown): AnyAction {
+    return {
+        type: constants.USER_ON_CANCEL_RESERVATION_FAILED,
+        error
+    };
+}
+
+//onGetUserReviews
+export function onGetUserReviewsRequested(userId: string): AnyAction {
+    return {
+        type: constants.USER_ON_GET_REVIEWS_REQUESTED,
+        userId
+    };
+}
+
+export function onGetUserReviewsSucceeded(data: unknown): AnyAction {
+    return {
+        type: constants.USER_ON_GET_REVIEWS_SUCCEEDED,
+        data
+    };
+}
+
+export function onGetUserReviewsFailed(error: unknown): AnyAction {
+    return {
+        type: constants.USER_ON_GET_REVIEWS_FAILED,
+        error
+    };
+}
+
+// onLeaveAReview
+export function onLeaveAReviewRequested(data: any): AnyAction {
+    return {
+        type: constants.USER_ON_LEAVE_A_REVIEW_REQUESTED,
+        data
+    };
+}
+
+export function onLeaveAReviewSucceeded(data: unknown): AnyAction {
+    return {
+        type: constants.USER_ON_LEAVE_A_REVIEW_SUCCEEDED,
+        data
+    };
+}
+
+export function onLeaveAReviewFailed(error: unknown): AnyAction {
+    return {
+        type: constants.USER_ON_LEAVE_A_REVIEW_FAILED,
+        error
+    };
+}
+
+// onPayReservation
+export function onPayReservationRequested(reservationId: string): AnyAction {
+    return {
+        type: constants.USER_ON_PAY_RESERVATION_REQUESTED,
+        reservationId
+    };
+}
+
+export function onPayReservationSucceeded(data: unknown): AnyAction {
+    return {
+        type: constants.USER_ON_PAY_RESERVATION_SUCCEEDED,
+        data
+    };
+}
+
+export function onPayReservationFailed(error: unknown): AnyAction {
+    return {
+        type: constants.USER_ON_PAY_RESERVATION_FAILED,
         error
     };
 }

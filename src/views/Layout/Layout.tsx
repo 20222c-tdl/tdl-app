@@ -13,11 +13,19 @@ import {
     Block
 } from './styles';
 import { ILayoutProps } from './types';
+import { onLogout } from 'redux/actions/user.actions';
+import { useDispatch } from 'react-redux';
 
 const Layout: FunctionComponent<ILayoutProps> = (props: ILayoutProps) => {
-    const { name, children } = props;
+    const { name, children, onSearchNav } = props;
+    const dispatch = useDispatch();
+
     const [input, setInput] = useState('');
     const [isCollapsed, setIsCollapsed] = useState(true);
+
+    const onClickLogout = () => {
+        dispatch(onLogout())
+    }
 
     return (
         <>
@@ -27,7 +35,7 @@ const Layout: FunctionComponent<ILayoutProps> = (props: ILayoutProps) => {
                     <p>Denunci.AR</p>
                 </RowDiv>
                 <SearchContainer>
-                    <SearchInput type="text" value={input} placeholder='Search anything' onInput={e => setInput(e.currentTarget.value)} />
+                    <SearchInput type="text" value={input} placeholder='Search anything' onInput={e => { setInput(e.currentTarget.value); onSearchNav(e.currentTarget.value)}} />
                     <CustomSearchIcon />
                 </SearchContainer>
                 <CustomAccountCircleIcon onClick={() => setIsCollapsed(!isCollapsed)} />
@@ -38,7 +46,9 @@ const Layout: FunctionComponent<ILayoutProps> = (props: ILayoutProps) => {
                 {!name && <a onClick={() => history.push('/loginUser')}>Login</a>}
                 {!!name && <a onClick={() => history.push('/profile')}>Profile</a>}
                 {!!name && <a onClick={() => history.push('/claims')}>Claims</a>}
-                {!!name && <p onClick={() => { }}>Logout</p>}
+                {!!name && <a onClick={() => history.push('/reservations')}>My reservations</a>}
+                {!!name && <p onClick={() => onClickLogout()}>Logout</p>}
+
             </Block>
             {children}
         </>

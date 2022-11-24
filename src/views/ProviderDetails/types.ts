@@ -2,6 +2,8 @@ import { IProvider } from "types/providers.types";
 
 export interface IProviderDetailsProps {
     provider: IProvider;
+    providerServices: any[];
+    providerReviews: any;
     hiredServices: any;
     setHiredServices: any;
     onMakeReservation: () => void;
