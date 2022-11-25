@@ -3,7 +3,6 @@ import { useDispatch } from 'react-redux';
 import { onSearchNameRequested } from 'redux/actions/providers.actions';
 import { onCancelReservationRequested, onGetAllReservationsRequested, onGetUserReviewsRequested, onLeaveAReviewRequested, onPayReservationRequested } from 'redux/actions/user.actions';
 import MyReservations from 'views/MyReservations/MyReservations';
-import { CardsContainer } from 'views/Profile/components/PaymentMethods/styles';
 import useTypedSelector from '../hooks/useTypedSelector';
 import Layout from '../views/Layout/Layout';
 

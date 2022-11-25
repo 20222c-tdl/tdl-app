@@ -204,33 +204,6 @@ export const StatusButtonContainer = styled.div`
   width: 20%;
 `;
 
-const handleColorType = (color: any) => {
-  switch (color) {
-    case "OPEN":
-      return "#00B7FF";
-    case "TAKING_ACTION":
-      return "#FFD100";
-    case "RESOLVED":
-      return "#61FF7E";
-    case "CLOSED":
-      return "#F25407";
-    default:
-      return COLORS.grayAlto;
-  }
-};
-
-export const StatusButton = styled.button`
-  padding: 7px 16%;
-  margin: 0 0 4px 3px;
-  font-size: 18px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  background-color: ${({ color }) => handleColorType(color)};
-  color: ${COLORS.white};
-  font-family: 'OpenSans';
-;`
-
 export const LeaveReview = styled.div`
     display: flex;
     flex-direction: column;

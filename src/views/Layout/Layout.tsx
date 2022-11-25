@@ -15,10 +15,12 @@ import {
 import { ILayoutProps } from './types';
 import { onLogout } from 'redux/actions/user.actions';
 import { useDispatch } from 'react-redux';
+import useTypedSelector from 'hooks/useTypedSelector';
 
 const Layout: FunctionComponent<ILayoutProps> = (props: ILayoutProps) => {
     const { name, children, onSearchNav } = props;
     const dispatch = useDispatch();
+    const { user } = useTypedSelector((state) => state.user);
 
     const [input, setInput] = useState('');
     const [isCollapsed, setIsCollapsed] = useState(true);
@@ -27,6 +29,9 @@ const Layout: FunctionComponent<ILayoutProps> = (props: ILayoutProps) => {
         dispatch(onLogout())
     }
 
+    const isUser = user && (user.role === "user");
+    const isProvider = user && (user.role === "provider");
+
     return (
         <>
             <TopNav>
@@ -34,19 +39,28 @@ const Layout: FunctionComponent<ILayoutProps> = (props: ILayoutProps) => {
                     <Logo src={LogoImg} alt="logo" />
                     <p>Denunci.AR</p>
                 </RowDiv>
-                <SearchContainer>
-                    <SearchInput type="text" value={input} placeholder='Search anything' onInput={e => { setInput(e.currentTarget.value); onSearchNav(e.currentTarget.value)}} />
-                    <CustomSearchIcon />
-                </SearchContainer>
+                {isUser &&
+                    <SearchContainer>
+                        <SearchInput type="text" value={input} placeholder='Search anything' onInput={e => { setInput(e.currentTarget.value); !!onSearchNav && onSearchNav(e.currentTarget.value) }} />
+                        <CustomSearchIcon />
+                    </SearchContainer>
+                }
                 <CustomAccountCircleIcon onClick={() => setIsCollapsed(!isCollapsed)} />
+
+
             </TopNav>
             <Block isCollapsed={isCollapsed} >
-                <a href="/home">Home</a>
                 {!name && <a onClick={() => history.push('/')}>Sign up</a>}
                 {!name && <a onClick={() => history.push('/loginUser')}>Login</a>}
-                {!!name && <a onClick={() => history.push('/profile')}>Profile</a>}
-                {!!name && <a onClick={() => history.push('/claims')}>Claims</a>}
-                {!!name && <a onClick={() => history.push('/reservations')}>My reservations</a>}
+                {!!name && isUser && <a onClick={() => history.push('/home')}>Home</a>}
+                {!!name && isUser && <a onClick={() => history.push('/profile')}>Profile</a>}
+                {!!name && isUser && <a onClick={() => history.push('/claims')}>Claims</a>}
+                {!!name && isUser && <a onClick={() => history.push('/reservations')}>My reservations</a>}
+
+                {!!name && isProvider && <a onClick={() => history.push('/reservations')}>Profile</a>}
+                {!!name && isProvider && <a onClick={() => history.push('/services')}>Services</a>}
+                {!!name && isProvider && <a onClick={() => history.push('/reservations')}>Reviews</a>}
+
                 {!!name && <p onClick={() => onClickLogout()}>Logout</p>}
 
             </Block>

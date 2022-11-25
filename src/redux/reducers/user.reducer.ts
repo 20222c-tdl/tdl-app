@@ -50,11 +50,10 @@ const userReducer: Reducer = (state = {}, action) => {
                 loading: true,
                 changeReviews: false,
             }
-        case constants.USER_ON_LOGIN_SUCCEEDED:
         case constants.USER_ON_GET_PROFILE_INFO_SUCCEEDED:
             return {
                 ...state,
-                user: data,
+                user: data.data,
                 loading: false
             }
         case constants.USER_ON_INITIALIZE_SUCCEEDED:
@@ -103,6 +102,7 @@ const userReducer: Reducer = (state = {}, action) => {
             }
 
         case constants.USER_ON_LOGIN_FAILED:
+        case constants.USER_ON_LOGIN_SUCCEEDED:
         case constants.USER_ON_INITIALIZE_FAILED:
         case constants.USER_ON_GET_PROFILE_INFO_FAILED:
         case constants.USER_ON_SIGN_UP_SUCCEEDED:

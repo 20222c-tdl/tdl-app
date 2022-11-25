@@ -20,16 +20,7 @@ export async function initializeUser(): Promise<any> {
 }
 
 export async function getProfileInfo(userId: string): Promise<AxiosResponse> {
-    //const response = await get(`/auth/profile`);
-    const response: any = {
-        id: "7bfb5d31-9918-40a4-a418-00346b92f4db",
-        firstName: "Rocio",
-        lastName: "Tarda",
-        email: "tardarocio@gmail.com",
-        address: "Paseo Colon 850",
-        phoneNumber: "1234566",
-        communityId: "396487df-0837-4073-91e6-3267b9538010"
-    };
+    const response = await get(`/auth/profile`);
     return response;
 }
 

@@ -8,6 +8,8 @@ export interface ProvidersInterface {
     allProviders: IProvider[];
     providerServices: any[];
     providerReviews: any;
+    getProfile: boolean;
+    changeServices: boolean;
 }
 
 export interface IProvider {
