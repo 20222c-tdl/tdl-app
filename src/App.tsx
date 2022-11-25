@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.css';
 import history from './helpers/history';
 import { Route, Routes, Navigate, unstable_HistoryRouter as HistoryRoute } from 'react-router-dom';
@@ -20,10 +20,18 @@ import ProviderContainer from 'containers/ProviderContainer';
 import { getCookie } from 'helpers/cookies';
 import MyReservationsContainer from 'containers/MyReservationsContainer';
 import ProfileContainer from 'containers/ProfileContainer';
+import useTypedSelector from 'hooks/useTypedSelector';
+import { onGetPProfileInfoRequested } from 'redux/actions/providers.actions';
+import ServicesContainer from 'containers/ServicesContainer';
 
 function App() {
-
   const dispatch = useDispatch();
+  const { getProfile } = useTypedSelector((state) => state.providers);
+
+  useEffect(() => {
+      dispatch(onGetPProfileInfoRequested());
+  }, [dispatch, getProfile])
+
   //dispatch(userOnInitializeRequested());
 
   const token = getCookie('access_token');
@@ -50,6 +58,7 @@ function App() {
         <Route path="/reservations" element={<MyReservationsContainer />} />
         <Route path="/providers/:id" element={<ProviderContainer />} />
         <Route path="/profile" element={<ProfileContainer />} />
+        <Route path="/services" element={<ServicesContainer />} />
         <Route
           path="*"
           element={<Navigate to="/" replace />}

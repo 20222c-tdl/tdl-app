@@ -1,14 +1,11 @@
 import React, { FunctionComponent, useState } from 'react';
-import MedicalServicesIcon from '@mui/icons-material/MedicalServices';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
-import SelectSearch from 'react-select-search';
 
 import { IProfileProps } from './types';
 import {
     BoxInfo,
     Title,
     Arrow,
-    CurrencyDiv,
     Subtitle,
     Container,
     Box,
@@ -26,7 +23,6 @@ const Profile: FunctionComponent<IProfileProps> = (props: IProfileProps) => {
         onAddCard,
         onRemoveCard,
     } = props;
-    const [isECColapsed, setIsECColapsed] = useState(true);
     const [isPaymentsCollapsed, setIPaymentsCollapsed] = useState(true);
 
     return (

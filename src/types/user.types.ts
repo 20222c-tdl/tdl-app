@@ -21,6 +21,7 @@ export interface IUser {
     address: string;
     communityId: string;
     phoneNumber: string;
+    role:string;
 }
 export interface IJWT {
     id: number;

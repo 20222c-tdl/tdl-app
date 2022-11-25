@@ -1,6 +1,7 @@
 import { AxiosResponse } from "axios";
+import { IServiceFormData } from "views/Services/types";
 import { ISignupProviderFormData } from "views/SignupProvider/types";
-import { get, post, put } from "./api";
+import { get, post } from "./api";
 
 export async function signupProvider(formData: ISignupProviderFormData): Promise<AxiosResponse> {
     const response = await post("/providers", formData);
@@ -8,7 +9,12 @@ export async function signupProvider(formData: ISignupProviderFormData): Promise
 }
 
 export async function loginProvider(formData: ISignupProviderFormData): Promise<AxiosResponse> {
-    const response = await post("/providers/login", formData);
+    const response = await post("/auth/providers/login", formData);
+    return response;
+}
+
+export async function getProfileInfo(): Promise<AxiosResponse> {
+    const response = await get(`/auth/profile`);
     return response;
 }
 
@@ -30,7 +36,7 @@ export async function getAllProviders(): Promise<AxiosResponse> {
     )
 }
 
-export async function getAllProvidersReviews(providerId:string): Promise<AxiosResponse> {
+export async function getAllProvidersReviews(providerId: string): Promise<AxiosResponse> {
     const response = await get(`/reviews/provider/${providerId}`);
     return (
         response
@@ -42,7 +48,7 @@ export async function getProviderInfo(providerId: string): Promise<any> {
     return response;
 }
 
-export async function getProviderServices(providerId:string): Promise<AxiosResponse> {
+export async function getProviderServices(providerId: string): Promise<AxiosResponse> {
     const response = await get(`/services/provider/${providerId}`);
     return (
         response
@@ -52,5 +58,10 @@ export async function getProviderServices(providerId:string): Promise<AxiosRespo
 export async function searchName(searchName: string): Promise<AxiosResponse> {
     //const response = await get(`/providers/search`, searchName);
     const response: any = searchName;
+    return response;
+}
+
+export async function createService(data: IServiceFormData): Promise<AxiosResponse> {
+    const response = await post(`/services`, data);
     return response;
 }

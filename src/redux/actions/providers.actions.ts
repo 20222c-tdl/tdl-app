@@ -1,5 +1,6 @@
 import { AnyAction } from 'redux';
 import { ILoginFormData } from 'views/Login/types';
+import { IServiceFormData } from 'views/Services/types';
 import { ISignupProviderFormData } from 'views/SignupProvider/types';
 import * as constants from '../constants/providers.constants';
 
@@ -21,6 +22,27 @@ export function onLoginProviderSucceeded(data: unknown): AnyAction {
 export function onLoginProviderFailed(error: unknown): AnyAction {
     return {
         type: constants.PROVIDER_ON_LOGIN_FAILED,
+        error
+    };
+}
+
+// onGetProfileInfo
+export function onGetPProfileInfoRequested(): AnyAction {
+    return {
+        type: constants.PROVIDER_ON_GET_PROFILE_INFO_REQUESTED,
+    };
+}
+
+export function onGetProfileInfoSucceeded(data: unknown): AnyAction {
+    return {
+        type: constants.PROVIDER_ON_GET_PROFILE_INFO_SUCCEEDED,
+        data
+    };
+}
+
+export function onGetProfileInfoFailed(error: unknown): AnyAction {
+    return {
+        type: constants.PROVIDER_ON_GET_PROFILE_INFO_FAILED,
         error
     };
 }
@@ -195,6 +217,28 @@ export function onSearchNameSucceeded(data: unknown): AnyAction {
 export function onSearchNameFailed(error: unknown): AnyAction {
     return {
         type: constants.PROVIDER_ON_SEARCH_NAME_FAILED,
+        error
+    };
+}
+
+// onCreateAService
+export function onCreateAServiceRequested(data: IServiceFormData): AnyAction {
+    return {
+        type: constants.PROVIDER_ON_CREATE_SERVICE_REQUESTED,
+        data
+    };
+}
+
+export function onCreateAServiceSucceeded(data: unknown): AnyAction {
+    return {
+        type: constants.PROVIDER_ON_CREATE_SERVICE_SUCCEEDED,
+        data
+    };
+}
+
+export function onCreateAServiceFailed(error: unknown): AnyAction {
+    return {
+        type: constants.PROVIDER_ON_CREATE_SERVICE_FAILED,
         error
     };
 }

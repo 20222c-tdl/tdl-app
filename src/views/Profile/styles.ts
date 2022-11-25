@@ -32,14 +32,6 @@ export const Container = styled.div`
   border-radius: 8px;
 `;
 
-export const CurrencyDiv = styled.div`
-  display: flex;
-  align-items: flex-end;
-  align-items: center;
-  justify-content: right;
-  padding-bottom: 20px;
-`;
-
 export const BoxInfo = styled.div`
   display: flex;
   flex-direction: column;

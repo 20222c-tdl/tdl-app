@@ -135,7 +135,7 @@ export function* userPayReservation(action: AnyAction): Generator {
 export function* watchUsers(): Generator {
     yield all([
         takeLatest(constants.USER_ON_INITIALIZE_REQUESTED, userInitialize),
-        takeLatest(constants.USER_ON_GET_PROFILE_INFO_REQUESTED, userGetProfileInfo),
+        takeLatest([constants.USER_ON_GET_PROFILE_INFO_REQUESTED, constants.USER_ON_LOGIN_SUCCEEDED], userGetProfileInfo),
         takeLatest(constants.USER_ON_SIGN_UP_REQUESTED, userSignUp),
         takeLatest(constants.USER_ON_LOGIN_REQUESTED, userLogin),
         takeLatest(constants.USER_ON_REGISTER_A_CLAIM_REQUESTED, userRegisterClaim),

@@ -1,7 +1,6 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { onFilterCategoryRequested, onGetAllProvidersCategoriesRequested, onGetAllProvidersRequested, onGetAllProvidersReviewsRequested, onSearchNameRequested } from 'redux/actions/providers.actions';
-import { IProvider } from 'types/providers.types';
+import { onFilterCategoryRequested, onGetAllProvidersCategoriesRequested, onGetAllProvidersRequested, onSearchNameRequested } from 'redux/actions/providers.actions';
 import Home from 'views/Home/Home';
 import useTypedSelector from '../hooks/useTypedSelector';
 import Layout from '../views/Layout/Layout';

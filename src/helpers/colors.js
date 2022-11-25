@@ -6,7 +6,6 @@ const COLORS = {
   lightGray: '#F2F2F2',
   greyMystic: '#898989',
   blueFire: '#101AEC',
-  black: '#000000',
   violetRed: '#142FEB',
   grayAlto: '#DDDDDD',
   violetPigment: '#871e79',

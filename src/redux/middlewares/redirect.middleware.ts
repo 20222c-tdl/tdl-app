@@ -34,7 +34,10 @@ const redirectMiddleware = () => (next: any) => (action: any) => {
             history.push('/loginProvider');
             break;
         case providersConstants.PROVIDER_ON_LOGIN_SUCCEEDED:
-            //history.push('/home');
+            history.push('/services');
+            break;
+        case userConstants.USER_ON_LOGOUT:
+            history.push('/loginUser');
             break;
         default:
             break;
