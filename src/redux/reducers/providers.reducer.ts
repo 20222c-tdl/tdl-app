@@ -12,6 +12,7 @@ const initialState = {
     providerReviews: null,
     getProfile: false,
     changeServices: false,
+    providerProfile: null,
 }
 
 const providersReducer: Reducer = (state = {}, action) => {
@@ -51,10 +52,15 @@ const providersReducer: Reducer = (state = {}, action) => {
                 loading: false
             }
         case constants.ON_GET_PROVIDER_INFO_SUCCEEDED:
-        case constants.PROVIDER_ON_GET_PROFILE_INFO_SUCCEEDED:
             return {
                 ...state,
                 providerData: data.data,
+                loading: false
+            }
+        case constants.PROVIDER_ON_GET_PROFILE_INFO_SUCCEEDED:
+            return {
+                ...state,
+                providerProfile: data.data,
                 loading: false
             }
         case constants.ON_FILTER_CATEGORY_SUCCEEDED:

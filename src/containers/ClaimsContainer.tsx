@@ -11,22 +11,6 @@ const ClaimsContainer: FunctionComponent = () => {
     const dispatch = useDispatch();
     const { user, changeClaimsList, claims } = useTypedSelector((state) => state.user);
 
-    const claimsWithComments = claims && claims.map((claim) => (
-        {
-            ...claim,
-            comments: [{
-                id: 1,
-                userName: "Yo",
-                comment: "Me gustaria saber el estado de mi reclamo",
-            },
-            {
-                id: 2,
-                userName: "Admin",
-                comment: "Aun esta siendo evaluado, a penas tengamos novedades le avisaremos por este medio",
-            }]
-        }
-    ))
-
     useEffect(() => {
         if (user) {
             dispatch(onUserGetClaimsRequested(user.id));
@@ -49,11 +33,16 @@ const ClaimsContainer: FunctionComponent = () => {
     const onPostComment = (formData: any) => {
         const data = {
             ...formData,
-            username: user.firstName
+            entityId: user.id,
+            role: user.role,
+            date: (new Date()).toISOString(),
         }
+
         dispatch(onPostCommentRequested(data))
         dispatch(onUserGetClaimsRequested(user.id));
     }
+
+    //split('T')[0]
 
     const onSearchNav = (searchName: string) => {
         dispatch(onSearchNameRequested(searchName))
@@ -65,7 +54,7 @@ const ClaimsContainer: FunctionComponent = () => {
 
             <Claims
                 onRegisterAClaim={onRegisterAClaim}
-                claims={claimsWithComments}
+                claims={claims}
                 onEditClaim={onEditClaim}
                 onPostComment={onPostComment}
             />

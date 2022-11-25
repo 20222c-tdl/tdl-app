@@ -65,8 +65,7 @@ export async function makeReservation(data: any): Promise<AxiosResponse> {
 }
 
 export async function postComment(data: any): Promise<AxiosResponse> {
-    //const response = await post(`/makeComment/${data.userId}`, data);
-    const response = data;
+    const response = await post(`/claim-comments`, data);
     return (
         response
     )

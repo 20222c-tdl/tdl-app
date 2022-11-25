@@ -57,9 +57,9 @@ const Layout: FunctionComponent<ILayoutProps> = (props: ILayoutProps) => {
                 {!!name && isUser && <a onClick={() => history.push('/claims')}>Claims</a>}
                 {!!name && isUser && <a onClick={() => history.push('/reservations')}>My reservations</a>}
 
-                {!!name && isProvider && <a onClick={() => history.push('/reservations')}>Profile</a>}
+                {!!name && isProvider && <a onClick={() => history.push('/profile')}>Profile</a>}
                 {!!name && isProvider && <a onClick={() => history.push('/services')}>Services</a>}
-                {!!name && isProvider && <a onClick={() => history.push('/reservations')}>Reviews</a>}
+                {!!name && isProvider && <a onClick={() => history.push('/reviews')}>Reviews</a>}
 
                 {!!name && <p onClick={() => onClickLogout()}>Logout</p>}
 

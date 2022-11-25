@@ -13,7 +13,7 @@ export interface IClaimFormData {
     mainIssue: string;
     description: string;
     status?: string;
-    comments?: any[];
+    claimComments?: any[];
 }
 
 export interface IClaimStatusUpdate {
