@@ -10,11 +10,11 @@ export const ClaimsManagementContainer: FunctionComponent = () => {
     const dispatch = useDispatch();
 
     const { claims, loading, claimHasChanged } = useTypedSelector((state) => state.claims);
-    const { communityInfo } = useTypedSelector((state) => state.community);
+    const { user } = useTypedSelector((state) => state.user);
 
     useEffect(() => {
-        if (communityInfo) {
-            dispatch(onGetCommunityClaimsRequested(communityInfo.id))
+        if (user) {
+            dispatch(onGetCommunityClaimsRequested(user.id))
         }
     }, [dispatch, claimHasChanged])
 

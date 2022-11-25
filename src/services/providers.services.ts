@@ -31,16 +31,12 @@ export async function filterCategory(idCategoryChoosed: string): Promise<any> {
 
 export async function getAllProviders(): Promise<AxiosResponse> {
     const response = await get("/providers");
-    return (
-        response
-    )
+    return response;
 }
 
 export async function getAllProvidersReviews(providerId: string): Promise<AxiosResponse> {
     const response = await get(`/reviews/provider/${providerId}`);
-    return (
-        response
-    )
+    return response;
 }
 
 export async function getProviderInfo(providerId: string): Promise<any> {

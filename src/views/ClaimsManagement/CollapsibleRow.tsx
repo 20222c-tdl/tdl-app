@@ -13,7 +13,7 @@ import { IClaimStatusUpdate } from "../Claims/types";
 
 export function CollapsibleRow(props: { row: IClaim }) {
     const { row } = props;
-    const [ open, setOpen ] = React.useState(false);
+    const [open, setOpen] = React.useState(false);
     const dispatch = useDispatch();
 
     const handleStatusChange = (
@@ -39,7 +39,7 @@ export function CollapsibleRow(props: { row: IClaim }) {
                     size="small"
                     onClick={() => setOpen(!open)}
                 >
-                    {open ? <KeyboardArrowUpIcon/> : <KeyboardArrowDownIcon/>}
+                    {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
                 </IconButton>
             </TableCell>
             <TableCell component="th" scope="row">
@@ -62,7 +62,7 @@ export function CollapsibleRow(props: { row: IClaim }) {
                         <Grid container spacing={2}>
                             <Grid item xs={8}>
                                 <Typography variant="h5" gutterBottom component="div">
-                                    Description
+                                    Description:
                                 </Typography>
                             </Grid>
                             <Grid item xs={12}>
