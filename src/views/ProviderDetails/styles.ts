@@ -101,7 +101,7 @@ export const CalificationText = styled.p`
 export const StarIcon = styled(Star)`
     margin: 0;
     font-size: 2.5rem;
-`
+`;
 
 export const ReviewsText = styled.p`
   font-size: 20px;
@@ -341,7 +341,7 @@ export const ReviewUsernameTitle = styled.p`
   font-weight: bold;
   margin: 0 5px;
   flex: 1;
-;`
+`;
 
 export const CalificationReviewText = styled.p`
   font-size: 22px;

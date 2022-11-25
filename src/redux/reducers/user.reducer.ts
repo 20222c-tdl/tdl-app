@@ -22,7 +22,6 @@ const userReducer: Reducer = (state = {}, action) => {
         case constants.USER_ON_GET_CLAIMS_REQUESTED:
         case constants.USER_ON_INITIALIZE_REQUESTED:
         case constants.USER_ON_MAKE_RESERVATION_REQUESTED:
-        case constants.USER_ON_POST_COMMENT_REQUESTED:
         case constants.USER_ON_GET_PROFILE_INFO_REQUESTED:
         case constants.USER_ON_GET_ALL_RESERVATIONS_REQUESTED:
         case constants.USER_ON_GET_REVIEWS_REQUESTED:
@@ -39,6 +38,7 @@ const userReducer: Reducer = (state = {}, action) => {
             }
         case constants.USER_ON_REGISTER_A_CLAIM_REQUESTED:
         case constants.USER_ON_EDIT_CLAIM_REQUESTED:
+        case constants.USER_ON_POST_COMMENT_REQUESTED:
             return {
                 ...state,
                 loading: true,
@@ -70,6 +70,7 @@ const userReducer: Reducer = (state = {}, action) => {
             }
         case constants.USER_ON_REGISTER_A_CLAIM_SUCCEEDED:
         case constants.USER_ON_EDIT_CLAIM_SUCCEEDED:
+        case constants.USER_ON_POST_COMMENT_SUCCEEDED:
             return {
                 ...state,
                 loading: true,
@@ -112,7 +113,6 @@ const userReducer: Reducer = (state = {}, action) => {
         case constants.USER_ON_EDIT_CLAIM_FAILED:
         case constants.USER_ON_MAKE_RESERVATION_SUCCEEDED:
         case constants.USER_ON_MAKE_RESERVATION_FAILED:
-        case constants.USER_ON_POST_COMMENT_SUCCEEDED:
         case constants.USER_ON_POST_COMMENT_FAILED:
         case constants.USER_ON_GET_ALL_RESERVATIONS_FAILED:
         case constants.USER_ON_CANCEL_RESERVATION_FAILED:

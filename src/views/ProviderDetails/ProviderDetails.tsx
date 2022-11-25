@@ -31,7 +31,7 @@ const ProviderDetails: FunctionComponent<any> = (props: IProviderDetailsProps) =
 
     return (
         <>
-            <ProviderContainer>
+            {provider && <ProviderContainer>
                 <RowDiv>
                     <CustomImg src={person} alt="Person" />
                     <ColumnDivProviderInfo>
@@ -160,7 +160,7 @@ const ProviderDetails: FunctionComponent<any> = (props: IProviderDetailsProps) =
                                     className="datePicker"
                                 />
                             </RowFormDiv>
-                            <Button isDisabled={date < new Date() || getTotalPrice()<= 0} onClick={() => onMakeReservation()}>Make reservation</Button>
+                            <Button isDisabled={/*date < new Date() || */getTotalPrice() <= 0} onClick={() => onMakeReservation()}>Make reservation</Button>
                         </CustomForm>
                     </RowDiv>
                 </TotalPriceContainer>}
@@ -195,6 +195,7 @@ const ProviderDetails: FunctionComponent<any> = (props: IProviderDetailsProps) =
                 </ReviewsContainer>
 
             </ProviderContainer >
+            }
         </>
     );
 }

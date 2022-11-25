@@ -10,6 +10,7 @@ export interface ProvidersInterface {
     providerReviews: any;
     getProfile: boolean;
     changeServices: boolean;
+    providerProfile: any;
 }
 
 export interface IProvider {

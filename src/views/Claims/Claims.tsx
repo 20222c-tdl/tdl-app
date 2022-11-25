@@ -6,6 +6,7 @@ import { requiredValidation } from '../../helpers/validations';
 import { IClaimFormData, IClaimsProps } from './types';
 import { Arrow, Box, Button, ButtonContainer, Claim, ClaimsContainer, Container, CustomForm, RowDiv, Subtitle, Title, Text, ColumnDiv, Description, EditDiv, Status, StatusText, CommentsButton, CommentsDiv, Comment, CommentButtonContainer, CommentCustomForm, CommentButton, LeaveACommentDiv } from './styles';
 import { Edit } from '@mui/icons-material';
+import CommentIcon from '@mui/icons-material/Comment';
 import { Modal } from 'components/Modal/Modal';
 import ClaimInfoForm from './components/ClaimInfoForm';
 import CommentForm from './components/CommentForm';
@@ -126,18 +127,25 @@ const Claims: FunctionComponent<IClaimsProps> = (props: IClaimsProps) => {
                                             </RowDiv>
                                         </ColumnDiv>
 
-                                        {openComments && claim && currentClaim && currentClaim.id === claim.id && claim.comments && claim.comments.map((comment) => {
+                                        {openComments && claim && currentClaim && currentClaim.id === claim.id && claim.claimComments && claim.claimComments.map((comment) => {
                                             return (
                                                 <>
                                                     <Comment key={comment.id}>
                                                         <RowDiv>
-                                                            <Text isBold>{comment.userName}:</Text>
+                                                            <Text isBold>{comment.role === "user" ? "Me" : "Admin"}:</Text>
                                                             <Description>{comment.comment}</Description>
                                                         </RowDiv>
                                                     </Comment>
                                                 </>
                                             )
                                         })
+                                        }
+                                        {
+                                            openComments && claim && currentClaim && currentClaim.id === claim.id && claim.claimComments && !claim.claimComments.length &&
+                                            <RowDiv>
+                                                <CommentIcon />
+                                                <Description>There are no comments yet</Description>
+                                            </RowDiv>
                                         }
                                         <CommentForm
                                             onPostComment={onPostComment}
