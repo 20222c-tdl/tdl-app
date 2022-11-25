@@ -14,7 +14,7 @@ const ServicesContainer: FunctionComponent = () => {
 
   useEffect(() => {
     if (user) {
-      onGetProviderServicesRequested(user.id)
+      dispatch(onGetProviderServicesRequested(user.id))
 
     }
   }, [dispatch, changeServices, user])

@@ -68,3 +68,23 @@ export function onGetAllCommunitiesFailed(error: unknown): AnyAction {
     };
 }
 
+// onGetCommunityProfile
+export function onGetCommunityProfileRequested(): AnyAction {
+    return {
+        type: constants.ON_GET_COMMUNITY_PROFILE_REQUESTED,
+    };
+}
+
+export function onGetCommunityProfileSucceeded(data: unknown): AnyAction {
+    return {
+        type: constants.ON_GET_COMMUNITY_PROFILE_SUCCEEDED,
+        data
+    };
+}
+
+export function onGetCommunityProfileFailed(error: unknown): AnyAction {
+    return {
+        type: constants.ON_GET_COMMUNITY_PROFILE_FAILED,
+        error
+    };
+}

@@ -16,7 +16,7 @@ export function* userInitialize(action: AnyAction) {
 
 export function* userGetProfileInfo(action: AnyAction): Generator {
     try {
-        const data: any = yield call(getProfileInfo, action.userId);
+        const data: any = yield call(getProfileInfo);
         yield put(onGetProfileInfoSucceeded(data));
     } catch (error) {
         yield put(onGetProfileInfoFailed(error));

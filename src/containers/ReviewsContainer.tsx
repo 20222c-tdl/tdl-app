@@ -12,14 +12,14 @@ const ReviewsContainer: FunctionComponent = () => {
 
     useEffect(() => {
         if (user) {
-            onGetAllProvidersReviewsRequested(user.id)
+            dispatch(onGetAllProvidersReviewsRequested(user.id))
         }
     }, [dispatch, user])
 
 
     return (
         <Layout name={user && user.firstName} >
-            <Reviews reviews={providerReviews} />
+            {providerReviews && <Reviews reviews={providerReviews} />}
         </Layout>
     )
 }

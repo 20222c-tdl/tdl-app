@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { CalificationReviewText, ColumnReviewsDescription, CustomReviewImg, DescriptionText, EmptyContainer, Review, ReviewIcon, ReviewsContainer, ReviewUsernameTitle, RowDiv, ServiceText, StarDiv, StarIcon, TitleContainer } from './styles';
+import { CalificationReviewText, ColumnReviewsDescription, CustomReviewImg, DescriptionText, EmptyContainer, Review, ReviewIcon, ReviewsContainer, ReviewUsernameTitle, RowDiv, RowDivReviews, ServiceText, StarDiv, StarIcon, StarIconTotal, TitleContainer } from './styles';
 import { IReviewsProps } from './types';
 import person from "../../assets/person.jpg";
 
@@ -7,8 +7,14 @@ const Reviews: FunctionComponent<IReviewsProps> = (props: IReviewsProps) => {
     const { reviews } = props;
     return (
         <ReviewsContainer>
-            <TitleContainer> Reviews </TitleContainer>
-            {reviews && reviews.map((reviewObj: any) => {
+            <RowDivReviews>
+                <TitleContainer> Reviews - Total rating: </TitleContainer>
+                <StarDiv>
+                    <CalificationReviewText>{reviews.totalRating.toFixed(1)}</CalificationReviewText>
+                    <StarIconTotal />
+                </StarDiv >
+            </RowDivReviews>
+            {reviews.reviews && reviews.reviews.map((reviewObj: any) => {
                 return (
                     <Review key={reviewObj.review.id}>
                         <RowDiv>

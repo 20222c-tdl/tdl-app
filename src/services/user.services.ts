@@ -19,7 +19,7 @@ export async function initializeUser(): Promise<any> {
     )
 }
 
-export async function getProfileInfo(userId: string): Promise<AxiosResponse> {
+export async function getProfileInfo(): Promise<AxiosResponse> {
     const response = await get(`/auth/profile`);
     return response;
 }

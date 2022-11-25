@@ -12,25 +12,40 @@ export const ReviewsContainer = styled.div`
 `;
 
 export const TitleContainer = styled.div`
-  border-bottom: 1px solid ${COLORS.grayAlto};
   text-align: center;
   font-weight: bold ;
   font-size: 26px;
-  width: 100%;
   margin: 20px 10px;
 
   & > p {
     margin: 10px 0;
   }
-;`
+`;
+
+export const RowDivReviews = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  font-weight: bold ;
+  font-size: 26px;
+  width: 100%;
+  border-bottom: 1px solid ${COLORS.grayAlto};
+`;
+
+export const StarIconTotal = styled(Star)`
+    margin: 0;
+    width: 100px;
+    height: 100px;
+
+`;
 
 export const Review = styled.div`
     display: flex;
     flex-direction: row;
     align-items: flex-start;
     flex: 1;
-    padding-bottom: 20px;
-    width: 70%
+    padding: 20px 0;
+    width: 70%;
 `;
 
 export const RowDiv = styled.div`
@@ -64,7 +79,7 @@ export const StarDiv = styled.div`
 `;
 
 export const CalificationReviewText = styled.p`
-  font-size: 22px;
+  font-size: 23px;
   margin: 0 0 0 5px;
   text-overflow: ellipsis;
   font-family: 'OpenSans';
@@ -79,7 +94,7 @@ export const StarIcon = styled(Star)`
 `;
 
 export const ReviewUsernameTitle = styled.p`
-  font-size: 20px;
+  font-size: 23px;
   margin-bottom: 0px;
   font-weight: bold;
   margin: 0 5px;
@@ -87,7 +102,7 @@ export const ReviewUsernameTitle = styled.p`
 `;
 
 export const DescriptionText = styled.p`
-  font-size: 20px;
+  font-size: 22px;
   margin: 0 0 0 5px;
   font-family: 'OpenSans';
   display: -webkit-box;

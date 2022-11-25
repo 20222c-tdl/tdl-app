@@ -29,20 +29,17 @@ function App() {
   const dispatch = useDispatch();
   const { getProfile } = useTypedSelector((state) => state.providers);
 
-  useEffect(() => {
-      dispatch(onGetPProfileInfoRequested());
-  }, [dispatch, getProfile])
-
-  //dispatch(userOnInitializeRequested());
-
   const token = getCookie('access_token');
   let decodedToken;
 
-  if (token) {
-    decodedToken = jwtDecode<IJWT>(token);
-    dispatch(onGetProfileInfoRequested(decodedToken.sub));
+  useEffect(() => {
+    if (token) {
+      decodedToken = jwtDecode<IJWT>(token);
+      dispatch(onGetProfileInfoRequested(decodedToken.sub));
+    }
+  }, [dispatch, token])
 
-  }
+  //dispatch(userOnInitializeRequested());
 
   return (
     <HistoryRoute history={history}>
