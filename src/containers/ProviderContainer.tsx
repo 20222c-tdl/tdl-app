@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { onGetAllProvidersReviewsRequested, onGetProviderInfoRequested, onGetProviderServicesRequested } from 'redux/actions/providers.actions';
+import { onGetAllProvidersReviewsRequested, onGetProviderInfoRequested, onGetProviderServicesRequested, onSearchNameRequested } from 'redux/actions/providers.actions';
 import { onMakeReservationRequested } from 'redux/actions/user.actions';
 import ProviderDetails from 'views/ProviderDetails/ProviderDetails';
 import useTypedSelector from '../hooks/useTypedSelector';
@@ -57,12 +57,17 @@ const ProviderContainer: FunctionComponent = () => {
             hiredServices: servicesToHire,
             date: date
         }
-        console.log("🚀 ~ onMakeReservation ~ data", data)
-        //dispatch(onMakeReservationRequested(data));
+        dispatch(onMakeReservationRequested(data));
+    }
+
+    const onSearchNav = (searchName: string) => {
+        dispatch(onSearchNameRequested(searchName))
     }
 
     return (
-        <Layout name={user && user.firstName}>
+        <Layout name={user && user.firstName}
+            onSearchNav={onSearchNav}>
+
             {
                 providerData && <ProviderDetails
                     provider={providerData}

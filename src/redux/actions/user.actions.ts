@@ -231,7 +231,7 @@ export function onGetAllReservationsFailed(error: unknown): AnyAction {
 }
 
 // onCancelReservation
-export function onCancelReservationRequested(reservationId: number): AnyAction {
+export function onCancelReservationRequested(reservationId: string): AnyAction {
     return {
         type: constants.USER_ON_CANCEL_RESERVATION_REQUESTED,
         reservationId
@@ -270,6 +270,50 @@ export function onGetUserReviewsSucceeded(data: unknown): AnyAction {
 export function onGetUserReviewsFailed(error: unknown): AnyAction {
     return {
         type: constants.USER_ON_GET_REVIEWS_FAILED,
+        error
+    };
+}
+
+// onLeaveAReview
+export function onLeaveAReviewRequested(data: any): AnyAction {
+    return {
+        type: constants.USER_ON_LEAVE_A_REVIEW_REQUESTED,
+        data
+    };
+}
+
+export function onLeaveAReviewSucceeded(data: unknown): AnyAction {
+    return {
+        type: constants.USER_ON_LEAVE_A_REVIEW_SUCCEEDED,
+        data
+    };
+}
+
+export function onLeaveAReviewFailed(error: unknown): AnyAction {
+    return {
+        type: constants.USER_ON_LEAVE_A_REVIEW_FAILED,
+        error
+    };
+}
+
+// onPayReservation
+export function onPayReservationRequested(reservationId: string): AnyAction {
+    return {
+        type: constants.USER_ON_PAY_RESERVATION_REQUESTED,
+        reservationId
+    };
+}
+
+export function onPayReservationSucceeded(data: unknown): AnyAction {
+    return {
+        type: constants.USER_ON_PAY_RESERVATION_SUCCEEDED,
+        data
+    };
+}
+
+export function onPayReservationFailed(error: unknown): AnyAction {
+    return {
+        type: constants.USER_ON_PAY_RESERVATION_FAILED,
         error
     };
 }

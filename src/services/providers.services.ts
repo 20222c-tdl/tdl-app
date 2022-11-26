@@ -48,3 +48,9 @@ export async function getProviderServices(providerId:string): Promise<AxiosRespo
         response
     )
 }
+
+export async function searchName(searchName: string): Promise<AxiosResponse> {
+    //const response = await get(`/providers/search`, searchName);
+    const response: any = searchName;
+    return response;
+}

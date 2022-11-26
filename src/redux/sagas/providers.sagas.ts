@@ -1,7 +1,7 @@
 import { AnyAction } from 'redux';
 import { call, put, takeLatest, all } from 'redux-saga/effects';
-import { onFilterCategoryFailed, onFilterCategorySucceeded, onGetAllProvidersCategoriesFailed, onGetAllProvidersCategoriesSucceeded, onGetAllProvidersFailed, onGetAllProvidersReviewsFailed, onGetAllProvidersReviewsSucceeded, onGetAllProvidersSucceeded, onGetProviderInfoFailed, onGetProviderInfoSucceeded, onGetProviderServicesFailed, onGetProviderServicesSucceeded, onLoginProviderFailed, onLoginProviderSucceeded, onSignupProviderFailed, onSignupProviderSucceeded } from 'redux/actions/providers.actions';
-import { loginProvider, signupProvider, getAllCategories, filterCategory, getAllProviders, getProviderInfo, getAllProvidersReviews, getProviderServices } from '../../services/providers.services';
+import { onFilterCategoryFailed, onFilterCategorySucceeded, onGetAllProvidersCategoriesFailed, onGetAllProvidersCategoriesSucceeded, onGetAllProvidersFailed, onGetAllProvidersReviewsFailed, onGetAllProvidersReviewsSucceeded, onGetAllProvidersSucceeded, onGetProviderInfoFailed, onGetProviderInfoSucceeded, onGetProviderServicesFailed, onGetProviderServicesSucceeded, onLoginProviderFailed, onLoginProviderSucceeded, onSearchNameFailed, onSearchNameSucceeded, onSignupProviderFailed, onSignupProviderSucceeded } from 'redux/actions/providers.actions';
+import { loginProvider, signupProvider, getAllCategories, filterCategory, getAllProviders, getProviderInfo, getAllProvidersReviews, getProviderServices, searchName } from '../../services/providers.services';
 import * as constants from '../constants/providers.constants';
 
 export function* providerSignup(action: AnyAction) {
@@ -76,6 +76,16 @@ export function* onGetProviderServices(action: AnyAction) {
     }
 }
 
+export function* onSearchName(action: AnyAction): Generator {
+    try {
+        const { data }: any = yield call(searchName, action.searchName);
+        yield put(onSearchNameSucceeded(data));
+    } catch (error) {
+        yield put(onSearchNameFailed(error));
+    }
+}
+
+
 export function* watchProviders(): Generator {
     yield all([
         takeLatest(constants.PROVIDER_ON_SIGN_UP_REQUESTED, providerSignup),
@@ -86,5 +96,7 @@ export function* watchProviders(): Generator {
         takeLatest(constants.ON_GET_PROVIDER_INFO_REQUESTED, onGetProviderInfo),
         takeLatest(constants.ON_GET_ALL_PROVIDERS_REVIEWS_REQUESTED, onGetProviderReviews),
         takeLatest(constants.ON_GET_PROVIDER_SERVICES_REQUESTED, onGetProviderServices),
+        takeLatest(constants.PROVIDER_ON_SEARCH_NAME_REQUESTED, onSearchName),
+
     ])
 }

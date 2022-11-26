@@ -86,7 +86,7 @@ export async function getReservations(userId: string): Promise<AxiosResponse> {
     return response;
 }
 
-export async function cancelReservation(reservationId: number): Promise<AxiosResponse> {
+export async function cancelReservation(reservationId: string): Promise<AxiosResponse> {
     //const response = await requestDelete(`/reservation/${id}`);
     const response: any = reservationId;
     return response;
@@ -94,7 +94,17 @@ export async function cancelReservation(reservationId: number): Promise<AxiosRes
 
 
 export async function getReviews(userId: string): Promise<AxiosResponse> {
-    //const response = await get(`/reviews/user/${userId}`);
-    const response: any = userId;
+    const response = await get(`/reviews/user/${userId}`);
+    return response;
+}
+
+export async function leaveAReview(data: any): Promise<AxiosResponse> {
+    const response = await post(`/reviews`, data);
+    return response;
+}
+
+export async function payReservation(reservationId: string): Promise<AxiosResponse> {
+    //const response = await post(`/pay`, reservationId);
+    const response: any = payReservation;
     return response;
 }

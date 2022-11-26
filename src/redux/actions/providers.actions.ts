@@ -176,3 +176,25 @@ export function onGetProviderServicesFailed(error: unknown): AnyAction {
         error
     };
 }
+
+// onSearchName
+export function onSearchNameRequested(searchName: string): AnyAction {
+    return {
+        type: constants.PROVIDER_ON_SEARCH_NAME_REQUESTED,
+        searchName
+    };
+}
+
+export function onSearchNameSucceeded(data: unknown): AnyAction {
+    return {
+        type: constants.PROVIDER_ON_SEARCH_NAME_SUCCEEDED,
+        data
+    };
+}
+
+export function onSearchNameFailed(error: unknown): AnyAction {
+    return {
+        type: constants.PROVIDER_ON_SEARCH_NAME_FAILED,
+        error
+    };
+}

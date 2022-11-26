@@ -2,7 +2,7 @@ import React, { FunctionComponent, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import Layout from '../views/Layout/Layout';
 import useTypedSelector from 'hooks/useTypedSelector';
-import { onGetAllProvidersCategoriesRequested, onSignupProviderRequested } from 'redux/actions/providers.actions';
+import { onGetAllProvidersCategoriesRequested, onSearchNameRequested, onSignupProviderRequested } from 'redux/actions/providers.actions';
 import SignupProvider from 'views/SignupProvider/SignupProvider';
 import { ISignupProviderFormData } from 'views/SignupProvider/types';
 
@@ -10,7 +10,7 @@ const SignupProviderContainer: FunctionComponent = () => {
     const dispatch = useDispatch();
 
     const { allCategories } = useTypedSelector((state) => state.providers);
-  
+
     useEffect(() => {
         dispatch(onGetAllProvidersCategoriesRequested());
     }, [dispatch])
@@ -29,8 +29,14 @@ const SignupProviderContainer: FunctionComponent = () => {
         dispatch(onSignupProviderRequested(data));
     }
 
+    const onSearchNav = (searchName: string) => {
+        dispatch(onSearchNameRequested(searchName))
+    }
+
     return (
-        <Layout name={"Name"}>
+        <Layout name={"Name"}
+            onSearchNav={onSearchNav}>
+
             <SignupProvider
                 onSignupClick={onSignupClick}
                 allCategories={allCategories}

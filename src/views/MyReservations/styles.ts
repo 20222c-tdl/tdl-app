@@ -301,3 +301,38 @@ export const Button = styled.button`
         border: 1px solid ${COLORS.grayPlaceholder};
     `};
 ;`
+
+export const Card = styled.div`
+  max-height: 110px;
+  cursor: pointer;
+`;
+
+export const Check = styled.div`
+  position: relative;
+  top: 20px;
+  z-index: 21;
+  left: 270px;
+  width: 20px;
+  height: 20px;
+`;
+
+export const CustomButton = styled.div`
+    font-size: 20px;
+    font-family: 'OpenSans', sans-serif;
+    margin: 10px 0;
+    padding: 10px 20px;
+    border-radius: 6px;
+    background-color: ${COLORS.violetRed};
+    color: white;
+    text-align: center;
+    cursor: pointer;
+
+    ${({ isDisabled }: { isDisabled?: boolean }) =>
+    isDisabled &&
+    css`
+        pointer-events: none;
+        background-color: ${COLORS.greyMystic};
+        color: ${COLORS.grayPlaceholder};
+        border: 1px solid ${COLORS.grayPlaceholder};
+    `};
+`;

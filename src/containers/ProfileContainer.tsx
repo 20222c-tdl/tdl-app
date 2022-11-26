@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import { useDispatch } from 'react-redux';
+import { onSearchNameRequested } from 'redux/actions/providers.actions';
 import Profile from 'views/Profile/Profile';
 import { ICard } from 'views/Profile/types';
 import useTypedSelector from '../hooks/useTypedSelector';
@@ -34,8 +35,13 @@ const ProfileContainer: FunctionComponent = () => {
         //dispatch(onAddNewCardRequested(data.id, formData));
     }
 
+    const onSearchNav = (searchName: string) => {
+        dispatch(onSearchNameRequested(searchName))
+    }
+
     return (
-        <Layout name={user && user.firstName}>
+        <Layout name={user && user.firstName}
+            onSearchNav={onSearchNav}>
             <Profile
                 user={user}
                 onEditProfileClick={onEditProfileClick}

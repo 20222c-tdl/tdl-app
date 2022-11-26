@@ -17,7 +17,7 @@ import { onLogout } from 'redux/actions/user.actions';
 import { useDispatch } from 'react-redux';
 
 const Layout: FunctionComponent<ILayoutProps> = (props: ILayoutProps) => {
-    const { name, children } = props;
+    const { name, children, onSearchNav } = props;
     const dispatch = useDispatch();
 
     const [input, setInput] = useState('');
@@ -35,7 +35,7 @@ const Layout: FunctionComponent<ILayoutProps> = (props: ILayoutProps) => {
                     <p>Denunci.AR</p>
                 </RowDiv>
                 <SearchContainer>
-                    <SearchInput type="text" value={input} placeholder='Search anything' onInput={e => setInput(e.currentTarget.value)} />
+                    <SearchInput type="text" value={input} placeholder='Search anything' onInput={e => { setInput(e.currentTarget.value); onSearchNav(e.currentTarget.value)}} />
                     <CustomSearchIcon />
                 </SearchContainer>
                 <CustomAccountCircleIcon onClick={() => setIsCollapsed(!isCollapsed)} />

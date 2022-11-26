@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { onFilterCategoryRequested, onGetAllProvidersCategoriesRequested, onGetAllProvidersRequested, onGetAllProvidersReviewsRequested } from 'redux/actions/providers.actions';
+import { onFilterCategoryRequested, onGetAllProvidersCategoriesRequested, onGetAllProvidersRequested, onGetAllProvidersReviewsRequested, onSearchNameRequested } from 'redux/actions/providers.actions';
 import { IProvider } from 'types/providers.types';
 import Home from 'views/Home/Home';
 import useTypedSelector from '../hooks/useTypedSelector';
@@ -30,8 +30,13 @@ const HomeContainer: FunctionComponent = () => {
     dispatch(onGetAllProvidersRequested());
   }
 
+  const onSearchNav = (searchName: string) => {
+    dispatch(onSearchNameRequested(searchName))
+  }
+
   return (
-    <Layout name={user && user.firstName}>
+    <Layout name={user && user.firstName}
+      onSearchNav={onSearchNav}>
       <Home
         categoryNames={categoryNames}
         onFilterCategory={onFilterCategory}

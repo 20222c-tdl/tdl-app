@@ -10,6 +10,7 @@ const initialState = {
     reservations: null,
     changeReservations: false,
     userReviews: null,
+    changeReviews: false,
 }
 
 const userReducer: Reducer = (state = {}, action) => {
@@ -30,6 +31,7 @@ const userReducer: Reducer = (state = {}, action) => {
                 loading: true
             }
         case constants.USER_ON_CANCEL_RESERVATION_REQUESTED:
+        case constants.USER_ON_PAY_RESERVATION_REQUESTED:
             return {
                 ...state,
                 loading: true,
@@ -41,6 +43,12 @@ const userReducer: Reducer = (state = {}, action) => {
                 ...state,
                 loading: true,
                 changeClaimsList: false,
+            }
+        case constants.USER_ON_LEAVE_A_REVIEW_REQUESTED:
+            return {
+                ...state,
+                loading: true,
+                changeReviews: false,
             }
         case constants.USER_ON_LOGIN_SUCCEEDED:
         case constants.USER_ON_GET_PROFILE_INFO_SUCCEEDED:
@@ -75,6 +83,7 @@ const userReducer: Reducer = (state = {}, action) => {
                 reservations: data
             }
         case constants.USER_ON_CANCEL_RESERVATION_SUCCEEDED:
+        case constants.USER_ON_PAY_RESERVATION_SUCCEEDED:
             return {
                 ...state,
                 loading: true,
@@ -84,8 +93,15 @@ const userReducer: Reducer = (state = {}, action) => {
             return {
                 ...state,
                 loading: true,
-                userReviews: data.data,
+                userReviews: data,
             }
+        case constants.USER_ON_LEAVE_A_REVIEW_SUCCEEDED:
+            return {
+                ...state,
+                loading: true,
+                changeReviews: true,
+            }
+
         case constants.USER_ON_LOGIN_FAILED:
         case constants.USER_ON_INITIALIZE_FAILED:
         case constants.USER_ON_GET_PROFILE_INFO_FAILED:
@@ -101,6 +117,8 @@ const userReducer: Reducer = (state = {}, action) => {
         case constants.USER_ON_GET_ALL_RESERVATIONS_FAILED:
         case constants.USER_ON_CANCEL_RESERVATION_FAILED:
         case constants.USER_ON_GET_REVIEWS_FAILED:
+        case constants.USER_ON_LEAVE_A_REVIEW_FAILED:
+        case constants.USER_ON_PAY_RESERVATION_FAILED:
             return {
                 ...state,
                 loading: false

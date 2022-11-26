@@ -1,6 +1,7 @@
 import useTypedSelector from 'hooks/useTypedSelector';
 import React, { FunctionComponent } from 'react';
 import { useDispatch } from 'react-redux';
+import { onSearchNameRequested } from 'redux/actions/providers.actions';
 import { onSignupCommunityRequested } from '../redux/actions/community.actions';
 import Layout from '../views/Layout/Layout';
 import SignupCommunity from '../views/SignupCommunity/SignupCommunity';
@@ -18,9 +19,15 @@ const SignupCommunityContainer: FunctionComponent = () => {
         }
         dispatch(onSignupCommunityRequested(data));
     }
+    
+    const onSearchNav = (searchName: string) => {
+        dispatch(onSearchNameRequested(searchName))
+    }
 
     return (
-        <Layout name={user && user.firstName}>
+        <Layout name={user && user.firstName}
+            onSearchNav={onSearchNav}>
+
             <SignupCommunity
                 onSignupClick={onSignupClick}
             />

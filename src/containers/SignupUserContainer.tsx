@@ -6,13 +6,14 @@ import SignupUser from '../views/SignupUser/SignupUser';
 import { onSignupUserRequested } from '../redux/actions/user.actions';
 import useTypedSelector from 'hooks/useTypedSelector';
 import { onGetAllCommunitiesRequested } from 'redux/actions/community.actions';
+import { onSearchNameRequested } from 'redux/actions/providers.actions';
 
 const SignupUserContainer: FunctionComponent = () => {
     const dispatch = useDispatch();
 
     const { allCommunities } = useTypedSelector((state) => state.community);
     const { user } = useTypedSelector((state) => state.user);
-  
+
 
     useEffect(() => {
         dispatch(onGetAllCommunitiesRequested());
@@ -32,8 +33,13 @@ const SignupUserContainer: FunctionComponent = () => {
         dispatch(onSignupUserRequested(data));
     }
 
+    const onSearchNav = (searchName: string) => {
+        dispatch(onSearchNameRequested(searchName))
+    }
+
     return (
-        <Layout name={user && user.firstName}>
+        <Layout name={user && user.firstName}
+            onSearchNav={ onSearchNav}>
             <SignupUser
                 onSignupClick={onSignupClick}
                 allCommunities={allCommunities}

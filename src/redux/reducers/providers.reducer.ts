@@ -24,6 +24,7 @@ const providersReducer: Reducer = (state = {}, action) => {
         case constants.ON_GET_PROVIDER_INFO_REQUESTED:
         case constants.ON_GET_PROVIDER_SERVICES_REQUESTED:
         case constants.ON_GET_ALL_PROVIDERS_REVIEWS_REQUESTED:
+        case constants.PROVIDER_ON_SEARCH_NAME_REQUESTED:
             return {
                 ...state,
                 loading: true
@@ -42,6 +43,7 @@ const providersReducer: Reducer = (state = {}, action) => {
                 loading: false
             }
         case constants.ON_FILTER_CATEGORY_SUCCEEDED:
+        case constants.PROVIDER_ON_SEARCH_NAME_SUCCEEDED:
             return {
                 ...state,
                 allProviders: data.data,
@@ -74,6 +76,7 @@ const providersReducer: Reducer = (state = {}, action) => {
         case constants.ON_GET_PROVIDER_INFO_FAILED:
         case constants.ON_GET_PROVIDER_SERVICES_FAILED:
         case constants.ON_GET_ALL_PROVIDERS_REVIEWS_FAILED:
+        case constants.PROVIDER_ON_SEARCH_NAME_FAILED:
             return {
                 ...state,
                 loading: false
