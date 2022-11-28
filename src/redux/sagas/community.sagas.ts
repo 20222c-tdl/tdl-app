@@ -1,7 +1,7 @@
 import { AnyAction } from 'redux';
 import { call, put, takeLatest, all } from 'redux-saga/effects';
-import { loginCommunity, signupCommunity, getAllCommunities, getCommunityInfo } from '../../services/community.services';
-import { onGetAllCommunitiesFailed, onGetAllCommunitiesSucceeded, onGetCommunityProfileFailed, onGetCommunityProfileSucceeded, onLoginCommunityFailed, onLoginCommunitySucceeded, onSignupCommunityFailed, onSignupCommunitySucceeded } from '../actions/community.actions';
+import { loginCommunity, signupCommunity, getAllCommunities, getCommunityInfo, postComment } from '../../services/community.services';
+import { onCommunityPostCommentFailed, onCommunityPostCommentSucceeded, onGetAllCommunitiesFailed, onGetAllCommunitiesSucceeded, onGetCommunityProfileFailed, onGetCommunityProfileSucceeded, onLoginCommunityFailed, onLoginCommunitySucceeded, onSignupCommunityFailed, onSignupCommunitySucceeded } from '../actions/community.actions';
 import * as constants from '../constants/community.constants';
 
 export function* communitySignup(action: AnyAction) {
@@ -40,11 +40,21 @@ export function* onGetCommunityInfo(action: AnyAction): Generator {
     }
 }
 
+export function* communityPostComment(action: AnyAction) {
+    try {
+        const data: unknown = yield call(postComment, action.data);
+        yield put(onCommunityPostCommentSucceeded(data));
+    } catch (error) {
+        yield put(onCommunityPostCommentFailed(error));
+    }
+}
+
 export function* watchCommunity(): Generator {
     yield all([
         takeLatest(constants.COMMUNITY_ON_SIGN_UP_REQUESTED, communitySignup),
         takeLatest(constants.COMMUNITY_ON_LOGIN_REQUESTED, communityLogin),
         takeLatest(constants.ON_GET_ALL_COMMUNITIES_REQUESTED, getCommunities),
         takeLatest([constants.ON_GET_COMMUNITY_PROFILE_REQUESTED, constants.COMMUNITY_ON_LOGIN_SUCCEEDED], onGetCommunityInfo),
+        takeLatest(constants.COMMUNITY_ON_POST_COMMENT_REQUESTED, communityPostComment),
     ])
 }

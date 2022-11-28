@@ -121,8 +121,6 @@ export const ColumnDiv = styled.div`
 export const Description = styled.p`
     margin: 0 5px 0 5px;
     font-size: 18px;
-    overflow: hidden;
-    text-overflow: ellipsis;
 `;
 
 export const EditDiv = styled.div`
@@ -193,7 +191,7 @@ export const CommentsButton = styled.button`
   font-weight: bold;
   border: 0;
   background-color: white;
-;`
+`;
 
 export const CommentsDiv = styled.div`
   cursor: pointer;
@@ -201,7 +199,8 @@ export const CommentsDiv = styled.div`
   div:last-child{
     border-bottom: 10px solid ${COLORS.grayPlaceholder};
   }
-`
+`;
+
 export const Comment = styled.div`
     margin: 1px 1px 1px 40px;
     display: flex;
@@ -217,7 +216,7 @@ export const CommentCustomForm = styled.form`
     font-size: 17px;
     width: 100%;
     align-items: center;
-;`
+`;
 
 export const LeaveACommentDiv = styled.div`
   width: 70%;
@@ -239,4 +238,4 @@ export const CommentButton = styled.button`
   background-color: ${COLORS.azure};
   color: ${COLORS.white};
   font-family: 'OpenSans';
-;`
+`;

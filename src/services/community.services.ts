@@ -22,3 +22,10 @@ export async function getCommunityInfo(): Promise<AxiosResponse> {
     const response = await get(`/auth/profile`);
     return response;
 }
+
+export async function postComment(data: any): Promise<AxiosResponse> {
+    const response = await post(`/claim-comments`, data);
+    return (
+        response
+    )
+}

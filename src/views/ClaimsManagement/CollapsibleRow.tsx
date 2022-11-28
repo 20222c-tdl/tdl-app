@@ -1,5 +1,5 @@
 import { CLAIMS_STATUS, IClaim } from "../../types/claims.types";
-import React from "react";
+import React, { useState } from "react";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
 import { Box, Collapse, Grid, IconButton, Typography } from "@mui/material";
@@ -10,11 +10,20 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { onUpdateClaimStatusRequested } from "../../redux/actions/claims.actions";
 import { useDispatch } from "react-redux";
 import { IClaimStatusUpdate } from "../Claims/types";
+import { CommentsButton, CommentsDiv, Description, RowDiv, Comment, Text, CommentDescription } from "./styles";
+import CommentIcon from '@mui/icons-material/Comment';
+import CommentForm from "./components/CommentForm";
+import { IClaimsManagmentProps } from "./types";
 
-export function CollapsibleRow(props: { row: IClaim }) {
-    const { row } = props;
+export function CollapsibleRow(props: IClaimsManagmentProps) {
+    const { row, onPostComment } = props;
     const [open, setOpen] = React.useState(false);
     const dispatch = useDispatch();
+
+    const [openComments, setOpenComments] = useState(true);
+    const [currentClaim, setCurrentClaim] = useState<any>(null);
+
+    const firstNameClaim = row.user.firstName;
 
     const handleStatusChange = (
         event: React.MouseEvent<HTMLElement>,
@@ -60,14 +69,44 @@ export function CollapsibleRow(props: { row: IClaim }) {
                 <Collapse in={open} timeout="auto" unmountOnExit>
                     <Box sx={{ margin: 1 }}>
                         <Grid container spacing={2}>
-                            <Grid item xs={8}>
-                                <Typography variant="h5" gutterBottom component="div">
-                                    Description:
-                                </Typography>
-                            </Grid>
-                            <Grid item xs={12}>
-                                {row.description}
-                            </Grid>
+                            <RowDiv>
+                                <Grid item xs={8}>
+                                    <Description>Description: {row.description}</Description>
+
+                                    <CommentsDiv>
+                                        <CommentsButton onClick={() => {
+                                            setOpenComments(!openComments)
+                                            setCurrentClaim(row)
+                                        }}>{openComments && row && currentClaim && currentClaim.id === row.id ? "Close comments" : "View comments"}</CommentsButton>
+                                    </CommentsDiv>
+
+                                    {openComments && row && currentClaim && currentClaim.id === row.id && row.claimComments && row.claimComments.map((comment) => {
+                                        return (
+                                            <>
+                                                <Comment key={row.id}>
+                                                    <RowDiv>
+                                                        <Text isBold>{comment.role === "community" ? "Admin" : row.user.firstName }:</Text>
+                                                        <CommentDescription>{comment.comment}</CommentDescription>
+                                                    </RowDiv>
+                                                </Comment>
+                                            </>
+                                        )
+                                    })
+                                    }
+                                    {
+                                        openComments && row && currentClaim && currentClaim.id === row.id && row.claimComments && !row.claimComments.length &&
+                                        <RowDiv>
+                                            <CommentIcon />
+                                            <Description>There are no comments yet</Description>
+                                        </RowDiv>
+                                    }
+                                    <CommentForm
+                                        onPostComment={onPostComment}
+                                        claimId={row.id}
+                                    />
+                                </Grid>
+                            </RowDiv>
+
                             <Grid
                                 container
                                 direction="row"

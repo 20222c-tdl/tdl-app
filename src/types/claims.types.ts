@@ -7,6 +7,7 @@ export interface IClaim {
     description: string;
     status: string;
     user: any   // TODO debería ser un IUser pero no coincide con lo que trae la API
+    claimComments: any[];
 }
 
 export const CLAIMS_STATUS = Object.freeze([
