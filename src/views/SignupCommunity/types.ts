@@ -7,4 +7,5 @@ export interface ISignupCommunityFormData {
     email: string;
     password: string;
     repeatPassword?: string;
+    base64Picture?: any;
 }

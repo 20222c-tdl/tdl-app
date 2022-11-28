@@ -14,4 +14,5 @@ export interface ISignupUserFormData {
     communityId?: string;
     community?: string;
     phoneNumber: number;
+    base64Picture?: any;
 }

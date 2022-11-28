@@ -88,3 +88,25 @@ export function onGetCommunityProfileFailed(error: unknown): AnyAction {
         error
     };
 }
+
+// onCommunityPostComment
+export function onCommunityPostCommentRequested(data: any): AnyAction {
+    return {
+        type: constants.COMMUNITY_ON_POST_COMMENT_REQUESTED,
+        data
+    };
+}
+
+export function onCommunityPostCommentSucceeded(data: unknown): AnyAction {
+    return {
+        type: constants.COMMUNITY_ON_POST_COMMENT_SUCCEEDED,
+        data
+    };
+}
+
+export function onCommunityPostCommentFailed(error: unknown): AnyAction {
+    return {
+        type: constants.COMMUNITY_ON_POST_COMMENT_FAILED,
+        error
+    };
+}

@@ -26,6 +26,7 @@ export interface IProvider {
     averageCalification: number;
     reviews: IReview[];
     services: any[]
+    photo: any;
 }
 
 export interface ICategory {

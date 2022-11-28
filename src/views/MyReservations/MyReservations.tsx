@@ -3,7 +3,6 @@ import Input from '../../components/Input/Input';
 import ReactStars from 'react-stars'
 import { TitleContainer, ReservationContainer, Reservation, RowDiv, CustomProviderImg, ColumnProviderDescription, EmptyContainer, EmptyText, EmptyIcon, Container, ReservationTitles, ProviderInfo, ProviderTitle, ProviderUsername, ProviderData, RowDivProviderUserName, CategoryName, ServicesContainer, ServiceDescription, Service, ServicesHiredTitle, StatusButtonContainer, LeaveReview, CustomForm, FormFields, Label, ButtonContainer, Button, Card, Check, CustomButton } from './styles';
 import { MyReservationsProps } from './types';
-import person from "../../assets/person.jpg";
 import { Modal } from 'components/Modal/Modal';
 import { Field, Form } from 'react-final-form';
 import { requiredValidation } from 'helpers/validations';
@@ -33,7 +32,7 @@ const MyReservations: FunctionComponent<MyReservationsProps> = (props: MyReserva
                 <>
                     <div style={{ padding: '0 50px 200px' }}>
                         {cards.map((card: any) => (
-                            <Card key={card.id} onClick={() => { setSelectedCard(card.id);}}>
+                            <Card key={card.id} onClick={() => { setSelectedCard(card.id); }}>
                                 <Check>
                                     {selectedCard === card.id && <img src={CheckIcon} alt="check" width={24} height={24} />}
                                 </Check>
@@ -176,7 +175,7 @@ const MyReservations: FunctionComponent<MyReservationsProps> = (props: MyReserva
                             <ProviderInfo>
                                 <ProviderTitle> Your provider contact information</ProviderTitle>
                                 <RowDiv>
-                                    <CustomProviderImg src={person} alt="Person" />
+                                    <CustomProviderImg src={`data:image/jpeg;base64,${reservation.provider.photo}`} alt="Image" />
                                     <ColumnProviderDescription>
                                         <RowDivProviderUserName>
                                             <ProviderUsername>{reservation.provider.firstName} {reservation.provider.lastName}</ProviderUsername>

@@ -13,11 +13,11 @@ const SignupProvider: FunctionComponent<ISignupProviderProps> = (props: ISignupP
 
     const categoriesNames = allCategories && allCategories.map((category) => {
         return {
-          label: category.name,
-          value: category.name
+            label: category.name,
+            value: category.name
         }
-      });
-    
+    });
+
     return (
         categoriesNames && <SignupContainer>
             <TitleContainer>
@@ -127,18 +127,31 @@ const SignupProvider: FunctionComponent<ISignupProviderProps> = (props: ISignupP
                                     )}
                                 </Field>
                             </div>
+                            <div>
+                                <Label>Upload a profile photo</Label>
+                                <Field name="base64Picture" validate={requiredValidation}>
+                                    {({ input: { value, onChange, ...input } }) => (
+                                        <input
+                                            {...input}
+                                            type="file"
+                                            onChange={({ target }) => onChange(target.files)} // instead of the default target.value
+                                            {...props}
+                                        />
+                                    )}
+                                </Field>
+                            </div>
                         </FormFields>
                         <ButtonContainer>
                             <Button type="submit">Sign up</Button>
                         </ButtonContainer>
                         <Box>
-                    <p>Do you want to login as a </p>
-                    <a href="/loginUser">User</a>
-                    <p>,</p>
-                    <a href="/loginProvider"> Provider</a>
-                    <p>or as</p>
-                    <a href="/loginCommunity">Community</a>
-                </Box>
+                            <p>Do you want to login as a </p>
+                            <a href="/loginUser">User</a>
+                            <p>,</p>
+                            <a href="/loginProvider"> Provider</a>
+                            <p>or as</p>
+                            <a href="/loginCommunity">Community</a>
+                        </Box>
                     </CustomForm>
                 )}
             />

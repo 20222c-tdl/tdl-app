@@ -1,7 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import { CalificationReviewText, ColumnReviewsDescription, CustomReviewImg, DescriptionText, EmptyContainer, Review, ReviewIcon, ReviewsContainer, ReviewUsernameTitle, RowDiv, RowDivReviews, ServiceText, StarDiv, StarIcon, StarIconTotal, TitleContainer } from './styles';
 import { IReviewsProps } from './types';
-import person from "../../assets/person.jpg";
 
 const Reviews: FunctionComponent<IReviewsProps> = (props: IReviewsProps) => {
     const { reviews } = props;
@@ -18,7 +17,7 @@ const Reviews: FunctionComponent<IReviewsProps> = (props: IReviewsProps) => {
                 return (
                     <Review key={reviewObj.review.id}>
                         <RowDiv>
-                            <CustomReviewImg src={person} alt="Person" />
+                            <CustomReviewImg src={`data:image/jpeg;base64,${reviewObj.user.base64Picture}`} alt="Image" />
                             <ColumnReviewsDescription>
                                 <RowDiv>
                                     <StarDiv>

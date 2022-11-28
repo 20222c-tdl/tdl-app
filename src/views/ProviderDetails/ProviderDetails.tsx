@@ -3,7 +3,6 @@ import { IProviderDetailsProps } from './types';
 import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Button, CalificationReviewText, CalificationText, CategoryName, CircleButton, CircleButtonText, ColumnDiv, ColumnDivPrice, ColumnDivProviderInfo, ColumnDivReview, ColumnReviewsDescription, CustomForm, CustomImg, CustomReviewImg, DescriptionText, EmptyContainer, MonetizationTypeText, NameText, PriceByDurationDiv, PriceText, ProviderContainer, Review, ReviewIcon, ReviewsContainer, ReviewsText, ReviewUsernameTitle, RowDiv, RowFormDiv, Service, ServiceIcon, ServicesColumn, ServicesContainer, ServiceText, ServiceTitle, StarDiv, StarIcon, TitleContainer, TotalPriceContainer, TotalPriceText } from './styles';
-import person from "../../assets/person.jpg";
 import COLORS from 'helpers/colors';
 
 const ProviderDetails: FunctionComponent<any> = (props: IProviderDetailsProps) => {
@@ -33,7 +32,7 @@ const ProviderDetails: FunctionComponent<any> = (props: IProviderDetailsProps) =
         <>
             {provider && <ProviderContainer>
                 <RowDiv>
-                    <CustomImg src={person} alt="Person" />
+                    <CustomImg src={`data:image/jpeg;base64,${provider.photo}`} alt="Image" />
                     <ColumnDivProviderInfo>
                         <NameText>{provider.firstName} {provider.lastName}</NameText>
                         <CategoryName> {provider.category.name}</CategoryName>
@@ -171,7 +170,7 @@ const ProviderDetails: FunctionComponent<any> = (props: IProviderDetailsProps) =
                         return (
                             <Review key={reviewObj.review.id}>
                                 <RowDiv>
-                                    <CustomReviewImg src={person} alt="Person" />
+                                    <CustomReviewImg src={`data:image/jpeg;base64,${reviewObj.user.photo}`} alt="Image" />
                                     <ColumnReviewsDescription>
                                         <RowDiv>
                                             <StarDiv>

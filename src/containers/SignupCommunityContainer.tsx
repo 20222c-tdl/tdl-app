@@ -11,15 +11,29 @@ const SignupCommunityContainer: FunctionComponent = () => {
     const dispatch = useDispatch();
     const { user } = useTypedSelector((state) => state.user);
 
-    const onSignupClick = (formData: ISignupCommunityFormData) => {
-        const data = {
-            name: formData.name,
-            email: formData.email,
-            password: formData.password
-        }
-        dispatch(onSignupCommunityRequested(data));
+    const getBase64Picture = async (file: any) => {
+        return new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = function () {
+                resolve(reader.result);
+            }
+        });
     }
-    
+
+    const onSignupClick = async (formData: ISignupCommunityFormData) => {
+        const image: any = await getBase64Picture(formData.base64Picture[0]);
+        if (!!image && formData) {
+            const body = {
+                name: formData.name,
+                email: formData.email,
+                password: formData.password,
+                photo: image.split(',')[1],
+            }
+            dispatch(onSignupCommunityRequested(body));
+        }
+    }
+
     const onSearchNav = (searchName: string) => {
         dispatch(onSearchNameRequested(searchName))
     }

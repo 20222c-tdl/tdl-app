@@ -13,12 +13,10 @@ import {
     TableRow
 } from "@mui/material";
 import { ClaimsState } from "../../types/claims.types";
+import { IClaimsViewProps } from "./types";
 
-
-type ClaimsViewProps = Pick<ClaimsState, "claims" | "loading">
-
-const ClaimsManagementView: FunctionComponent<ClaimsViewProps> = (props: ClaimsViewProps) => {
-    const { claims, loading } = props;
+const ClaimsManagementView: FunctionComponent<IClaimsViewProps> = (props: IClaimsViewProps) => {
+    const { claims, loading, onPostComment} = props;
 
     return <Container fixed>
         {loading ?
@@ -39,7 +37,7 @@ const ClaimsManagementView: FunctionComponent<ClaimsViewProps> = (props: ClaimsV
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {claims.map((claim) => <CollapsibleRow key={claim.id} row={claim}/>)}
+                            {claims.map((claim) => <CollapsibleRow key={claim.id} row={claim} onPostComment={onPostComment}/>)}
                         </TableBody>
                     </Table>
                 </TableContainer>

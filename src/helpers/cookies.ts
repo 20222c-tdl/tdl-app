@@ -1,7 +1,8 @@
 import cookie from 'react-cookies';
 
 export function getCookie(key: string): string {
-  return cookie.load(key);
+  const cookiee =  cookie.load(key);
+  return cookiee;
 }
 
 export function setCookie(key: string, value: string, options = {}): void {
