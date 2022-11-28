@@ -1,5 +1,6 @@
 import { Reducer } from 'redux';
 import * as constants from '../constants/user.constants';
+import * as communityConstants from '../constants/community.constants';
 
 const initialState = {
     loading: false,
@@ -51,6 +52,7 @@ const userReducer: Reducer = (state = {}, action) => {
                 changeReviews: false,
             }
         case constants.USER_ON_GET_PROFILE_INFO_SUCCEEDED:
+        case communityConstants.ON_GET_COMMUNITY_PROFILE_SUCCEEDED:
             return {
                 ...state,
                 user: data.data,
