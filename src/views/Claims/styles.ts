@@ -1,6 +1,7 @@
 import COLORS from "helpers/colors";
 import styled, { css } from "styled-components";
 import { KeyboardArrowDown } from "@mui/icons-material";
+import { ICommentProps } from './types';
 
 export const ClaimsContainer = styled.div`
   display: flex;
@@ -42,7 +43,7 @@ export const Button = styled.button`
   cursor: pointer;
   background-color: ${COLORS.blueFire};
   color: ${COLORS.white};
-  font-family: 'OpenSans';
+  font-family: 'Open Sans';
 ;`
 
 export const Box = styled.div`
@@ -55,7 +56,15 @@ export const RowDiv = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    width: 100%
+    width: 100%;
+
+    ${({ isHeader }: { isHeader?: boolean }) =>
+    isHeader &&
+    css`
+        border-bottom: 1px solid ${COLORS.lightGray};
+        margin-bottom: 15px;
+        padding-bottom: 15px;
+    `};
 `;
 
 export const Title = styled.p`
@@ -63,7 +72,7 @@ export const Title = styled.p`
   margin: 0;
   font-weight: bold;
   text-align: center;
-  font-family: 'OpenSans';
+  font-family: 'Open Sans';
   display: flex;
   flex: 1;
   justify-content: center;
@@ -78,17 +87,18 @@ export const Subtitle = styled.p`
   font-size: 20px;
   margin: 0;
   text-align: center;
-  font-family: 'OpenSans';
+  font-family: 'Open Sans';
 ;`
 
 export const Claim = styled.div`
     margin: 1px;
     display: flex;
     flex-direction: column;
-    cursor: pointer;
     width: 80%;
-    padding-bottom: 5px;
-    border-bottom: 2px solid ${COLORS.greyMystic};
+    padding: 20px;
+    margin-bottom: 10px;
+    border: 1px solid ${COLORS.grayAlto};
+    border-radius: 15px;
 `;
 
 export const Text = styled.p`
@@ -119,7 +129,7 @@ export const ColumnDiv = styled.div`
 `;
 
 export const Description = styled.p`
-    margin: 0 5px 0 5px;
+    margin: 5px 5px 10px;
     font-size: 18px;
 `;
 
@@ -132,10 +142,7 @@ export const EditDiv = styled.div`
 `
 
 export const Status = styled.div`
-  cursor: pointer;
-  width: 100%;
   display: flex;
-  justify-content: flex-end;
 `
 
 const handleColorType = (color: any) => {
@@ -167,7 +174,7 @@ export const ButtonModal = styled.button`
     font-size: 20px;
     border-radius: 8px;
     border: none;
-    font-family: 'OpenSans';
+    font-family: 'Open Sans';
     margin-top: 10px;
     cursor: pointer;
     background-color: ${COLORS.cerulean};
@@ -185,9 +192,9 @@ export const ButtonModal = styled.button`
 export const CommentsButton = styled.button`
   font-size: 17px;
   margin: 0;
-  font-family: 'OpenSans';
+  font-family: 'Open Sans';
   color: ${COLORS.cerulean};
-  text-decoration: underline;
+  cursor: pointer;
   font-weight: bold;
   border: 0;
   background-color: white;
@@ -202,13 +209,21 @@ export const CommentsDiv = styled.div`
 `;
 
 export const Comment = styled.div`
-    margin: 1px 1px 1px 40px;
+    margin: 10px 1px 0 40px;
     display: flex;
     flex-direction: column;
-    cursor: pointer;
     width: 80%;
-    padding-bottom: 5px;
-    border-bottom: 1px solid ${COLORS.grayPlaceholder};
+    padding: 10px;
+    background-color: #66b3ed;
+    border-radius: 20px;
+    color: white;
+
+    ${(props: ICommentProps) =>
+    !props.isMe &&
+    css`
+        background-color: ${COLORS.grayAlto};
+        color: black;
+    `};
 `;
 
 export const CommentCustomForm = styled.form`
@@ -225,11 +240,11 @@ export const LeaveACommentDiv = styled.div`
 export const CommentButtonContainer = styled.div`
   justify-content: center;
   text-align: center;
-  width: 20%;
+  width: 30%;
 `;
 
 export const CommentButton = styled.button`
-  padding: 7px 16%;
+  padding: 7px 18%;
   margin: 0 0 4px 3px;
   font-size: 18px;
   border: none;
@@ -237,5 +252,5 @@ export const CommentButton = styled.button`
   cursor: pointer;
   background-color: ${COLORS.azure};
   color: ${COLORS.white};
-  font-family: 'OpenSans';
+  font-family: 'Open Sans';
 `;

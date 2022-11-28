@@ -38,7 +38,7 @@ export const Button = styled.button`
   cursor: pointer;
   background-color: ${COLORS.blueFire};
   color: ${COLORS.white};
-  font-family: 'OpenSans';
+  font-family: 'Open Sans';
 
   &:hover {
     background-color: ${COLORS.violetPigment};
@@ -58,7 +58,7 @@ export const SignupContainer = styled.div`
 
 export const Label = styled.p`
   font-size: 16px;
-  font-family: 'OpenSans';
+  font-family: 'Open Sans';
   margin: 0;
 `;
 
@@ -82,7 +82,7 @@ export const Box = styled.div`
 
   & > p {
     margin: 0 5px 0 0;
-    font-family: 'OpenSans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
   }
 
   & > a {

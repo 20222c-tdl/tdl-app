@@ -7,6 +7,8 @@ const initialState = {
     communityInfo: null,
     allCommunities: null,
     commentsChanged: false,
+    changePlaces: false,
+    places: null,
 }
 
 const communityReducer: Reducer = (state = {}, action) => {

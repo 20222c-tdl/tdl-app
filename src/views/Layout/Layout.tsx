@@ -31,6 +31,7 @@ const Layout: FunctionComponent<ILayoutProps> = (props: ILayoutProps) => {
 
     const isUser = user && (user.role === "user");
     const isProvider = user && (user.role === "provider");
+    const isCommunity = user && (user.role === "community");
 
     return (
         <>
@@ -52,14 +53,20 @@ const Layout: FunctionComponent<ILayoutProps> = (props: ILayoutProps) => {
             <Block isCollapsed={isCollapsed} >
                 {!name && <a onClick={() => history.push('/')}>Sign up</a>}
                 {!name && <a onClick={() => history.push('/loginUser')}>Login</a>}
+                
                 {!!name && isUser && <a onClick={() => history.push('/home')}>Home</a>}
                 {!!name && isUser && <a onClick={() => history.push('/profile')}>Profile</a>}
                 {!!name && isUser && <a onClick={() => history.push('/claims')}>Claims</a>}
+                {!!name && isUser && <a onClick={() => history.push('/places')}>Places</a>}
                 {!!name && isUser && <a onClick={() => history.push('/reservations')}>My reservations</a>}
 
                 {!!name && isProvider && <a onClick={() => history.push('/profile')}>Profile</a>}
                 {!!name && isProvider && <a onClick={() => history.push('/services')}>Services</a>}
                 {!!name && isProvider && <a onClick={() => history.push('/reviews')}>Reviews</a>}
+
+                {!!name && isCommunity && <a onClick={() => history.push('/claimsManagment')}>Claims</a>}
+                {!!name && isCommunity && <a onClick={() => history.push('/placesManagement')}>Places</a>}
+
 
                 {!!name && <p onClick={() => onClickLogout()}>Logout</p>}
 

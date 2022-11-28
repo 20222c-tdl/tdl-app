@@ -82,7 +82,7 @@ export const CalificationReviewText = styled.p`
   font-size: 23px;
   margin: 0 0 0 5px;
   text-overflow: ellipsis;
-  font-family: 'OpenSans';
+  font-family: 'Open Sans';
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
@@ -104,7 +104,7 @@ export const ReviewUsernameTitle = styled.p`
 export const DescriptionText = styled.p`
   font-size: 22px;
   margin: 0 0 0 5px;
-  font-family: 'OpenSans';
+  font-family: 'Open Sans';
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
@@ -130,7 +130,7 @@ export const ServiceText = styled.p`
     font-size: 18px;
     margin: 0 0 2px;
     text-overflow: ellipsis;
-    font-family: 'OpenSans';
+    font-family: 'Open Sans';
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;

@@ -26,3 +26,7 @@ export interface IClaimInfoFormdataProps {
     claim: IClaimFormData;
     onSubmit: (formData: IClaimFormData) => void;
 }
+
+export interface ICommentProps {
+    isMe?: boolean;
+}

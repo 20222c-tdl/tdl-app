@@ -20,7 +20,7 @@ const CommentForm = (props: any) => {
                     <CommentCustomForm onSubmit={handleSubmit}>
                         <RowDiv>
                             <LeaveACommentDiv>
-                                <label>Leave a comment</label>
+                                <label><b>Leave a comment</b></label>
                                 <Field
                                     render={Input}
                                     label="Write your comment"

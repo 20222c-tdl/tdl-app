@@ -10,6 +10,7 @@ import CommentIcon from '@mui/icons-material/Comment';
 import { Modal } from 'components/Modal/Modal';
 import ClaimInfoForm from './components/ClaimInfoForm';
 import CommentForm from './components/CommentForm';
+import COLORS from 'helpers/colors';
 
 
 const Claims: FunctionComponent<IClaimsProps> = (props: IClaimsProps) => {
@@ -35,7 +36,7 @@ const Claims: FunctionComponent<IClaimsProps> = (props: IClaimsProps) => {
 
     const renderRegisterClaims = () => (
         <>
-            <RowDiv>
+            <RowDiv isHeader>
                 <Title>Register a claim</Title>
                 <Arrow onClick={() => setIsRegisterClaimsCollapsed(!isRegisterClaimsCollapsed)} />
             </RowDiv>
@@ -102,7 +103,12 @@ const Claims: FunctionComponent<IClaimsProps> = (props: IClaimsProps) => {
                                     <>
                                         <ColumnDiv>
                                             <RowDiv>
-                                                <Text isBold>{claim.mainIssue}</Text>
+                                                <RowDiv>
+                                                    <Status>
+                                                        <StatusText color={claim.status}>{claim.status}</StatusText>
+                                                    </Status>
+                                                    <Text isBold style={{ fontSize: 24, paddingLeft: 10 }}>{claim.mainIssue}</Text>
+                                                </RowDiv>
                                                 <EditDiv>
                                                     <Edit onClick={() => {
                                                         setIsEditable(true)
@@ -111,8 +117,10 @@ const Claims: FunctionComponent<IClaimsProps> = (props: IClaimsProps) => {
                                                 </EditDiv>
                                             </RowDiv>
                                             <ColumnDiv>
-                                                <Description>Type: {claim.type} </Description>
-                                                <Description>Description: {claim.description}</Description>
+                                                <Description><b>Type</b></Description>
+                                                <Description style={{ paddingLeft: 6, paddingBottom: 10 }}>{claim.type}</Description>
+                                                <Description><b>Description</b></Description>
+                                                <Description style={{ paddingLeft: 6, paddingBottom: 20 }}> {claim.description}</Description>
                                             </ColumnDiv>
                                             <RowDiv>
                                                 <CommentsDiv>
@@ -121,22 +129,17 @@ const Claims: FunctionComponent<IClaimsProps> = (props: IClaimsProps) => {
                                                         setCurrentClaim(claim)
                                                     }}>{openComments && claim && currentClaim && currentClaim.id === claim.id ? "Close comments" : "View comments"}</CommentsButton>
                                                 </CommentsDiv>
-                                                <Status>
-                                                    <StatusText color={claim.status}>{claim.status}</StatusText>
-                                                </Status>
+                                                
                                             </RowDiv>
                                         </ColumnDiv>
 
                                         {openComments && claim && currentClaim && currentClaim.id === claim.id && claim.claimComments && claim.claimComments.map((comment) => {
+                                            const isMe = comment.role === "user";
                                             return (
-                                                <>
-                                                    <Comment key={comment.id}>
-                                                        <RowDiv>
-                                                            <Text isBold>{comment.role === "user" ? "Me" : "Admin"}:</Text>
-                                                            <Description>{comment.comment}</Description>
-                                                        </RowDiv>
-                                                    </Comment>
-                                                </>
+                                                <Comment isMe={isMe} key={comment.id}>
+                                                    <Text isBold>{comment.role === "user" ? "Me" : "Admin"}</Text>
+                                                    <Description style={{ paddingLeft: 6 }}>{comment.comment}</Description>
+                                                </Comment>
                                             )
                                         })
                                         }

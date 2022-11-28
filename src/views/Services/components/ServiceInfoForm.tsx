@@ -37,7 +37,7 @@ const ServiceInfoForm = (props: IServiceInfoFormdataProps) => {
                                 />
                             </div>
                             <div>
-                                <label>Descriptio</label>
+                                <label>Description</label>
                                 <Field
                                     render={Input}
                                     name="description"

@@ -10,7 +10,7 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { onUpdateClaimStatusRequested } from "../../redux/actions/claims.actions";
 import { useDispatch } from "react-redux";
 import { IClaimStatusUpdate } from "../Claims/types";
-import { CommentsButton, CommentsDiv, Description, RowDiv, Comment, Text, CommentDescription } from "./styles";
+import { CommentsButton, CommentsDiv, Description, RowDiv, Comment, Text, CommentDescription, StatusText } from "./styles";
 import CommentIcon from '@mui/icons-material/Comment';
 import CommentForm from "./components/CommentForm";
 import { IClaimsManagmentProps } from "./types";
@@ -62,7 +62,7 @@ export function CollapsibleRow(props: IClaimsManagmentProps) {
             </TableCell>
             <TableCell align="center">{row.type}</TableCell>
             <TableCell align="center">{row.mainIssue}</TableCell>
-            <TableCell align="center">{row.status}</TableCell>
+            <TableCell align="center"><StatusText color={row.status}>{row.status}</StatusText></TableCell>
         </TableRow>
         <TableRow>
             <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={12}>
@@ -71,8 +71,8 @@ export function CollapsibleRow(props: IClaimsManagmentProps) {
                         <Grid container spacing={2}>
                             <RowDiv>
                                 <Grid item xs={8}>
-                                    <Description>Description: {row.description}</Description>
-
+                                    <Description style={{ paddingTop: 20 }}><b>Description:</b></Description>
+                                    <Description style={{ paddingLeft: 6, paddingBottom: 20 }}>{row.description}</Description>
                                     <CommentsDiv>
                                         <CommentsButton onClick={() => {
                                             setOpenComments(!openComments)
@@ -81,13 +81,12 @@ export function CollapsibleRow(props: IClaimsManagmentProps) {
                                     </CommentsDiv>
 
                                     {openComments && row && currentClaim && currentClaim.id === row.id && row.claimComments && row.claimComments.map((comment) => {
+                                        const isAdmin = comment.role === "community";
                                         return (
                                             <>
-                                                <Comment key={row.id}>
-                                                    <RowDiv>
-                                                        <Text isBold>{comment.role === "community" ? "Admin" : row.user.firstName }:</Text>
-                                                        <CommentDescription>{comment.comment}</CommentDescription>
-                                                    </RowDiv>
+                                                <Comment isAdmin={isAdmin} key={row.id}>
+                                                    <Text isBold>{comment.role === "community" ? "Admin" : row.user.firstName }</Text>
+                                                    <CommentDescription>{comment.comment}</CommentDescription>
                                                 </Comment>
                                             </>
                                         )

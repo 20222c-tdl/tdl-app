@@ -25,7 +25,7 @@ export const Button = styled.button`
     font-size: 20px;
     border-radius: 8px;
     border: none;
-    font-family: 'OpenSans';
+    font-family: 'Open Sans';
     margin-top: 10px;
     cursor: pointer;
     background-color: ${COLORS.violetRed};

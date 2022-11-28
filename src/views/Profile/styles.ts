@@ -49,7 +49,7 @@ export const Title = styled.p`
   font-size: 24px;
   font-weight: bold;
   text-align: center;
-  font-family: 'OpenSans';
+  font-family: 'Open Sans';
 
   ${({ hasNoMargin }: { hasNoMargin?: boolean }) =>
     hasNoMargin &&
@@ -62,7 +62,7 @@ export const Title = styled.p`
 
 export const Subtitle = styled.p`
   font-size: 20px;
-  font-family: 'OpenSans';
+  font-family: 'Open Sans';
   text-align: center;
   margin: 0;
 ;`

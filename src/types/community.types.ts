@@ -5,6 +5,8 @@ export interface CommunityInterface {
     allCommunities: ICommunity[];
     communityInfo: ICommunity;
     commentsChanged: boolean;
+    changePlaces: boolean;
+    places: any[];
 }
 
 export interface ICommunity {
