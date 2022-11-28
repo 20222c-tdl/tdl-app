@@ -11,9 +11,8 @@ const storageMiddleware = () => (next: any) => (action: any) => {
   switch (type) {
     case constants.USER_ON_LOGIN_SUCCEEDED:
     case providerConstants.PROVIDER_ON_LOGIN_SUCCEEDED:
-      case communityConstants.COMMUNITY_ON_LOGIN_SUCCEEDED:
+    case communityConstants.COMMUNITY_ON_LOGIN_SUCCEEDED:
       const decoded: IJWT = jwt_decode(data.bearer);
-
       setCookie('access_token', data.bearer, {
         path: '/',
         maxAge: decoded.exp,

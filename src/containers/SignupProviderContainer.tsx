@@ -15,8 +15,20 @@ const SignupProviderContainer: FunctionComponent = () => {
         dispatch(onGetAllProvidersCategoriesRequested());
     }, [dispatch])
 
-    const onSignupClick = (formData: ISignupProviderFormData) => {
+    const getBase64Picture = async (file: any) => {
+        return new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = function () {
+                resolve(reader.result);
+            }
+        });
+    }
+
+    const onSignupClick = async (formData: ISignupProviderFormData) => {
         const idCategoryChoosed = allCategories.filter(x => x.name === formData.category).map(x => x.id);
+        const image: any = await getBase64Picture(formData.base64Picture[0]);
+
         const data = {
             firstName: formData.firstName,
             lastName: formData.lastName,
@@ -25,6 +37,7 @@ const SignupProviderContainer: FunctionComponent = () => {
             identityNumber: formData.identityNumber,
             phoneNumber: formData.phoneNumber,
             categoryId: idCategoryChoosed[0],
+            photo: image.split(',')[1],
         }
         dispatch(onSignupProviderRequested(data));
     }

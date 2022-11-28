@@ -19,8 +19,19 @@ const SignupUserContainer: FunctionComponent = () => {
         dispatch(onGetAllCommunitiesRequested());
     }, [dispatch])
 
-    const onSignupClick = (formData: ISignupUserFormData) => {
+    const getBase64Picture = async (file: any) => {
+        return new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = function () {
+                resolve(reader.result);
+            }
+        });
+    }
+
+    const onSignupClick = async (formData: ISignupUserFormData) => {
         const idCommunityChoosed = allCommunities.filter(x => x.name === formData.community).map(x => x.id);
+        const image: any = await getBase64Picture(formData.base64Picture[0]);
         const data = {
             firstName: formData.firstName,
             lastName: formData.lastName,
@@ -28,7 +39,8 @@ const SignupUserContainer: FunctionComponent = () => {
             password: formData.password,
             address: formData.address,
             communityId: idCommunityChoosed[0],
-            phoneNumber: formData.phoneNumber
+            phoneNumber: formData.phoneNumber,
+            photo: image.split(',')[1],
         }
         dispatch(onSignupUserRequested(data));
     }
@@ -39,7 +51,7 @@ const SignupUserContainer: FunctionComponent = () => {
 
     return (
         <Layout name={user && user.firstName}
-            onSearchNav={ onSearchNav}>
+            onSearchNav={onSearchNav}>
             <SignupUser
                 onSignupClick={onSignupClick}
                 allCommunities={allCommunities}

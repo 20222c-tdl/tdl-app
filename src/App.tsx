@@ -33,7 +33,7 @@ function App() {
   let decodedToken;
 
   useEffect(() => {
-    if (token) {
+    if (!!token) {
       decodedToken = jwtDecode<IJWT>(token);
       dispatch(onGetProfileInfoRequested(decodedToken.sub));
     }

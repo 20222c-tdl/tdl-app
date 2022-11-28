@@ -68,6 +68,19 @@ const SignupCommunity: FunctionComponent<ISignupCommunityProps> = (props: ISignu
                                     type="password"
                                 />
                             </div>
+                            <div>
+                                <Label>Upload a profile photo</Label>
+                                <Field name="base64Picture" validate={requiredValidation}>
+                                    {({ input: { value, onChange, ...input } }) => (
+                                        <input
+                                            {...input}
+                                            type="file"
+                                            onChange={({ target }) => onChange(target.files)} // instead of the default target.value
+                                            {...props}
+                                        />
+                                    )}
+                                </Field>
+                            </div>
                         </FormFields>
                         <ButtonContainer>
                             <Button type="submit">Sign up</Button>

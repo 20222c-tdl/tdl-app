@@ -15,4 +15,5 @@ export interface ISignupProviderFormData {
     phoneNumber: string;
     categoryId?: string;
     category?: string
+    base64Picture?: any;
 }
