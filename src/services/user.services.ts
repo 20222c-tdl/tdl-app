@@ -2,7 +2,7 @@ import { AxiosResponse } from "axios";
 import { IClaimFormData } from "views/Claims/types";
 import { ILoginFormData } from "../views/Login/types";
 import { ISignupUserFormData } from "../views/SignupUser/types";
-import { post, get, patch } from "./api";
+import { post, get, patch, requestDelete } from "./api";
 
 export async function initializeUser(): Promise<any> {
     const response = {
@@ -77,8 +77,7 @@ export async function getReservations(userId: string): Promise<AxiosResponse> {
 }
 
 export async function cancelReservation(reservationId: string): Promise<AxiosResponse> {
-    //const response = await requestDelete(`/reservation/${id}`);
-    const response: any = reservationId;
+    const response = await requestDelete(`/hired-services/hired-service/${reservationId}`);
     return response;
 }
 
@@ -94,7 +93,6 @@ export async function leaveAReview(data: any): Promise<AxiosResponse> {
 }
 
 export async function payReservation(reservationId: string): Promise<AxiosResponse> {
-    //const response = await post(`/pay`, reservationId);
-    const response: any = payReservation;
+    const response = await patch(`/hired-services/hired-service/${reservationId}?isPaid=true`);
     return response;
 }

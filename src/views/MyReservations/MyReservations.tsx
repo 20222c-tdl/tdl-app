@@ -22,6 +22,18 @@ const MyReservations: FunctionComponent<MyReservationsProps> = (props: MyReserva
         setRating(newRating);
     }
 
+    const getTotalPrice = (services: any) => {
+        let totalPrice = 0;
+        services && services.forEach((service: any) => {
+            if (service.monetizationType == "FIXED" && service.hours > 0) {
+                totalPrice += service.price ;
+            } else {
+                totalPrice += service.price * service.hours;
+            }
+        });
+        return totalPrice;
+    };
+
     const renderPayments = (
         <Modal
             isOpen={isModalOpen}
@@ -198,14 +210,14 @@ const MyReservations: FunctionComponent<MyReservationsProps> = (props: MyReserva
                                     return (
                                         <Service key={service.id}>
                                             <RowDivProviderUserName>
-                                                <ProviderUsername>Serviceeee Titleeeee  -  Price p/ hour - 3 hours</ProviderUsername>
+                                                <ProviderUsername>{service.title}  -  ${service.price} p/ hour - {service.hours} hours</ProviderUsername>
                                             </RowDivProviderUserName>
-                                            <ServiceDescription>Esta es una muy buena descripcion para un servicio que fue reservado por algun usuario</ServiceDescription>
+                                            <ServiceDescription>{service.description}</ServiceDescription>
                                         </Service>
                                     )
                                 })}
                             </ServicesContainer>
-                            <ReservationTitles> Total Price: $3500</ReservationTitles>
+                            <ReservationTitles> Total Price: ${getTotalPrice(reservation.services)}</ReservationTitles>
                         </Reservation>
                     )
                 })}
