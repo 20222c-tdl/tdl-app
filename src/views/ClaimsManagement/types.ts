@@ -10,3 +10,7 @@ export interface IClaimsViewProps {
     loading: boolean;
     onPostComment: (formData: any) => void;
 }
+
+export interface ICommentProps {
+    isAdmin?: boolean;
+  }

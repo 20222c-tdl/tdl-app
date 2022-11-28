@@ -67,7 +67,7 @@ export const Box = styled.div`
 
   & > p {
     margin: 0 1px 0 0;
-    font-family: 'OpenSans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
   }
 
   & > a {

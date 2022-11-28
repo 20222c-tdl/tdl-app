@@ -13,7 +13,7 @@ export const TitleContainer = styled.div`
   & > p {
     margin: 10px 0;
   }
-;`
+`;
 
 const Theme = {
   fonts: {
@@ -66,7 +66,7 @@ export const ProviderText = styled.p`
     font-size: 18px;
     margin: 0 0 2px;
     text-overflow: ellipsis;
-    font-family: 'OpenSans';
+    font-family: 'Open Sans';
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
@@ -115,7 +115,8 @@ export const StarDiv = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-`
+`;
+
 export const RowDiv = styled.div`
   display: flex;
   flex-direction: row;
@@ -127,7 +128,7 @@ export const CalificationText = styled.p`
   font-size: 18px;
   margin: 0;
   text-overflow: ellipsis;
-  font-family: 'OpenSans';
+  font-family: 'Open Sans';
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
@@ -137,7 +138,7 @@ export const ReviewsText = styled.p`
   font-size: 16px;
   margin: 0 2px 2px;
   text-overflow: ellipsis;
-  font-family: 'OpenSans';
+  font-family: 'Open Sans';
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;

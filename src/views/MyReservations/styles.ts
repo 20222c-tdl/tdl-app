@@ -80,7 +80,7 @@ export const EmptyText = styled.p`
     font-size: 18px;
     margin: 0 0 2px;
     text-overflow: ellipsis;
-    font-family: 'OpenSans';
+    font-family: 'Open Sans';
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
@@ -116,7 +116,7 @@ export const ProviderTitle = styled.p`
   font-size: 22px;
   margin-bottom: 0px;
   text-align: start;
-  font-family: 'OpenSans';
+  font-family: 'Open Sans';
   font-style: italic;
   margin: 0;
   flex: 1;
@@ -124,14 +124,14 @@ export const ProviderTitle = styled.p`
 
 export const ProviderUsername = styled.p`
   font-size: 21px;
-  font-family: 'OpenSans';
+  font-family: 'Open Sans';
   margin: 0;
 ;`
 
 export const CategoryName = styled.p`
   font-size: 20px;
   margin: 0 2px 2px 20px;
-  font-family: 'OpenSans';
+  font-family: 'Open Sans';
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   color: ${COLORS.greyMystic};
@@ -140,7 +140,7 @@ export const CategoryName = styled.p`
 export const ProviderData = styled.p`
   font-size: 20px;
   margin-bottom: 0px;
-  font-family: 'OpenSans';
+  font-family: 'Open Sans';
   text-align: start;
   margin: 0 30px 0 0;
 
@@ -192,7 +192,7 @@ export const Service = styled.div`
 export const ServicesHiredTitle = styled.p`
   font-size: 22px;
   text-align: start;
-  font-family: 'OpenSans';
+  font-family: 'Open Sans';
   font-style: italic;
   margin: 8px 0 0 30px;
   flex: 1;
@@ -239,7 +239,7 @@ export const FormFields = styled.div`
 
 export const Label = styled.p`
   font-size: 16px;
-  font-family: 'OpenSans';
+  font-family: 'Open Sans';
   margin: 0;
 `;
 
@@ -252,7 +252,7 @@ export const ButtonContainer = styled.div`
 
 export const Button = styled.button`
   font-size: 14px;
-  font-family: 'OpenSans', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   flex-direction: row;
   display: flex;
   justify-content: flex-end;
@@ -291,7 +291,7 @@ export const Check = styled.div`
 
 export const CustomButton = styled.div`
     font-size: 20px;
-    font-family: 'OpenSans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
     margin: 10px 0;
     padding: 10px 20px;
     border-radius: 6px;

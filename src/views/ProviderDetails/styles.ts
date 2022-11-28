@@ -43,7 +43,7 @@ export const NameText = styled.p`
   font-weight: bold;
   margin: 0;
   flex: 1;
-;`
+`;
 
 export const ColumnDiv = styled.div`
   display: flex;
@@ -74,7 +74,7 @@ export const CategoryName = styled.p`
 font-size: 20px;
 margin: 0 2px 2px;
 text-overflow: ellipsis;
-font-family: 'OpenSans';
+font-family: 'Open Sans';
 display: -webkit-box;
 -webkit-line-clamp: 1;
 -webkit-box-orient: vertical;
@@ -92,7 +92,7 @@ export const CalificationText = styled.p`
   font-size: 35px;
   margin: 0 5px;
   text-overflow: ellipsis;
-  font-family: 'OpenSans';
+  font-family: 'Open Sans';
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
@@ -106,7 +106,7 @@ export const StarIcon = styled(Star)`
 export const ReviewsText = styled.p`
   font-size: 20px;
   margin: 0;
-  font-family: 'OpenSans';
+  font-family: 'Open Sans';
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
@@ -167,7 +167,7 @@ export const ServicesColumn = styled.div`
 export const DescriptionText = styled.p`
   font-size: 20px;
   margin: 0 0 0 5px;
-  font-family: 'OpenSans';
+  font-family: 'Open Sans';
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
@@ -177,7 +177,7 @@ export const DescriptionText = styled.p`
 export const PriceText = styled.p`
   font-size: 20px;
   margin: 10px 0 0 0;
-  font-family: 'OpenSans';
+  font-family: 'Open Sans';
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
@@ -223,7 +223,7 @@ export const ColumnDivPrice = styled.div`
 export const MonetizationTypeText = styled.p`
   font-size: 15px;
   margin-top: 1px;
-  font-family: 'OpenSans';
+  font-family: 'Open Sans';
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
@@ -247,7 +247,7 @@ export const TotalPriceText = styled.p`
   font-size: 20px;
   margin: 10px 5px 0 0;
   font-weight: bold;
-  font-family: 'OpenSans';
+  font-family: 'Open Sans';
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
@@ -312,7 +312,7 @@ export const ServiceText = styled.p`
     font-size: 18px;
     margin: 0 0 2px;
     text-overflow: ellipsis;
-    font-family: 'OpenSans';
+    font-family: 'Open Sans';
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
@@ -347,7 +347,7 @@ export const CalificationReviewText = styled.p`
   font-size: 22px;
   margin: 0 0 0 5px;
   text-overflow: ellipsis;
-  font-family: 'OpenSans';
+  font-family: 'Open Sans';
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;

@@ -24,6 +24,9 @@ import useTypedSelector from 'hooks/useTypedSelector';
 import { onGetPProfileInfoRequested } from 'redux/actions/providers.actions';
 import ServicesContainer from 'containers/ServicesContainer';
 import ReviewsContainer from 'containers/ReviewsContainer';
+import PlacesManagementContainer from 'containers/PlacesManagementContainer';
+import PlacesContainer from 'containers/PlacesContainer';
+import PlaceDetailContainer from 'containers/PlaceDetailContainer';
 
 function App() {
   const dispatch = useDispatch();
@@ -58,6 +61,10 @@ function App() {
         <Route path="/profile" element={<ProfileContainer />} />
         <Route path="/services" element={<ServicesContainer />} />
         <Route path="/reviews" element={<ReviewsContainer />} />
+        <Route path="/placesManagement" element={<PlacesManagementContainer />} />
+        <Route path="/places" element={<PlacesContainer />} />
+        <Route path="/place/:id" element={<PlaceDetailContainer/>} />
+
         <Route
           path="*"
           element={<Navigate to="/" replace />}

@@ -39,7 +39,7 @@ export const RowDiv = styled.div`
     padding: 0;
     font-size: 18px;
     margin: 0;
-    font-family: 'OpenSansItalic';
+    font-family: 'Open SansItalic';
   }
 `;
 
@@ -122,6 +122,6 @@ export const Block = styled.div`
     color: ${COLORS.black};
     border-bottom: 1px solid ${COLORS.greyMystic};
     width: 100%;
-    font-family: 'OpenSans';
+    font-family: 'Open Sans';
   }
 `;

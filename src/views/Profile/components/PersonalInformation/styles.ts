@@ -32,7 +32,7 @@ export const Button = styled.button`
     cursor: pointer;
     background-color: ${COLORS.violetRed};
     color: ${COLORS.white};
-    font-family: 'OpenSans';
+    font-family: 'Open Sans';
     float: right;
 `;
 
@@ -60,7 +60,7 @@ export const Title = styled.p`
   margin: 0;
   font-weight: bold;
   text-align: center;
-  font-family: 'OpenSans';
+  font-family: 'Open Sans';
   display: flex;
   flex: 1;
   justify-content: center;
@@ -70,7 +70,7 @@ export const Subtitle = styled.p`
   font-size: 20px;
   margin: 0;
   text-align: center;
-  font-family: 'OpenSans';
+  font-family: 'Open Sans';
 ;`
 
 export const Arrow = styled(KeyboardArrowDown)`

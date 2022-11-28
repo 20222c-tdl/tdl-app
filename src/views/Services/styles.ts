@@ -31,7 +31,7 @@ export const Title = styled.p`
   margin: 0;
   font-weight: bold;
   text-align: center;
-  font-family: 'OpenSans';
+  font-family: 'Open Sans';
   display: flex;
   flex: 1;
   justify-content: center;
@@ -46,7 +46,7 @@ export const Subtitle = styled.p`
   font-size: 20px;
   margin: 0;
   text-align: center;
-  font-family: 'OpenSans';
+  font-family: 'Open Sans';
 `;
 
 
@@ -79,7 +79,7 @@ export const Button = styled.button`
   cursor: pointer;
   background-color: ${COLORS.blueFire};
   color: ${COLORS.white};
-  font-family: 'OpenSans';
+  font-family: 'Open Sans';
 `;
 
 export const Service = styled.div`
@@ -139,7 +139,7 @@ export const ButtonModal = styled.button`
     font-size: 20px;
     border-radius: 8px;
     border: none;
-    font-family: 'OpenSans';
+    font-family: 'Open Sans';
     margin-top: 10px;
     cursor: pointer;
     background-color: ${COLORS.cerulean};

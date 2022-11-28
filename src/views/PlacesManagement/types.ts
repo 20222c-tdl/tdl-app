@@ -6,6 +6,7 @@ export interface IPlacesProps {
 }
 
 export interface IPlaceFormData {
+    communityId?: string
     name: string;
     description: string;
 }

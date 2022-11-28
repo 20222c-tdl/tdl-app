@@ -1,11 +1,12 @@
 import COLORS from "helpers/colors";
 import styled, { css } from "styled-components";
+import { ICommentProps } from './types';
 
 export const RowDiv = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    width: 100%
+    width: 100%;
 `;
 
 export const Description = styled.p`
@@ -33,22 +34,30 @@ export const CommentsDiv = styled.div`
 export const CommentsButton = styled.button`
   font-size: 17px;
   margin: 0;
-  font-family: 'OpenSans';
+  font-family: 'Open Sans';
   color: ${COLORS.cerulean};
-  text-decoration: underline;
+  cursor: pointer;
   font-weight: bold;
   border: 0;
   background-color: white;
 `;
 
 export const Comment = styled.div`
-    margin: 1px 1px 1px 40px;
+    margin: 10px 1px 0 40px;
     display: flex;
     flex-direction: column;
-    cursor: pointer;
     width: 80%;
-    padding-bottom: 5px;
-    border-bottom: 1px solid ${COLORS.grayPlaceholder};
+    padding: 10px;
+    background-color: #66b3ed;
+    border-radius: 20px;
+    color: white;
+
+    ${(props: ICommentProps) =>
+    !props.isAdmin &&
+    css`
+        background-color: ${COLORS.grayAlto};
+        color: black;
+    `};
 `;
 
 export const Text = styled.p`
@@ -64,8 +73,9 @@ export const Text = styled.p`
         text-overflow: ellipsis;
     `};
 `;
+
 export const CommentButton = styled.button`
-  padding: 7px 16%;
+  padding: 7px 18%;
   margin: 0 0 4px 3px;
   font-size: 18px;
   border: none;
@@ -73,7 +83,7 @@ export const CommentButton = styled.button`
   cursor: pointer;
   background-color: ${COLORS.azure};
   color: ${COLORS.white};
-  font-family: 'OpenSans';
+  font-family: 'Open Sans';
 `;
 
 export const CommentCustomForm = styled.form`
@@ -90,5 +100,29 @@ export const LeaveACommentDiv = styled.div`
 export const CommentButtonContainer = styled.div`
   justify-content: center;
   text-align: center;
-  width: 20%;
+  width: 30%;
+`;
+
+const handleColorType = (color: any) => {
+  switch (color) {
+    case "OPEN":
+      return "#00B7FF";
+    case "TAKING_ACTION":
+      return "#FFD100";
+    case "RESOLVED":
+      return "#61FF7E";
+    case "CLOSED":
+      return "#F25407";
+    default:
+      return "#FFFFFF";
+  }
+};
+
+export const StatusText = styled.p`
+  font-size: 15px;
+  margin: 0;
+  padding: 10px 20px;
+  text-overflow: ellipsis;
+  border-radius: 10px;
+  background-color: ${({ color }) => handleColorType(color)};
 `;
