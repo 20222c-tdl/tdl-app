@@ -46,14 +46,11 @@ export async function getProviderInfo(providerId: string): Promise<any> {
 
 export async function getProviderServices(providerId: string): Promise<AxiosResponse> {
     const response = await get(`/services/provider/${providerId}`);
-    return (
-        response
-    )
+    return response
 }
 
 export async function searchName(searchName: string): Promise<AxiosResponse> {
-    //const response = await get(`/providers/search`, searchName);
-    const response: any = searchName;
+    const response = await get(`/providers?searchedWords=${searchName}`);
     return response;
 }
 

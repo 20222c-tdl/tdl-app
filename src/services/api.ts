@@ -73,3 +73,14 @@ export async function patch(url: string, params = {}, headers = {}): Promise<any
     throw errorResponse(error);
   }
 }
+
+export async function requestDelete(url: string, headers = {}): Promise<any> {
+  try {
+    const getToken = await getOptions();
+    const options = { ...getToken, ...headers };
+    const response = await api.delete(url, options);
+    return response;
+  } catch (error: any) {
+    throw errorResponse(error);
+  }
+}
