@@ -56,7 +56,7 @@ const ProviderDetails: FunctionComponent<any> = (props: IProviderDetailsProps) =
                             return sameService && (
                                 <Service key={index} >
                                     <ServiceTitle>{service.title}</ServiceTitle>
-                                    <DescriptionText>{service.description}</DescriptionText>
+                                    <DescriptionText>{service.Description}</DescriptionText>
                                     <RowDiv>
                                         <ColumnDivPrice>
                                             <PriceText>$ {service.price} /per hour</PriceText>
@@ -179,7 +179,7 @@ const ProviderDetails: FunctionComponent<any> = (props: IProviderDetailsProps) =
                                             </StarDiv >
                                             <ReviewUsernameTitle>{reviewObj.user.firstName} {reviewObj.user.lastName}</ReviewUsernameTitle>
                                         </RowDiv>
-                                        <DescriptionText> {reviewObj.review.description}</DescriptionText>
+                                        <DescriptionText> {reviewObj.review.comment}</DescriptionText>
                                     </ColumnReviewsDescription>
                                 </RowDiv>
                             </Review>

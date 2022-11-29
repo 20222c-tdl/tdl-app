@@ -13,8 +13,8 @@ const ProfileContainer: FunctionComponent = () => {
 
     const cards = [{
         id: 3,
-        number: "314331139864",
-        name: "Rocio",
+        number: "454331139864",
+        name: "Rocio Tarda",
         expiry: "17/12/26",
         cvc: "123",
     }]

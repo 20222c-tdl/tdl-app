@@ -48,7 +48,6 @@ const Layout: FunctionComponent<ILayoutProps> = (props: ILayoutProps) => {
                 }
                 <CustomAccountCircleIcon onClick={() => setIsCollapsed(!isCollapsed)} />
 
-
             </TopNav>
             <Block isCollapsed={isCollapsed} >
                 {!name && <a onClick={() => history.push('/')}>Sign up</a>}

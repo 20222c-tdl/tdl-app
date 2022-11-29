@@ -19,7 +19,7 @@ export const TopNav = styled.div`
     color: ${COLORS.black};
     padding: 5px 5%;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 22px;
     cursor: pointer;
   }
 ;`
@@ -83,6 +83,14 @@ export const CustomAccountCircleIcon = styled(AccountCircleIcon)`
   width: 40px !important;
   border-radius: 50%;
   padding: 3px;
+`;
+
+export const CustomImg = styled.img`
+  width: 100%;
+  max-height:90px;
+  height: auto;
+  width: 90px;
+  border-radius: 50%;
 `;
 
 export const Block = styled.div`

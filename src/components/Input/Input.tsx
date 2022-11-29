@@ -2,8 +2,8 @@ import React, { useState, ChangeEvent, FunctionComponent } from 'react';
 import { InputAdornment, IconButton } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 
-import { IInputProps } from './types';
 import { FormGroup, CustomInput, ErrorBlock } from './styles';
+import { IInputProps } from './types';
 
 const Input: FunctionComponent<IInputProps> = (props: IInputProps) => {
   const {
@@ -17,6 +17,7 @@ const Input: FunctionComponent<IInputProps> = (props: IInputProps) => {
     spacing = true,
     showError = true,
     variant = 'outlined',
+    multiline = false,
   } = props;
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const { onChange, type = 'text', value } = input;
@@ -48,7 +49,11 @@ const Input: FunctionComponent<IInputProps> = (props: IInputProps) => {
         type={getInputType()}
         value={value}
         variant={variant}
+        multiline={multiline}
         ref={ref}
+        inputProps={{
+          style: { fontSize: multiline ? 22 : 16 },
+        }}
         // eslint-disable-next-line react/jsx-no-duplicate-props
         InputProps={{
           endAdornment: isPasswordInput && (

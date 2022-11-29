@@ -1,6 +1,6 @@
-import React, { FunctionComponent, useState } from 'react';
+import React, { FunctionComponent } from 'react';
 import history from '../../helpers/history';
-import { ColumnDiv, DescriptionText, EmptyContainer, Place, PlaceIcon, PlacesContainer, PlaceText, RowDiv, TitleContainer } from './styles';
+import { ColumnDiv, DescriptionText, EmptyContainer, Place, PlaceIcon, PlacesContainer, PlaceText, TitleContainer } from './styles';
 import { IPlacesProps } from './types';
 
 const Places: FunctionComponent<IPlacesProps> = (props: IPlacesProps) => {

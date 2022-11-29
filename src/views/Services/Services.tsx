@@ -57,7 +57,7 @@ const Services: FunctionComponent<IServicesProps> = (props: IServicesProps) => {
                                         />
                                     </div>
                                     <div>
-                                        <label>Descriptio</label>
+                                        <label>Description</label>
                                         <Field
                                             render={Input}
                                             name="description"

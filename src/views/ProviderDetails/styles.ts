@@ -38,7 +38,7 @@ export const RowDiv = styled.div`
 `;
 
 export const NameText = styled.p`
-  font-size: 35px;
+  font-size: 30px;
   margin-bottom: 0px;
   font-weight: bold;
   margin: 0;
@@ -119,7 +119,7 @@ export const TitleContainer = styled.div`
   font-weight: bold ;
   font-size: 26px;
   width: 100%;
-  margin: 20px 10px;
+  margin: 10px 10px 20px;
 
   & > p {
     margin: 10px 0;
@@ -128,7 +128,7 @@ export const TitleContainer = styled.div`
 
 export const ServicesContainer = styled.div`
     display: grid;
-    margin: 1% 2%;
+    margin: 0 2% 1%;
     grid-template-columns: 1fr 1fr;
     align-items: center;
     grid-gap: 10px;
@@ -166,11 +166,10 @@ export const ServicesColumn = styled.div`
 
 export const DescriptionText = styled.p`
   font-size: 20px;
-  margin: 0 0 0 5px;
+  margin: 0 0 2px 5px;
   font-family: 'Open Sans';
   display: -webkit-box;
   -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
   color: ${COLORS.greyMystic};
 `;
 

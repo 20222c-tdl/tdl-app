@@ -69,7 +69,7 @@ const ProviderContainer: FunctionComponent = () => {
             onSearchNav={onSearchNav}>
 
             {
-                providerData && <ProviderDetails
+                providerData && providerServices && <ProviderDetails
                     provider={providerData}
                     providerServices={providerServices}
                     providerReviews={providerReviews}
