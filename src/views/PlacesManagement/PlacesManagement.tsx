@@ -1,13 +1,12 @@
 import React, { FunctionComponent, useState } from 'react';
 import { Form, Field } from 'react-final-form';
-import Input from '../../components/Input/Input';
 import { requiredValidation } from '../../helpers/validations';
 import { Edit } from '@mui/icons-material';
 import { Modal } from 'components/Modal/Modal';
-import Select from 'components/Select/Select';
 import { IPlaceFormData, IPlacesProps } from './types';
 import { Arrow, Button, ButtonContainer, ColumnDiv, Container, CustomForm, Description, EditDiv, Place, PlacesContainer, RowDiv, Subtitle, Title, Text, Box} from './styles';
 import PlaceInfoForm from './components/PlaceInfoForm';
+import Input from 'components/Input/Input';
 
 const PlacesManagement: FunctionComponent<IPlacesProps> = (props: IPlacesProps) => {
     const { onPostAPlace, places, onEditPlace } = props;

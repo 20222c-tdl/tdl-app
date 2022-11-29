@@ -183,6 +183,7 @@ export const Service = styled.div`
     flex-direction: column;
     align-items: flex-start;
     padding: 5px;
+    height: 110px;
     margin: 0 15px 15px 15px;
     width: 100%;
     border-radius: 10px;
@@ -220,9 +221,9 @@ export const CustomForm = styled.form`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    font-size: 17px;
+    font-size: 18px;
     & > div {
-      width: 50%;
+      width: 100%;
     }
 ;`
 
@@ -233,12 +234,13 @@ export const FormFields = styled.div`
   grid-column-gap: 20px;
 
   & > div {
-      width: 400px;
+      height: 200px;
+      width: 800px;
   }
 `;
 
 export const Label = styled.p`
-  font-size: 16px;
+  font-size: 20px;
   font-family: 'Open Sans';
   margin: 0;
 `;
@@ -247,11 +249,11 @@ export const ButtonContainer = styled.div`
   justify-content: center;
   text-align: center;
   width: 100%;
-  margin-bottom: 10px;
+  margin: 10px 0;
 `;
 
 export const Button = styled.button`
-  font-size: 14px;
+  font-size: 18px;
   font-family: 'Open Sans', sans-serif;
   flex-direction: row;
   display: flex;
@@ -273,7 +275,32 @@ export const Button = styled.button`
         color: ${COLORS.grayPlaceholder};
         border: 1px solid ${COLORS.grayPlaceholder};
     `};
-;`
+`;
+
+export const ButtonSaveReview = styled.button`
+  font-size: 18px;
+  font-family: 'Open Sans', sans-serif;
+  flex-direction: row;
+  display: flex;
+  justify-content: flex-end;
+  margin: 10px 0 0 75%;
+  padding: 5px 30px;
+  border-radius: 6px;
+  border: none;
+  background-color: ${COLORS.violetRed};
+  color: white;
+  text-align: center;
+  cursor: pointer;
+
+  ${({ isDisabled }: { isDisabled?: boolean }) =>
+    isDisabled && 
+    css`
+        pointer-events: none;
+        background-color: ${COLORS.greyMystic};
+        color: ${COLORS.grayPlaceholder};
+        border: 1px solid ${COLORS.grayPlaceholder};
+    `};
+`;
 
 export const Card = styled.div`
   max-height: 110px;

@@ -25,8 +25,8 @@ const ServicesContainer: FunctionComponent = () => {
 
     const place = {
         id: "4352435231243",
-        name: "Cancha de futbol",
-        description: "Cancha amplia",
+        name: "Soccer field",
+        description: "Synthetic grass soccer field",
     };
 
     const onMakeReservation = (searchName: string) => {

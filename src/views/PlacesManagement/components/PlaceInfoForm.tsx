@@ -1,5 +1,4 @@
 import Input from 'components/Input/Input';
-import Select from 'components/Select/Select';
 import { requiredValidation } from 'helpers/validations';
 import React from 'react';
 import { Form, Field } from 'react-final-form';

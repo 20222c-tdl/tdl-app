@@ -1,6 +1,9 @@
 import COLORS from "helpers/colors";
 import styled, { css } from "styled-components";
 import EngineeringIcon from '@mui/icons-material/Engineering';
+import { Star } from '@mui/icons-material';
+
+
 
 export const TitleContainer = styled.div`
   border-bottom: 1px solid ${COLORS.grayAlto};
@@ -37,7 +40,7 @@ export const Navbar = styled.nav`
  `;
 
 export const Text = styled.p`
-  font-size: 18px;
+  font-size: 20px;
   padding-right: 50px;
   text-overflow: ellipsis;
   font-style: italic;
@@ -110,7 +113,6 @@ export const ColumnDiv = styled.div`
 
 export const StarDiv = styled.div`
   color: ${COLORS.gold};
-  cursor: pointer;
   width: 100%;
   display: flex;
   justify-content: flex-end;
@@ -125,7 +127,7 @@ export const RowDiv = styled.div`
 `;
 
 export const CalificationText = styled.p`
-  font-size: 18px;
+  font-size: 20px;
   margin: 0;
   text-overflow: ellipsis;
   font-family: 'Open Sans';
@@ -134,8 +136,13 @@ export const CalificationText = styled.p`
   -webkit-box-orient: vertical;
 `;
 
+export const StarIcon = styled(Star)`
+    width: 35px !important;
+    height: 35px !important;
+`;
+
 export const ReviewsText = styled.p`
-  font-size: 16px;
+  font-size: 18px;
   margin: 0 2px 2px;
   text-overflow: ellipsis;
   font-family: 'Open Sans';
@@ -147,7 +154,7 @@ export const ReviewsText = styled.p`
 
 
 export const CategoryText = styled.p`
-  font-size: 18px;
+  font-size: 19px;
   padding-right: 50px;
   text-overflow: ellipsis;
   font-style: italic;
@@ -158,7 +165,16 @@ export const CategoryText = styled.p`
     isSelected &&
     css`
         font-weight: bold;
-        font-size: 20px;
+        font-size: 23px;
         white-space: nowrap;
     `};
+`;
+
+export const CustomProviderImg = styled.img`
+  width: 100%;
+  max-width:65px;
+  height: 65px;
+  width: auto;
+  border-radius: 50%;
+  margin-right: 8px;
 `;

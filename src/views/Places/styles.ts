@@ -45,13 +45,6 @@ export const Place = styled.div`
     cursor: pointer;
 `;
 
-export const RowDiv = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  width: 100%
-`;
-
 export const PlaceText = styled.p`
     font-size: 18px;
     margin: 0 0 2px;

@@ -37,7 +37,7 @@ const MyReservationsContainer: FunctionComponent = () => {
             userId: user.id,
             providerId: providerId,
             rating: formData.rating,
-            description: formData.description,
+            comment: formData.comment,
             hiredServicesId: reservationId,
         }
         dispatch(onLeaveAReviewRequested(data))

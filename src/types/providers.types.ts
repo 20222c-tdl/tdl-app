@@ -36,7 +36,7 @@ export interface ICategory {
 export interface IReview {
     id: string;
     rating: number;
-    description: string;
+    comment: string;
     userId: string;
     providerId: string;
 }

@@ -2,7 +2,7 @@ import { CLAIMS_STATUS, IClaim } from "../../types/claims.types";
 import React, { useState } from "react";
 import TableRow from "@mui/material/TableRow";
 import TableCell from "@mui/material/TableCell";
-import { Box, Collapse, Grid, IconButton, Typography } from "@mui/material";
+import { Box, Collapse, Grid, IconButton } from "@mui/material";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import ToggleButton from '@mui/material/ToggleButton';

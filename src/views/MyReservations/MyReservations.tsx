@@ -1,7 +1,6 @@
 import React, { FunctionComponent, useState } from 'react';
-import Input from '../../components/Input/Input';
 import ReactStars from 'react-stars'
-import { TitleContainer, ReservationContainer, Reservation, RowDiv, CustomProviderImg, ColumnProviderDescription, EmptyContainer, EmptyText, EmptyIcon, Container, ReservationTitles, ProviderInfo, ProviderTitle, ProviderUsername, ProviderData, RowDivProviderUserName, CategoryName, ServicesContainer, ServiceDescription, Service, ServicesHiredTitle, StatusButtonContainer, LeaveReview, CustomForm, FormFields, Label, ButtonContainer, Button, Card, Check, CustomButton } from './styles';
+import { TitleContainer, ReservationContainer, Reservation, RowDiv, CustomProviderImg, ColumnProviderDescription, EmptyContainer, EmptyText, EmptyIcon, Container, ReservationTitles, ProviderInfo, ProviderTitle, ProviderUsername, ProviderData, RowDivProviderUserName, CategoryName, ServicesContainer, ServiceDescription, Service, ServicesHiredTitle, StatusButtonContainer, LeaveReview, CustomForm, FormFields, Label, ButtonContainer, Button, Card, Check, CustomButton, ButtonSaveReview } from './styles';
 import { MyReservationsProps } from './types';
 import { Modal } from 'components/Modal/Modal';
 import { Field, Form } from 'react-final-form';
@@ -10,6 +9,8 @@ import CheckIcon from 'assets/Sign-check-icon.png';
 import Cards from 'react-credit-cards';
 import { AddCard } from "@mui/icons-material";
 import history from '../../helpers/history';
+import Input from 'components/Input/Input';
+import { height } from '@mui/system';
 
 
 const MyReservations: FunctionComponent<MyReservationsProps> = (props: MyReservationsProps) => {
@@ -25,8 +26,8 @@ const MyReservations: FunctionComponent<MyReservationsProps> = (props: MyReserva
     const getTotalPrice = (services: any) => {
         let totalPrice = 0;
         services && services.forEach((service: any) => {
-            if (service.monetizationType == "FIXED" && service.hours > 0) {
-                totalPrice += service.price ;
+            if (service.monetizationType === "FIXED" && service.hours > 0) {
+                totalPrice += service.price;
             } else {
                 totalPrice += service.price * service.hours;
             }
@@ -99,14 +100,14 @@ const MyReservations: FunctionComponent<MyReservationsProps> = (props: MyReserva
                             <CustomForm onSubmit={handleSubmit}>
                                 <FormFields>
                                     <div>
-                                        <Label>Description</Label>
+                                        <Label>Comment</Label>
                                         <Field
                                             render={Input}
                                             multiline
-                                            label="Description"
-                                            name="description"
+                                            label="Comment"
+                                            name="comment"
                                             validate={requiredValidation}
-                                            type="text"
+                                            type="textarea"
                                         />
                                     </div>
                                 </FormFields>
@@ -114,11 +115,11 @@ const MyReservations: FunctionComponent<MyReservationsProps> = (props: MyReserva
                                     count={5}
                                     onChange={ratingChanged}
                                     value={rating}
-                                    size={24}
+                                    size={50}
                                     color2={'#ffd700'} />
 
                                 <ButtonContainer>
-                                    <Button type="submit" isDisabled={!values.description || rating < 0}>Save Review</Button>
+                                    <ButtonSaveReview type="submit" isDisabled={!values.comment || rating < 0}>Save Review</ButtonSaveReview>
                                 </ButtonContainer>
                             </CustomForm>
                         )}

@@ -18,6 +18,7 @@ export interface IInputProps {
   spacing?: boolean;
   showError?: boolean;
   ref?: any;
+  multiline?: boolean;
 }
 
 export interface IFormGroupProps {
