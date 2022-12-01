@@ -6,10 +6,18 @@ import { IClaimFormData } from 'views/Claims/types';
 import Claims from 'views/Claims/Claims';
 import { onEditClaimRequested, onPostCommentRequested, onRegisterAClaimRequested, onUserGetClaimsRequested } from 'redux/actions/user.actions';
 import { onSearchNameRequested } from 'redux/actions/providers.actions';
+import { IClaim } from 'types/claims.types';
 
 const ClaimsContainer: FunctionComponent = () => {
     const dispatch = useDispatch();
     const { user, changeClaimsList, claims } = useTypedSelector((state) => state.user);
+
+    const claimsSorted = claims && claims.sort(
+        (claim1: any, claim2: any) => {
+            const date1 = new Date(claim1.createdAt);
+            const date2 = new Date(claim2.createdAt);
+            return date2.getTime() - date1.getTime();
+        });
 
     useEffect(() => {
         if (user) {
@@ -54,7 +62,7 @@ const ClaimsContainer: FunctionComponent = () => {
 
             <Claims
                 onRegisterAClaim={onRegisterAClaim}
-                claims={claims}
+                claims={claimsSorted}
                 onEditClaim={onEditClaim}
                 onPostComment={onPostComment}
             />
