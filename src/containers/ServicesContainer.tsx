@@ -20,12 +20,18 @@ const ServicesContainer: FunctionComponent = () => {
   }, [dispatch, changeServices, user])
 
   const onPostAService = (formData: IServiceFormData) => {
+    let monetizationString;
+    if (formData.monetizationType === "Fixed") {
+      monetizationString = "FIXED";
+    } else {
+      monetizationString = "BY_THE_HOUR";
+    }
     const data = {
       providerId: user.id,
       title: formData.title,
       description: formData.description,
       price: Number(formData.price),
-      monetizationType: formData.monetizationType,
+      monetizationType: monetizationString,
     }
     dispatch(onCreateAServiceRequested(data));
   }

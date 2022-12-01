@@ -13,7 +13,6 @@ export const ClaimsManagementContainer: FunctionComponent = () => {
     const { claims, loading, claimHasChanged } = useTypedSelector((state) => state.claims);
     const { commentsChanged } = useTypedSelector((state) => state.community);
     const { user } = useTypedSelector((state) => state.user);
-
     useEffect(() => {
         if (user) {
             dispatch(onGetCommunityClaimsRequested(user.id))
@@ -43,6 +42,7 @@ export const ClaimsManagementContainer: FunctionComponent = () => {
             claims={claims}
             loading={loading}
             onPostComment={onPostComment}
+            user={user}
         />
     </Layout>
 }

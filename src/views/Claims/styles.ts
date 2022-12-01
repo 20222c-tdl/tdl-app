@@ -208,6 +208,34 @@ export const CommentsDiv = styled.div`
   }
 `;
 
+const handleBackgroundComment = (typeComment: string) => {
+  switch (typeComment) {
+    case "open":
+      return "#00B7FF";
+    case "taking action":
+      return "#FFD100";
+    case "resolved":
+      return "#61FF7E";
+    case "user":
+      return "#66b3ed";
+    case "status":
+      return "#08B531";
+    default:
+      return COLORS.grayAlto;
+  }
+};
+
+const handleTextComment = (typeComment: string) => {
+  switch (typeComment) {
+    case "user":
+      return "white";
+    case "status":
+      return "white";
+    default:
+      return COLORS.black;
+  }
+};
+
 export const Comment = styled.div`
     margin: 10px 1px 0 40px;
     display: flex;
@@ -218,11 +246,11 @@ export const Comment = styled.div`
     border-radius: 20px;
     color: white;
 
-    ${(props: ICommentProps) =>
-    !props.isMe &&
+    ${({ typeComment }: { typeComment?: string }) =>
+    typeComment &&
     css`
-        background-color: ${COLORS.grayAlto};
-        color: black;
+        background-color: ${() => handleBackgroundComment(typeComment)};
+        color: ${() => handleTextComment(typeComment)};
     `};
 `;
 

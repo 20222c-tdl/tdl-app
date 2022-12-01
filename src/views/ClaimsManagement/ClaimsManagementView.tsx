@@ -16,7 +16,7 @@ import { ClaimsState } from "../../types/claims.types";
 import { IClaimsViewProps } from "./types";
 
 const ClaimsManagementView: FunctionComponent<IClaimsViewProps> = (props: IClaimsViewProps) => {
-    const { claims, loading, onPostComment} = props;
+    const { claims, loading, onPostComment, user} = props;
 
     return <Container fixed>
         {loading ?
@@ -37,7 +37,7 @@ const ClaimsManagementView: FunctionComponent<IClaimsViewProps> = (props: IClaim
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {claims.map((claim) => <CollapsibleRow key={claim.id} row={claim} onPostComment={onPostComment}/>)}
+                            {claims.map((claim) => <CollapsibleRow key={claim.id} row={claim} onPostComment={onPostComment} user={user}/>)}
                         </TableBody>
                     </Table>
                 </TableContainer>
