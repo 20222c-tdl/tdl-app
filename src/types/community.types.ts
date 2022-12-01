@@ -13,5 +13,6 @@ export interface ICommunity {
     id: string;
     email: string;
     name: string;
+    role: string;
     photo: any;
 }

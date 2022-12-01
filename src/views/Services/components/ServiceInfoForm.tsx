@@ -11,11 +11,11 @@ const ServiceInfoForm = (props: IServiceInfoFormdataProps) => {
     const { onSubmit, service, goBack } = props;
     const monetizationTypes = [{
         label: "Fixed",
-        value: "FIXED"
+        value: "Fixed"
     },
     {
         label: "By hours",
-        value: "BY_THE_HOUR"
+        value: "By hours"
     }]
 
     return (

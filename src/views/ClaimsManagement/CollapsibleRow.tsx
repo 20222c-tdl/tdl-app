@@ -14,16 +14,22 @@ import { CommentsButton, CommentsDiv, Description, RowDiv, Comment, Text, Commen
 import CommentIcon from '@mui/icons-material/Comment';
 import CommentForm from "./components/CommentForm";
 import { IClaimsManagmentProps } from "./types";
+import { onCommunityPostCommentRequested } from "redux/actions/community.actions";
 
 export function CollapsibleRow(props: IClaimsManagmentProps) {
-    const { row, onPostComment } = props;
+    const { row, onPostComment, user } = props;
     const [open, setOpen] = React.useState(false);
     const dispatch = useDispatch();
 
     const [openComments, setOpenComments] = useState(true);
     const [currentClaim, setCurrentClaim] = useState<any>(null);
+    const userNameClaim = row.user.firstName + " " + row.user.lastName;
 
-    const firstNameClaim = row.user.firstName;
+    const handleNameStatus = (status: string) => {
+        if (status === "OPEN") return "OPEN";
+        if (status === "TAKING_ACTION") return "TAKING ACTION";
+        if (status === "RESOLVED") return "RESOLVED";
+    };
 
     const handleStatusChange = (
         event: React.MouseEvent<HTMLElement>,
@@ -34,6 +40,15 @@ export function CollapsibleRow(props: IClaimsManagmentProps) {
                 claimId: row.id,
                 status: newStatus
             }
+            const commentData = {
+                claimId: row.id,
+                entityId: user.id,
+                role: user.role,
+                comment: "The claim has changed it's status from " + handleNameStatus(row.status) + " to " + handleNameStatus(newStatus),
+                date: new Date(),
+            }
+
+            dispatch(onCommunityPostCommentRequested(commentData))
             dispatch(onUpdateClaimStatusRequested(data))
         }
     };
@@ -62,7 +77,7 @@ export function CollapsibleRow(props: IClaimsManagmentProps) {
             </TableCell>
             <TableCell align="center">{row.type}</TableCell>
             <TableCell align="center">{row.mainIssue}</TableCell>
-            <TableCell align="center"><StatusText color={row.status}>{row.status}</StatusText></TableCell>
+            <TableCell align="center"><StatusText color={row.status}>{handleNameStatus(row.status)}</StatusText></TableCell>
         </TableRow>
         <TableRow>
             <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={12}>
@@ -81,11 +96,14 @@ export function CollapsibleRow(props: IClaimsManagmentProps) {
                                     </CommentsDiv>
 
                                     {openComments && row && currentClaim && currentClaim.id === row.id && row.claimComments && row.claimComments.map((comment) => {
-                                        const isAdmin = comment.role === "community";
+                                        let commentType;
+                                        if (comment.comment.includes("RESOLVED")) commentType = "resolved"
+                                        else if (comment.comment.includes("TAKING ACTION")) commentType = "taking action"
+                                        else commentType = comment.role
                                         return (
                                             <>
-                                                <Comment isAdmin={isAdmin} key={row.id}>
-                                                    <Text isBold>{comment.role === "community" ? "Admin" : row.user.firstName }</Text>
+                                                <Comment typeComment={commentType} key={row.id}>
+                                                    <Text isBold>{comment.role === "community" ? "Admin" : userNameClaim}</Text>
                                                     <CommentDescription>{comment.comment}</CommentDescription>
                                                 </Comment>
                                             </>
@@ -116,7 +134,7 @@ export function CollapsibleRow(props: IClaimsManagmentProps) {
                             >
                                 <ToggleButtonGroup
                                     color="primary"
-                                    value={row.status}
+                                    value={handleNameStatus(row.status)}
                                     exclusive
                                     onChange={handleStatusChange}
                                     aria-label="Platform"

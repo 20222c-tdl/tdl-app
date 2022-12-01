@@ -18,11 +18,11 @@ const Services: FunctionComponent<IServicesProps> = (props: IServicesProps) => {
 
     const monetizationTypes = [{
         label: "Fixed",
-        value: "FIXED"
+        value: "Fixed"
     },
     {
         label: "By hours",
-        value: "BY_THE_HOUR"
+        value: "By hours"
     }]
 
     const submitForm = (formData: IServiceFormData) => {
@@ -129,7 +129,7 @@ const Services: FunctionComponent<IServicesProps> = (props: IServicesProps) => {
                                                 </EditDiv>
                                             </RowDiv>
                                             <ColumnDiv>
-                                                <Description>Type: {service.monetizationType} </Description>
+                                                <Description>Type: {service.monetizationType === "FIXED" ? "Price fixed" : "Price by duration"} </Description>
                                                 <Description>Description: {service.description}</Description>
                                                 <Description>Price: {service.price}</Description>
                                             </ColumnDiv>

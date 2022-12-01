@@ -34,6 +34,12 @@ const Claims: FunctionComponent<IClaimsProps> = (props: IClaimsProps) => {
         }
     }
 
+    const handleNameStatus = (status: any) => {
+        if (status === "OPEN") return "OPEN";
+        if (status === "TAKING_ACTION") return "TAKING ACTION";
+        if (status === "RESOLVED") return "RESOLVED";
+    };
+
     const renderRegisterClaims = () => (
         <>
             <RowDiv isHeader>
@@ -105,7 +111,7 @@ const Claims: FunctionComponent<IClaimsProps> = (props: IClaimsProps) => {
                                             <RowDiv>
                                                 <RowDiv>
                                                     <Status>
-                                                        <StatusText color={claim.status}>{claim.status}</StatusText>
+                                                        <StatusText color={claim.status}>{handleNameStatus(claim.status)}</StatusText>
                                                     </Status>
                                                     <Text isBold style={{ fontSize: 24, paddingLeft: 10 }}>{claim.mainIssue}</Text>
                                                 </RowDiv>
@@ -129,14 +135,18 @@ const Claims: FunctionComponent<IClaimsProps> = (props: IClaimsProps) => {
                                                         setCurrentClaim(claim)
                                                     }}>{openComments && claim && currentClaim && currentClaim.id === claim.id ? "Close comments" : "View comments"}</CommentsButton>
                                                 </CommentsDiv>
-                                                
+
                                             </RowDiv>
                                         </ColumnDiv>
 
                                         {openComments && claim && currentClaim && currentClaim.id === claim.id && claim.claimComments && claim.claimComments.map((comment) => {
-                                            const isMe = comment.role === "user";
+                                            let commentType;
+                                            if (comment.comment.includes("RESOLVED")) commentType = "resolved"
+                                            else if (comment.comment.includes("TAKING ACTION")) commentType = "taking action"
+                                            else commentType = comment.role
+
                                             return (
-                                                <Comment isMe={isMe} key={comment.id}>
+                                                <Comment typeComment={commentType} key={comment.id}>
                                                     <Text isBold>{comment.role === "user" ? "Me" : "Admin"}</Text>
                                                     <Description style={{ paddingLeft: 6 }}>{comment.comment}</Description>
                                                 </Comment>

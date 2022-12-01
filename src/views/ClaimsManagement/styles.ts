@@ -42,6 +42,30 @@ export const CommentsButton = styled.button`
   background-color: white;
 `;
 
+const handleBackgroundComment = (typeComment: string) => {
+  switch (typeComment) {
+    case "open":
+      return "#00B7FF";
+    case "taking action":
+      return "#FFD100";
+    case "resolved":
+      return "#61FF7E";
+    case "community":
+      return "#66b3ed";
+    default:
+      return COLORS.grayAlto;
+  }
+};
+
+const handleTextComment = (typeComment: string) => {
+  switch (typeComment) {
+    case "community":
+      return "white";
+    default:
+      return COLORS.black;
+  }
+};
+
 export const Comment = styled.div`
     margin: 10px 1px 0 40px;
     display: flex;
@@ -52,11 +76,11 @@ export const Comment = styled.div`
     border-radius: 20px;
     color: white;
 
-    ${(props: ICommentProps) =>
-    !props.isAdmin &&
+    ${({ typeComment }: { typeComment?: string }) =>
+    typeComment &&
     css`
-        background-color: ${COLORS.grayAlto};
-        color: black;
+        background-color: ${() => handleBackgroundComment(typeComment)};
+        color: ${() => handleTextComment(typeComment)};
     `};
 `;
 
@@ -66,8 +90,8 @@ export const Text = styled.p`
     text-overflow: ellipsis;
 
     ${({ isBold }: { isBold?: boolean }) =>
-        isBold &&
-        css`
+    isBold &&
+    css`
         font-weight: bold;
         white-space: nowrap;
         text-overflow: ellipsis;
