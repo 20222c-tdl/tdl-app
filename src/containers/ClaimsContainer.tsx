@@ -50,8 +50,6 @@ const ClaimsContainer: FunctionComponent = () => {
         dispatch(onUserGetClaimsRequested(user.id));
     }
 
-    //split('T')[0]
-
     const onSearchNav = (searchName: string) => {
         dispatch(onSearchNameRequested(searchName))
     }

@@ -54,6 +54,7 @@ export const Box = styled.div`
 
 export const RowDiv = styled.div`
     display: flex;
+    flex: 1;
     flex-direction: row;
     align-items: center;
     width: 100%;
@@ -105,6 +106,7 @@ export const Text = styled.p`
     font-size: 20px;
     margin: 0 5px 0 5px;
     text-overflow: ellipsis;
+    flex: 1;
 
     ${({ isBold }: { isBold?: boolean }) =>
     isBold &&
@@ -113,6 +115,13 @@ export const Text = styled.p`
         white-space: nowrap;
         text-overflow: ellipsis;
     `};
+`;
+
+export const TimeText = styled.p`
+    font-size: 16px;
+    margin: 0 5px 0 5px;
+    display: flex;
+    justify-content: flex-end;
 `;
 
 export const ColumnDiv = styled.div`

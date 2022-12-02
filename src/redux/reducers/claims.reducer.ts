@@ -21,7 +21,6 @@ export function claimsReducer(state = initialState, action: AnyAction) {
             return {
                 ...state,
                 loading: true,
-                claimHasChanged: false,
             }
         case ClaimsConstants.COMMUNITY_CLAIMS_SUCCEEDED:
             return {
@@ -40,7 +39,6 @@ export function claimsReducer(state = initialState, action: AnyAction) {
             return {
                 ...state,
                 loading: false,
-                claimHasChanged: true,
             }
         default:
             const _exhaustiveCheck: never = type;
