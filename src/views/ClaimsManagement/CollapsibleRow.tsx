@@ -10,18 +10,29 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import { onUpdateClaimStatusRequested } from "../../redux/actions/claims.actions";
 import { useDispatch } from "react-redux";
 import { IClaimStatusUpdate } from "../Claims/types";
-import { CommentsButton, CommentsDiv, Description, RowDiv, Comment, Text, CommentDescription, StatusText } from "./styles";
+import { CommentsButton, CommentsDiv, Description, RowDiv, Comment, Text, CommentDescription, StatusText, TimeText } from "./styles";
 import CommentIcon from '@mui/icons-material/Comment';
 import CommentForm from "./components/CommentForm";
 import { IClaimsManagmentProps } from "./types";
 import { onCommunityPostCommentRequested } from "redux/actions/community.actions";
 
 export function CollapsibleRow(props: IClaimsManagmentProps) {
-    const { row, onPostComment, user } = props;
-    const [open, setOpen] = React.useState(false);
+    const {
+        row,
+        onPostComment,
+        user,
+        comments,
+        setComments,
+        statusArray,
+        setStatusArray,
+        index,
+        opens,
+        setOpens,
+        openComments,
+        setOpenComments
+    } = props;
     const dispatch = useDispatch();
 
-    const [openComments, setOpenComments] = useState(true);
     const [currentClaim, setCurrentClaim] = useState<any>(null);
     const userNameClaim = row.user.firstName + " " + row.user.lastName;
 
@@ -47,6 +58,10 @@ export function CollapsibleRow(props: IClaimsManagmentProps) {
                 comment: "The claim has changed it's status from " + handleNameStatus(row.status) + " to " + handleNameStatus(newStatus),
                 date: new Date(),
             }
+            setComments(comments.concat(commentData))
+            const statuses = [...statusArray];
+            statuses[index] = newStatus;
+            setStatusArray(statuses);
 
             dispatch(onCommunityPostCommentRequested(commentData))
             dispatch(onUpdateClaimStatusRequested(data))
@@ -61,9 +76,15 @@ export function CollapsibleRow(props: IClaimsManagmentProps) {
                 <IconButton
                     aria-label="expand row"
                     size="small"
-                    onClick={() => setOpen(!open)}
+                    onClick={() => {
+                        const newOpens = [...opens];
+                        newOpens[index] = !newOpens[index];
+                        setOpens(newOpens);
+                        setComments(row.claimComments)
+                        setOpenComments(false)
+                    }}
                 >
-                    {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+                    {opens[index] ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
                 </IconButton>
             </TableCell>
             <TableCell component="th" scope="row">
@@ -77,11 +98,11 @@ export function CollapsibleRow(props: IClaimsManagmentProps) {
             </TableCell>
             <TableCell align="center">{row.type}</TableCell>
             <TableCell align="center">{row.mainIssue}</TableCell>
-            <TableCell align="center"><StatusText color={row.status}>{handleNameStatus(row.status)}</StatusText></TableCell>
+            <TableCell align="center"><StatusText color={statusArray[index]}>{handleNameStatus(statusArray[index])}</StatusText></TableCell>
         </TableRow>
         <TableRow>
             <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={12}>
-                <Collapse in={open} timeout="auto" unmountOnExit>
+                <Collapse in={opens[index]} timeout="auto">
                     <Box sx={{ margin: 1 }}>
                         <Grid container spacing={2}>
                             <RowDiv>
@@ -94,16 +115,23 @@ export function CollapsibleRow(props: IClaimsManagmentProps) {
                                             setCurrentClaim(row)
                                         }}>{openComments && row && currentClaim && currentClaim.id === row.id ? "Close comments" : "View comments"}</CommentsButton>
                                     </CommentsDiv>
-
-                                    {openComments && row && currentClaim && currentClaim.id === row.id && row.claimComments && row.claimComments.map((comment) => {
+                                    {openComments && comments.map((comment) => {
                                         let commentType;
                                         if (comment.comment.includes("RESOLVED")) commentType = "resolved"
                                         else if (comment.comment.includes("TAKING ACTION")) commentType = "taking action"
                                         else commentType = comment.role
+
+                                        const commentDate = comment.date.split('T')[0]
+                                        const commentTime0 = comment.date.split('T')[1].split(':')[0]
+                                        const commentTime1 = comment.date.split('T')[1].split('.')[0].split(':')[1]
+
                                         return (
                                             <>
                                                 <Comment typeComment={commentType} key={row.id}>
-                                                    <Text isBold>{comment.role === "community" ? "Admin" : userNameClaim}</Text>
+                                                    <RowDiv>
+                                                        <Text isBold>{comment.role === "community" ? "Admin" : userNameClaim}</Text>
+                                                        <TimeText>{commentDate + ' ' + commentTime0 + ':' + commentTime1}</TimeText>
+                                                    </RowDiv>
                                                     <CommentDescription>{comment.comment}</CommentDescription>
                                                 </Comment>
                                             </>
@@ -134,7 +162,7 @@ export function CollapsibleRow(props: IClaimsManagmentProps) {
                             >
                                 <ToggleButtonGroup
                                     color="primary"
-                                    value={handleNameStatus(row.status)}
+                                    value={handleNameStatus(statusArray[index])}
                                     exclusive
                                     onChange={handleStatusChange}
                                     aria-label="Platform"

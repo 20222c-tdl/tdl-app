@@ -95,7 +95,15 @@ export const Text = styled.p`
         font-weight: bold;
         white-space: nowrap;
         text-overflow: ellipsis;
+        flex: 1;
     `};
+`;
+
+export const TimeText = styled.p`
+    font-size: 16px;
+    margin: 0 5px 0 5px;
+    display: flex;
+    justify-content: flex-end;
 `;
 
 export const CommentButton = styled.button`

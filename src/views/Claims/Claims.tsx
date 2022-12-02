@@ -3,7 +3,7 @@ import { FunctionComponent, useState } from 'react';
 import { Form, Field } from 'react-final-form';
 import { requiredValidation } from '../../helpers/validations';
 import { IClaimFormData, IClaimsProps } from './types';
-import { Arrow, Box, Button, ButtonContainer, Claim, ClaimsContainer, Container, CustomForm, RowDiv, Subtitle, Title, Text, ColumnDiv, Description, EditDiv, Status, StatusText, CommentsButton, CommentsDiv, Comment, CommentButtonContainer, CommentCustomForm, CommentButton, LeaveACommentDiv } from './styles';
+import { Arrow, Box, Button, ButtonContainer, Claim, ClaimsContainer, Container, CustomForm, RowDiv, Subtitle, Title, Text, ColumnDiv, Description, EditDiv, Status, StatusText, CommentsButton, CommentsDiv, Comment, CommentButtonContainer, CommentCustomForm, CommentButton, LeaveACommentDiv, TimeText } from './styles';
 import { Edit } from '@mui/icons-material';
 import CommentIcon from '@mui/icons-material/Comment';
 import { Modal } from 'components/Modal/Modal';
@@ -20,7 +20,6 @@ const Claims: FunctionComponent<IClaimsProps> = (props: IClaimsProps) => {
     const [openComments, setOpenComments] = useState(true);
     const [currentClaim, setCurrentClaim] = useState<any>(null);
     const [claimId, setClaimId] = useState<any>(null);
-
 
     const submitForm = (formData: IClaimFormData) => {
         setIsEditable(false);
@@ -145,9 +144,16 @@ const Claims: FunctionComponent<IClaimsProps> = (props: IClaimsProps) => {
                                             else if (comment.comment.includes("TAKING ACTION")) commentType = "taking action"
                                             else commentType = comment.role
 
+                                            const commentDate = comment.date.split('T')[0]
+                                            const commentTime0 = comment.date.split('T')[1].split(':')[0]
+                                            const commentTime1 = comment.date.split('T')[1].split('.')[0].split(':')[1]
+
                                             return (
                                                 <Comment typeComment={commentType} key={comment.id}>
-                                                    <Text isBold>{comment.role === "user" ? "Me" : "Admin"}</Text>
+                                                    <RowDiv>
+                                                        <Text isBold>{comment.role === "user" ? "Me" : "Admin"}</Text>
+                                                        <TimeText>{commentDate + ' ' + commentTime0 + ':' + commentTime1}</TimeText>
+                                                    </RowDiv>
                                                     <Description style={{ paddingLeft: 6 }}>{comment.comment}</Description>
                                                 </Comment>
                                             )

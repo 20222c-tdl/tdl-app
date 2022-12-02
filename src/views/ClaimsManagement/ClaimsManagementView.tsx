@@ -16,18 +16,31 @@ import { ClaimsState } from "../../types/claims.types";
 import { IClaimsViewProps } from "./types";
 
 const ClaimsManagementView: FunctionComponent<IClaimsViewProps> = (props: IClaimsViewProps) => {
-    const { claims, loading, onPostComment, user} = props;
+    const { 
+        claims, 
+        loading, 
+        onPostComment, 
+        user,
+        comments,
+        setComments,
+        status,
+        setStatus,
+        opens,
+        setOpens,
+        openComments,
+        setOpenComments
+    } = props;
 
     return <Container fixed>
         {loading ?
             (
-                <Skeleton variant="rectangular" height={300}/>
+                <Skeleton variant="rectangular" height={300} />
             ) : (
                 <TableContainer component={Paper}>
                     <Table sx={{ minWidth: 650 }} aria-label="collapsible table">
                         <TableHead>
                             <TableRow>
-                                <TableCell/>
+                                <TableCell />
                                 <TableCell>Id</TableCell>
                                 <TableCell>First Name</TableCell>
                                 <TableCell>Last Name</TableCell>
@@ -37,7 +50,23 @@ const ClaimsManagementView: FunctionComponent<IClaimsViewProps> = (props: IClaim
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {claims.map((claim) => <CollapsibleRow key={claim.id} row={claim} onPostComment={onPostComment} user={user}/>)}
+                            {claims.map((claim, index) =>
+                                <CollapsibleRow
+                                    key={claim.id}
+                                    row={claim}
+                                    onPostComment={onPostComment}
+                                    user={user}
+                                    comments={comments}
+                                    setComments={setComments}
+                                    statusArray={status}
+                                    setStatusArray={setStatus}
+                                    index={index}
+                                    opens={opens}
+                                    setOpens={setOpens}
+                                    openComments={openComments}
+                                    setOpenComments={setOpenComments}
+                                />)
+                            }
                         </TableBody>
                     </Table>
                 </TableContainer>
