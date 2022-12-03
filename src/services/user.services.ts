@@ -96,3 +96,8 @@ export async function payReservation(reservationId: string): Promise<AxiosRespon
     const response = await patch(`/hired-services/hired-service/${reservationId}?isPaid=true`);
     return response;
 }
+
+export async function getPhoto(userId: string): Promise<AxiosResponse> {
+    const response = await get(`/user/user/profile/${userId}`);
+    return response;
+}

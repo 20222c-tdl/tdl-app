@@ -29,3 +29,8 @@ export async function postComment(data: any): Promise<AxiosResponse> {
         response
     )
 }
+
+export async function getPhoto(communityId: string): Promise<AxiosResponse> {
+    const response = await get(`/communities/community/profile/${communityId}`);
+    return response;
+}

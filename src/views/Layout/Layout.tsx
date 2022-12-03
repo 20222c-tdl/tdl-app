@@ -10,17 +10,23 @@ import {
     SearchInput,
     CustomSearchIcon,
     CustomAccountCircleIcon,
-    Block
+    Block,
+    CustomProfileImg
 } from './styles';
 import { ILayoutProps } from './types';
 import { onLogout } from 'redux/actions/user.actions';
 import { useDispatch } from 'react-redux';
 import useTypedSelector from 'hooks/useTypedSelector';
+import { getCookie } from 'helpers/cookies';
 
 const Layout: FunctionComponent<ILayoutProps> = (props: ILayoutProps) => {
     const { name, children, onSearchNav } = props;
     const dispatch = useDispatch();
-    const { user } = useTypedSelector((state) => state.user);
+    const { user, userPhoto } = useTypedSelector((state) => state.user);
+    const { communityPhoto } = useTypedSelector((state) => state.community);
+    const { providerPhoto } = useTypedSelector((state) => state.providers);
+    const token = getCookie('access_token');
+
 
     const [input, setInput] = useState('');
     const [isCollapsed, setIsCollapsed] = useState(true);
@@ -46,13 +52,26 @@ const Layout: FunctionComponent<ILayoutProps> = (props: ILayoutProps) => {
                         <CustomSearchIcon />
                     </SearchContainer>
                 }
-                <CustomAccountCircleIcon onClick={() => setIsCollapsed(!isCollapsed)} />
+                {isCommunity && communityPhoto && token &&
 
+                    <CustomProfileImg src={`data:image/jpeg;base64,${communityPhoto.photo}`} alt="Image" onClick={() => setIsCollapsed(!isCollapsed)} />
+                }
+                {isUser && userPhoto && token &&
+
+                    <CustomProfileImg src={`data:image/jpeg;base64,${userPhoto.photo}`} alt="Image" onClick={() => setIsCollapsed(!isCollapsed)} />
+                }
+                {isProvider && providerPhoto && token &&
+
+                    <CustomProfileImg src={`data:image/jpeg;base64,${providerPhoto.photo}`} alt="Image" onClick={() => setIsCollapsed(!isCollapsed)} />
+                }
+                {(!token || (isCommunity && !communityPhoto) || (isUser && !userPhoto) || (isProvider && !providerPhoto)) &&
+                    <CustomAccountCircleIcon onClick={() => setIsCollapsed(!isCollapsed)} />
+                }
             </TopNav>
             <Block isCollapsed={isCollapsed} >
                 {!name && <a onClick={() => history.push('/')}>Sign up</a>}
                 {!name && <a onClick={() => history.push('/loginUser')}>Login</a>}
-                
+
                 {!!name && isUser && <a onClick={() => history.push('/home')}>Home</a>}
                 {!!name && isUser && <a onClick={() => history.push('/profile')}>Profile</a>}
                 {!!name && isUser && <a onClick={() => history.push('/claims')}>Claims</a>}

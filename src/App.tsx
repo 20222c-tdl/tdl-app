@@ -15,22 +15,23 @@ import LoginProviderContainer from 'containers/LoginProviderContainer';
 import SignupProviderContainer from 'containers/SignupProviderContainer';
 import { ClaimsManagementContainer } from 'containers/ClaimsManagementContainer';
 import { useDispatch } from 'react-redux';
-import { onGetProfileInfoRequested, userOnInitializeRequested } from 'redux/actions/user.actions';
+import { onGetProfileInfoRequested, onGetUserPhotoRequested, userOnInitializeRequested } from 'redux/actions/user.actions';
 import ProviderContainer from 'containers/ProviderContainer';
 import { getCookie } from 'helpers/cookies';
 import MyReservationsContainer from 'containers/MyReservationsContainer';
 import ProfileContainer from 'containers/ProfileContainer';
 import useTypedSelector from 'hooks/useTypedSelector';
-import { onGetPProfileInfoRequested } from 'redux/actions/providers.actions';
+import { onGetPProfileInfoRequested, onGetProviderPhotoRequested } from 'redux/actions/providers.actions';
 import ServicesContainer from 'containers/ServicesContainer';
 import ReviewsContainer from 'containers/ReviewsContainer';
 import PlacesManagementContainer from 'containers/PlacesManagementContainer';
 import PlacesContainer from 'containers/PlacesContainer';
 import PlaceDetailContainer from 'containers/PlaceDetailContainer';
+import { onGetCommunityPhotoRequested } from 'redux/actions/community.actions';
 
 function App() {
   const dispatch = useDispatch();
-  const { getProfile } = useTypedSelector((state) => state.providers);
+  const { user } = useTypedSelector((state) => state.user);
 
   const token = getCookie('access_token');
   let decodedToken;
@@ -41,6 +42,18 @@ function App() {
       dispatch(onGetProfileInfoRequested(decodedToken.sub));
     }
   }, [dispatch, token])
+
+  useEffect(() => {
+    if (user && user.role === "community") {
+      dispatch(onGetCommunityPhotoRequested(user.id));
+    }
+    else if (user && user.role === "user") {
+      dispatch(onGetUserPhotoRequested(user.id));
+    }
+    else if (user && user.role === "provider") {
+      dispatch(onGetProviderPhotoRequested(user.id));
+    }
+  }, [user])
 
   //dispatch(userOnInitializeRequested());
 
@@ -63,7 +76,7 @@ function App() {
         <Route path="/reviews" element={<ReviewsContainer />} />
         <Route path="/placesManagement" element={<PlacesManagementContainer />} />
         <Route path="/places" element={<PlacesContainer />} />
-        <Route path="/place/:id" element={<PlaceDetailContainer/>} />
+        <Route path="/place/:id" element={<PlaceDetailContainer />} />
 
         <Route
           path="*"

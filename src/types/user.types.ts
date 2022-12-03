@@ -10,6 +10,7 @@ export interface UserInterface {
     changeReservations: boolean;
     userReviews: any[];
     changeReviews: boolean;
+    userPhoto: any;
 }
 
 export interface IUser {

@@ -7,6 +7,7 @@ export interface CommunityInterface {
     commentsChanged: boolean;
     changePlaces: boolean;
     places: any[];
+    communityPhoto: any;
 }
 
 export interface ICommunity {

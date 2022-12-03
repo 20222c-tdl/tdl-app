@@ -1,7 +1,7 @@
 import { AnyAction } from 'redux';
 import { call, put, takeLatest, all } from 'redux-saga/effects';
-import { loginCommunity, signupCommunity, getAllCommunities, getCommunityInfo, postComment } from '../../services/community.services';
-import { onCommunityPostCommentFailed, onCommunityPostCommentSucceeded, onGetAllCommunitiesFailed, onGetAllCommunitiesSucceeded, onGetCommunityProfileFailed, onGetCommunityProfileSucceeded, onLoginCommunityFailed, onLoginCommunitySucceeded, onSignupCommunityFailed, onSignupCommunitySucceeded } from '../actions/community.actions';
+import { loginCommunity, signupCommunity, getAllCommunities, getCommunityInfo, postComment, getPhoto } from '../../services/community.services';
+import { onCommunityPostCommentFailed, onCommunityPostCommentSucceeded, onGetAllCommunitiesFailed, onGetAllCommunitiesSucceeded, onGetCommunityPhotoFailed, onGetCommunityPhotoSucceeded, onGetCommunityProfileFailed, onGetCommunityProfileSucceeded, onLoginCommunityFailed, onLoginCommunitySucceeded, onSignupCommunityFailed, onSignupCommunitySucceeded } from '../actions/community.actions';
 import * as constants from '../constants/community.constants';
 
 export function* communitySignup(action: AnyAction) {
@@ -49,6 +49,15 @@ export function* communityPostComment(action: AnyAction) {
     }
 }
 
+export function* communityGetPhoto(action: AnyAction) {
+    try {
+        const { data } = yield call(getPhoto, action.communityId);
+        yield put(onGetCommunityPhotoSucceeded(data));
+    } catch (error) {
+        yield put(onGetCommunityPhotoFailed(error));
+    }
+}
+
 export function* watchCommunity(): Generator {
     yield all([
         takeLatest(constants.COMMUNITY_ON_SIGN_UP_REQUESTED, communitySignup),
@@ -56,5 +65,6 @@ export function* watchCommunity(): Generator {
         takeLatest(constants.ON_GET_ALL_COMMUNITIES_REQUESTED, getCommunities),
         takeLatest([constants.ON_GET_COMMUNITY_PROFILE_REQUESTED, constants.COMMUNITY_ON_LOGIN_SUCCEEDED], onGetCommunityInfo),
         takeLatest(constants.COMMUNITY_ON_POST_COMMENT_REQUESTED, communityPostComment),
+        takeLatest(constants.COMMUNITY_ON_GET_PHOTO_REQUESTED, communityGetPhoto),
     ])
 }
