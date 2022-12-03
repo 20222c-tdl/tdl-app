@@ -17,16 +17,16 @@ const Reviews: FunctionComponent<IReviewsProps> = (props: IReviewsProps) => {
                 return (
                     <Review key={reviewObj.review.id}>
                         <RowDiv>
-                            <CustomReviewImg src={`data:image/jpeg;base64,${reviewObj.user.base64Picture}`} alt="Image" />
+                            <CustomReviewImg src={`data:image/jpeg;base64,${reviewObj.user.photo}`} alt="Image" />
                             <ColumnReviewsDescription>
                                 <RowDiv>
                                     <StarDiv>
-                                        <CalificationReviewText>{reviewObj.review.rating ? reviewObj.review.rating.toFixed(1) : 0}</CalificationReviewText>
+                                        <CalificationReviewText>{reviewObj.review.rating ? reviewObj.review.rating : 0}</CalificationReviewText>
                                         <StarIcon />
                                     </StarDiv >
                                     <ReviewUsernameTitle>{reviewObj.user.firstName} {reviewObj.user.lastName}</ReviewUsernameTitle>
                                 </RowDiv>
-                                <DescriptionText> {reviewObj.review.description}</DescriptionText>
+                                <DescriptionText>{reviewObj.review.comment}</DescriptionText>
                             </ColumnReviewsDescription>
                         </RowDiv>
                     </Review>
@@ -43,4 +43,3 @@ const Reviews: FunctionComponent<IReviewsProps> = (props: IReviewsProps) => {
 }
 
 export default Reviews;
-
