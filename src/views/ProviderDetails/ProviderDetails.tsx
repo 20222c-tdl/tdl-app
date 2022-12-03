@@ -59,7 +59,7 @@ const ProviderDetails: FunctionComponent<any> = (props: IProviderDetailsProps) =
                                     <DescriptionText>{service.Description}</DescriptionText>
                                     <RowDiv>
                                         <ColumnDivPrice>
-                                            <PriceText>$ {service.price} /per hour</PriceText>
+                                            <PriceText>$ {service.price} { service.monetizationType === "BY_THE_HOUR" && `/per hour`}</PriceText>
                                             <MonetizationTypeText>{service.monetizationType === "FIXED" ? "Price fixed" : "Price by duration"}</MonetizationTypeText>
                                         </ColumnDivPrice>
                                         {isByDuration ?
@@ -174,7 +174,7 @@ const ProviderDetails: FunctionComponent<any> = (props: IProviderDetailsProps) =
                                     <ColumnReviewsDescription>
                                         <RowDiv>
                                             <StarDiv>
-                                                <CalificationReviewText>{reviewObj.review.rating ? reviewObj.review.rating.toFixed(1) : 0}</CalificationReviewText>
+                                                <CalificationReviewText>{reviewObj.review.rating ? reviewObj.review.rating : 0}</CalificationReviewText>
                                                 <StarIcon />
                                             </StarDiv >
                                             <ReviewUsernameTitle>{reviewObj.user.firstName} {reviewObj.user.lastName}</ReviewUsernameTitle>
@@ -200,4 +200,3 @@ const ProviderDetails: FunctionComponent<any> = (props: IProviderDetailsProps) =
 }
 
 export default ProviderDetails;
-
