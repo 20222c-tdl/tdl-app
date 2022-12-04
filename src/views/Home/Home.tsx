@@ -26,7 +26,7 @@ const Home: FunctionComponent<any> = (props: IHomeProps) => {
                 <Text onClick={() => { handleCleanFilter() }}>Categories:</Text>
                 <NavLinks />
             </Navbar >
-            {allProviders && allProviders.length &&
+            {allProviders && allProviders.length > 0 &&
                 <ColumnDiv>
                     <TitleContainer> All providers available</TitleContainer>
                     <ProvidersContainer>

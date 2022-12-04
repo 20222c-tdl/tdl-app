@@ -1,6 +1,7 @@
 import COLORS from "helpers/colors";
 import styled, { css } from "styled-components";
 import EngineeringIcon from '@mui/icons-material/Engineering';
+import OtherHousesIcon from '@mui/icons-material/OtherHouses';
 
 export const ColumnDiv = styled.div`
     display: flex;
@@ -69,7 +70,7 @@ export const EmptyContainer = styled.div`
     width: 100%;
 `;
 
-export const PlaceIcon = styled(EngineeringIcon)`
+export const PlaceIcon = styled(OtherHousesIcon)`
     width: 150px !important;
     height: 150px !important;
 `;

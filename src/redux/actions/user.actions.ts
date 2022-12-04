@@ -317,3 +317,25 @@ export function onPayReservationFailed(error: unknown): AnyAction {
         error
     };
 }
+
+// onGetCommunityPhoto
+export function onGetUserPhotoRequested(userId: string): AnyAction {
+    return {
+        type: constants.USER_ON_GET_PHOTO_REQUESTED,
+        userId
+    };
+}
+
+export function onGetUserPhotoSucceeded(data: unknown): AnyAction {
+    return {
+        type: constants.USER_ON_GET_PHOTO_SUCCEEDED,
+        data
+    };
+}
+
+export function onGetUserPhotoFailed(error: unknown): AnyAction {
+    return {
+        type: constants.USER_ON_GET_PHOTO_FAILED,
+        error
+    };
+}

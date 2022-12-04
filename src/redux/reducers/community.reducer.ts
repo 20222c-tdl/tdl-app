@@ -9,6 +9,7 @@ const initialState = {
     commentsChanged: false,
     changePlaces: false,
     places: null,
+    communityPhoto: null,
 }
 
 const communityReducer: Reducer = (state = {}, action) => {
@@ -19,6 +20,7 @@ const communityReducer: Reducer = (state = {}, action) => {
         case constants.COMMUNITY_ON_LOGIN_REQUESTED:
         case constants.ON_GET_ALL_COMMUNITIES_REQUESTED:
         case constants.ON_GET_COMMUNITY_PROFILE_REQUESTED:
+        case constants.COMMUNITY_ON_GET_PHOTO_REQUESTED:
             return {
                 ...state,
                 loading: true
@@ -47,6 +49,12 @@ const communityReducer: Reducer = (state = {}, action) => {
                 loading: true,
                 commentsChanged: true,
             }
+        case constants.COMMUNITY_ON_GET_PHOTO_SUCCEEDED:
+            return {
+                ...state,
+                loading: true,
+                communityPhoto: data, data,
+            }
         case constants.COMMUNITY_ON_LOGIN_SUCCEEDED:
         case constants.COMMUNITY_ON_SIGN_UP_SUCCEEDED:
         case constants.COMMUNITY_ON_SIGN_UP_FAILED:
@@ -54,7 +62,7 @@ const communityReducer: Reducer = (state = {}, action) => {
         case constants.ON_GET_ALL_COMMUNITIES_FAILED:
         case constants.ON_GET_COMMUNITY_PROFILE_FAILED:
         case constants.COMMUNITY_ON_POST_COMMENT_FAILED:
-
+        case constants.COMMUNITY_ON_GET_PHOTO_FAILED:
             return {
                 ...state,
                 loading: false

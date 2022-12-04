@@ -110,3 +110,25 @@ export function onCommunityPostCommentFailed(error: unknown): AnyAction {
         error
     };
 }
+
+// onGetCommunityPhoto
+export function onGetCommunityPhotoRequested(communityId: string): AnyAction {
+    return {
+        type: constants.COMMUNITY_ON_GET_PHOTO_REQUESTED,
+        communityId
+    };
+}
+
+export function onGetCommunityPhotoSucceeded(data: unknown): AnyAction {
+    return {
+        type: constants.COMMUNITY_ON_GET_PHOTO_SUCCEEDED,
+        data
+    };
+}
+
+export function onGetCommunityPhotoFailed(error: unknown): AnyAction {
+    return {
+        type: constants.COMMUNITY_ON_GET_PHOTO_FAILED,
+        error
+    };
+}

@@ -13,6 +13,7 @@ const initialState = {
     getProfile: false,
     changeServices: false,
     providerProfile: null,
+    providerPhoto: null,
 }
 
 const providersReducer: Reducer = (state = {}, action) => {
@@ -28,6 +29,7 @@ const providersReducer: Reducer = (state = {}, action) => {
         case constants.ON_GET_ALL_PROVIDERS_REVIEWS_REQUESTED:
         case constants.PROVIDER_ON_SEARCH_NAME_REQUESTED:
         case constants.PROVIDER_ON_GET_PROFILE_INFO_REQUESTED:
+        case constants.PROVIDER_ON_GET_PHOTO_REQUESTED:
             return {
                 ...state,
                 loading: true
@@ -100,6 +102,12 @@ const providersReducer: Reducer = (state = {}, action) => {
                 loading: false,
                 changeServices: true,
             }
+        case constants.PROVIDER_ON_GET_PHOTO_SUCCEEDED:
+            return {
+                ...state,
+                loading: true,
+                providerPhoto: data, data,
+            }
         case constants.ON_GET_ALL_CATEGORIES_FAILED:
         case constants.PROVIDER_ON_SIGN_UP_SUCCEEDED:
         case constants.PROVIDER_ON_SIGN_UP_FAILED:
@@ -111,6 +119,7 @@ const providersReducer: Reducer = (state = {}, action) => {
         case constants.ON_GET_ALL_PROVIDERS_REVIEWS_FAILED:
         case constants.PROVIDER_ON_SEARCH_NAME_FAILED:
         case constants.PROVIDER_ON_GET_PROFILE_INFO_FAILED:
+        case constants.PROVIDER_ON_GET_PHOTO_FAILED:
         case constants.PROVIDER_ON_CREATE_SERVICE_FAILED:
             return {
                 ...state,

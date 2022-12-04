@@ -3,7 +3,7 @@ import { FunctionComponent, useState } from 'react';
 import { Form, Field } from 'react-final-form';
 import { requiredValidation } from '../../helpers/validations';
 import { IClaimFormData, IClaimsProps } from './types';
-import { Arrow, Box, Button, ButtonContainer, Claim, ClaimsContainer, Container, CustomForm, RowDiv, Subtitle, Title, Text, ColumnDiv, Description, EditDiv, Status, StatusText, CommentsButton, CommentsDiv, Comment, CommentButtonContainer, CommentCustomForm, CommentButton, LeaveACommentDiv, TimeText } from './styles';
+import { Arrow, Box, Button, ButtonContainer, Claim, ClaimsContainer, Container, CustomForm, RowDiv, Subtitle, Title, Text, ColumnDiv, Description, EditDiv, Status, StatusText, CommentsButton, CommentsDiv, Comment, CommentButtonContainer, CommentCustomForm, CommentButton, LeaveACommentDiv, TimeText, EmptyContainer, ClaimsIcon } from './styles';
 import { Edit } from '@mui/icons-material';
 import CommentIcon from '@mui/icons-material/Comment';
 import { Modal } from 'components/Modal/Modal';
@@ -95,9 +95,12 @@ const Claims: FunctionComponent<IClaimsProps> = (props: IClaimsProps) => {
                 />
             </>
             }
-            {(claims && !claims.length)
+            {claims && !claims.length
                 ?
-                <Title>There are no claims yet</Title>
+                <EmptyContainer>
+                    <ClaimsIcon />
+                    <Title>There are no claims yet</Title>
+                </EmptyContainer>
                 :
                 <ClaimsContainer>
                     <Title>Your claims </Title>

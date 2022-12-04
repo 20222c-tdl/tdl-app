@@ -56,7 +56,7 @@ export function CollapsibleRow(props: IClaimsManagmentProps) {
                 entityId: user.id,
                 role: user.role,
                 comment: "The claim has changed it's status from " + handleNameStatus(row.status) + " to " + handleNameStatus(newStatus),
-                date: new Date(),
+                date: (new Date()).toISOString(),
             }
             setComments(comments.concat(commentData))
             const statuses = [...statusArray];

@@ -58,3 +58,8 @@ export async function createService(data: IServiceFormData): Promise<AxiosRespon
     const response = await post(`/services`, data);
     return response;
 }
+
+export async function getPhoto(providerId: string): Promise<AxiosResponse> {
+    const response = await get(`/provider/provider/profile/${providerId}`);
+    return response;
+}

@@ -11,6 +11,7 @@ export interface ProvidersInterface {
     getProfile: boolean;
     changeServices: boolean;
     providerProfile: any;
+    providerPhoto: any;
 }
 
 export interface IProvider {

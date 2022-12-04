@@ -242,3 +242,25 @@ export function onCreateAServiceFailed(error: unknown): AnyAction {
         error
     };
 }
+
+// onProviderPhoto
+export function onGetProviderPhotoRequested(providerId: string): AnyAction {
+    return {
+        type: constants.PROVIDER_ON_GET_PHOTO_REQUESTED,
+        providerId
+    };
+}
+
+export function onGetProviderPhotoSucceeded(data: unknown): AnyAction {
+    return {
+        type: constants.PROVIDER_ON_GET_PHOTO_SUCCEEDED,
+        data
+    };
+}
+
+export function onGetProviderPhotoFailed(error: unknown): AnyAction {
+    return {
+        type: constants.PROVIDER_ON_GET_PHOTO_FAILED,
+        error
+    };
+}

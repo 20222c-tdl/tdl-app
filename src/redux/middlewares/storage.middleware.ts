@@ -20,7 +20,6 @@ const storageMiddleware = () => (next: any) => (action: any) => {
       break;
 
     case constants.USER_ON_LOGOUT:
-
       removeCookie('access_token', { path: '/' });
       break;
 

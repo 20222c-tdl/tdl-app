@@ -1,6 +1,7 @@
 import COLORS from "helpers/colors";
 import styled, { css } from "styled-components";
 import { ICommentProps } from './types';
+import DescriptionIcon from '@mui/icons-material/Description';
 
 export const RowDiv = styled.div`
     display: flex;
@@ -157,4 +158,30 @@ export const StatusText = styled.p`
   text-overflow: ellipsis;
   border-radius: 10px;
   background-color: ${({ color }) => handleColorType(color)};
+`;
+
+export const EmptyContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+    height: 100%;
+    width: 100%;
+`;
+
+export const ClaimsIcon = styled(DescriptionIcon)`
+    width: 150px !important;
+    height: 150px !important;
+`;
+
+export const Title = styled.p`
+  font-size: 28px;
+  margin: 0;
+  font-weight: bold;
+  text-align: center;
+  font-family: 'Open Sans';
+  display: flex;
+  flex: 1;
+  justify-content: center;
 `;

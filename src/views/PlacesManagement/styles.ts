@@ -1,6 +1,7 @@
 import COLORS from "helpers/colors";
 import styled, { css } from "styled-components";
 import { KeyboardArrowDown } from "@mui/icons-material";
+import OtherHousesIcon from '@mui/icons-material/OtherHouses';
 
 export const RowDiv = styled.div`
     display: flex;
@@ -151,4 +152,19 @@ export const Box = styled.div`
     padding: 20px 0;
     max-width: 1024px;
     width: 100%;
+`;
+
+export const EmptyContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+    height: 100%;
+    width: 100%;
+`;
+
+export const EmptyPlacesIcon = styled(OtherHousesIcon)`
+    width: 150px !important;
+    height: 150px !important;
 `;

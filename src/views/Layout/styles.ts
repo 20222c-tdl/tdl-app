@@ -85,6 +85,14 @@ export const CustomAccountCircleIcon = styled(AccountCircleIcon)`
   padding: 3px;
 `;
 
+export const CustomProfileImg = styled.img`
+  cursor: pointer;
+  height: 50px !important;
+  width: 50px !important;
+  border-radius: 50%;
+  padding: 3px;
+`;
+
 export const CustomImg = styled.img`
   width: 100%;
   max-height:90px;
