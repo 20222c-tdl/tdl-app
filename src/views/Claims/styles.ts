@@ -2,6 +2,7 @@ import COLORS from "helpers/colors";
 import styled, { css } from "styled-components";
 import { KeyboardArrowDown } from "@mui/icons-material";
 import { ICommentProps } from './types';
+import DescriptionIcon from '@mui/icons-material/Description';
 
 export const ClaimsContainer = styled.div`
   display: flex;
@@ -77,7 +78,7 @@ export const Title = styled.p`
   display: flex;
   flex: 1;
   justify-content: center;
-;`
+`;
 
 export const Arrow = styled(KeyboardArrowDown)`
   cursor: pointer;
@@ -290,4 +291,19 @@ export const CommentButton = styled.button`
   background-color: ${COLORS.azure};
   color: ${COLORS.white};
   font-family: 'Open Sans';
+`;
+
+export const EmptyContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 100px;
+    height: 100%;
+    width: 100%;
+`;
+
+export const ClaimsIcon = styled(DescriptionIcon)`
+    width: 150px !important;
+    height: 150px !important;
 `;

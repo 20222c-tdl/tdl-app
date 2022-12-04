@@ -8,7 +8,7 @@ const Places: FunctionComponent<IPlacesProps> = (props: IPlacesProps) => {
 
     return (
         <>
-            {places && places.length &&
+            {places && places.length > 0 &&
                 <ColumnDiv>
                     <TitleContainer> All places available</TitleContainer>
                     <PlacesContainer>
