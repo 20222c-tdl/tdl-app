@@ -168,3 +168,9 @@ export const EmptyPlacesIcon = styled(OtherHousesIcon)`
     width: 150px !important;
     height: 150px !important;
 `;
+
+export const Label = styled.p`
+  font-size: 16px;
+  font-family: 'Open Sans';
+  margin: 0;
+`;

@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { onCreateAPlaceRequested, onGetPlacesRequested } from 'redux/actions/places.actions';
+import { onCreateAPlaceRequested, onEditAPlaceRequested, onGetPlacesRequested } from 'redux/actions/places.actions';
 import Layout from 'views/Layout/Layout';
 import PlacesManagement from 'views/PlacesManagement/PlacesManagement';
 import { IPlaceFormData } from 'views/PlacesManagement/types';
@@ -18,16 +18,36 @@ const PlacesManagementContainer: FunctionComponent = () => {
         }
     }, [dispatch, changePlaces, user])
 
-    const onPostAPlace = (formData: IPlaceFormData) => {
+    const getBase64Picture = async (file: any) => {
+        return new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = function () {
+                resolve(reader.result);
+            }
+        });
+    }
+
+    const onPostAPlace = async (formData: IPlaceFormData) => {
+        const image: any = await getBase64Picture(formData.base64Picture[0]);
         const data = {
-            ...formData,
+            name: formData.name,
+            description: formData.description,
             communityId: user.id,
+            photo: image.split(',')[1],
         }
         dispatch(onCreateAPlaceRequested(data));
     }
 
-    const onEditPlace = (formData: IPlaceFormData) => {
-        //dispatch(onEditAPlaceRequested(formData));
+    const onEditPlace = async (formData: IPlaceFormData) => {
+        const image: any = await getBase64Picture(formData.base64Picture[0]);
+        const data = {
+            name: formData.name,
+            description: formData.description,
+            photo: image.split(',')[1],
+            id: formData.id
+        }
+        dispatch(onEditAPlaceRequested(data));
     }
 
     return (

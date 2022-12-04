@@ -7,8 +7,6 @@ const initialState = {
     communityInfo: null,
     allCommunities: null,
     commentsChanged: false,
-    changePlaces: false,
-    places: null,
     communityPhoto: null,
 }
 
