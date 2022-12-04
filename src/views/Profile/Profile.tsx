@@ -31,23 +31,26 @@ const Profile: FunctionComponent<IProfileProps> = (props: IProfileProps) => {
             <BoxInfo>
                 <PersonalInfo onSubmit={onEditProfileClick} user={user} onSubmitPassword={onEditPassClick} />
             </BoxInfo>
-            <BoxInfo>
-                <Box>
-                    <RowDiv>
-                        <CreditCardIcon />
-                        <Title hasNoMargin>Payments Methods</Title>
-                        <Arrow onClick={() => setIPaymentsCollapsed(!isPaymentsCollapsed)} />
-                    </RowDiv>
-                    <Subtitle>In this section you can see your debit/credit cards, add a new one or delete an existing one.</Subtitle>
-                    {!isPaymentsCollapsed &&
-                        <PaymentMethods 
-                            cards={cards}
-                            onAddCard={onAddCard}
-                            onRemoveCard={onRemoveCard}
-                        />
-                    }
-                </Box>
-            </BoxInfo>
+            {
+                !(user.role === "provider") && <BoxInfo>
+                    <Box>
+                        <RowDiv>
+                            <CreditCardIcon />
+                            <Title hasNoMargin>Payments Methods</Title>
+                            <Arrow onClick={() => setIPaymentsCollapsed(!isPaymentsCollapsed)} />
+                        </RowDiv>
+                        <Subtitle>In this section you can see your debit/credit cards, add a new one or delete an existing one.</Subtitle>
+                        {!isPaymentsCollapsed &&
+                            <PaymentMethods
+                                cards={cards}
+                                onAddCard={onAddCard}
+                                onRemoveCard={onRemoveCard}
+                            />
+                        }
+                    </Box>
+                </BoxInfo>
+            }
+
         </Container>
     );
 }

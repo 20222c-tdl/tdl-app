@@ -1,7 +1,7 @@
 import { AnyAction } from 'redux';
 import { call, put, takeLatest, all } from 'redux-saga/effects';
-import { onCreateAServiceFailed, onCreateAServiceSucceeded, onFilterCategoryFailed, onFilterCategorySucceeded, onGetAllProvidersCategoriesFailed, onGetAllProvidersCategoriesSucceeded, onGetAllProvidersFailed, onGetAllProvidersReviewsFailed, onGetAllProvidersReviewsSucceeded, onGetAllProvidersSucceeded, onGetProfileInfoFailed, onGetProfileInfoSucceeded, onGetProviderInfoFailed, onGetProviderInfoSucceeded, onGetProviderPhotoFailed, onGetProviderPhotoSucceeded, onGetProviderServicesFailed, onGetProviderServicesSucceeded, onLoginProviderFailed, onLoginProviderSucceeded, onSearchNameFailed, onSearchNameSucceeded, onSignupProviderFailed, onSignupProviderSucceeded } from 'redux/actions/providers.actions';
-import { loginProvider, signupProvider, getAllCategories, filterCategory, getAllProviders, getProviderInfo, getAllProvidersReviews, getProviderServices, searchName, getProfileInfo, createService, getPhoto } from '../../services/providers.services';
+import { onCreateAServiceFailed, onCreateAServiceSucceeded, onEditAServiceFailed, onEditAServiceSucceeded, onFilterCategoryFailed, onFilterCategorySucceeded, onGetAllProvidersCategoriesFailed, onGetAllProvidersCategoriesSucceeded, onGetAllProvidersFailed, onGetAllProvidersReviewsFailed, onGetAllProvidersReviewsSucceeded, onGetAllProvidersSucceeded, onGetProfileInfoFailed, onGetProfileInfoSucceeded, onGetProviderInfoFailed, onGetProviderInfoSucceeded, onGetProviderServicesFailed, onGetProviderServicesSucceeded, onLoginProviderFailed, onLoginProviderSucceeded, onProviderUpdateProfileFailed, onProviderUpdateProfileSucceeded, onSearchNameFailed, onSearchNameSucceeded, onSignupProviderFailed, onSignupProviderSucceeded } from 'redux/actions/providers.actions';
+import { loginProvider, signupProvider, getAllCategories, filterCategory, getAllProviders, getProviderInfo, getAllProvidersReviews, getProviderServices, searchName, getProfileInfo, createService, editService, editProfile } from '../../services/providers.services';
 import * as constants from '../constants/providers.constants';
 
 export function* providerSignup(action: AnyAction) {
@@ -103,14 +103,24 @@ export function* onCreateService(action: AnyAction): Generator {
     }
 }
 
-export function* providerGetPhoto(action: AnyAction) {
+export function* providerEditAService(action: AnyAction) {
     try {
-        const { data } = yield call(getPhoto, action.providerId);
-        yield put(onGetProviderPhotoSucceeded(data));
+        const { data } = yield call(editService, action.data);
+        yield put(onEditAServiceSucceeded(data));
     } catch (error) {
-        yield put(onGetProviderPhotoFailed(error));
+        yield put(onEditAServiceFailed(error));
     }
 }
+
+export function* providerUpdateProfile(action: AnyAction) {
+    try {
+        const { data } = yield call(editProfile, action.data, action.userId);
+        yield put(onProviderUpdateProfileSucceeded(data));
+    } catch (error) {
+        yield put(onProviderUpdateProfileFailed(error));
+    }
+}
+
 
 export function* watchProviders(): Generator {
     yield all([
@@ -125,6 +135,7 @@ export function* watchProviders(): Generator {
         takeLatest(constants.ON_GET_PROVIDER_SERVICES_REQUESTED, onGetProviderServices),
         takeLatest(constants.PROVIDER_ON_SEARCH_NAME_REQUESTED, onSearchName),
         takeLatest(constants.PROVIDER_ON_CREATE_SERVICE_REQUESTED, onCreateService),
-        takeLatest(constants.PROVIDER_ON_GET_PHOTO_REQUESTED, providerGetPhoto),
+        takeLatest(constants.PROVIDER_ON_EDIT_SERVICE_REQUESTED, providerEditAService),
+        takeLatest(constants.PROVIDER_ON_UPDATE_PROFILE_REQUESTED, providerUpdateProfile),
     ])
 }

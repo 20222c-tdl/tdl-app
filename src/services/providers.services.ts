@@ -1,7 +1,7 @@
 import { AxiosResponse } from "axios";
 import { IServiceFormData } from "views/Services/types";
 import { ISignupProviderFormData } from "views/SignupProvider/types";
-import { get, post } from "./api";
+import { get, patch, post } from "./api";
 
 export async function signupProvider(formData: ISignupProviderFormData): Promise<AxiosResponse> {
     const response = await post("/providers", formData);
@@ -59,7 +59,12 @@ export async function createService(data: IServiceFormData): Promise<AxiosRespon
     return response;
 }
 
-export async function getPhoto(providerId: string): Promise<AxiosResponse> {
-    const response = await get(`/provider/provider/profile/${providerId}`);
+export async function editService(data: IServiceFormData): Promise<AxiosResponse> {
+    const response = await patch(`/services/${data.id}`, data);
+    return response;
+}
+
+export async function editProfile(data: any, userId: string): Promise<AxiosResponse> {
+    const response = await patch(`/providers/${userId}`, data);
     return response;
 }

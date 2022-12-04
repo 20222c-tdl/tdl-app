@@ -24,7 +24,7 @@ const Layout: FunctionComponent<ILayoutProps> = (props: ILayoutProps) => {
     const dispatch = useDispatch();
     const { user, userPhoto } = useTypedSelector((state) => state.user);
     const { communityPhoto } = useTypedSelector((state) => state.community);
-    const { providerPhoto } = useTypedSelector((state) => state.providers);
+    const { providerData } = useTypedSelector((state) => state.providers);
     const token = getCookie('access_token');
 
 
@@ -60,11 +60,11 @@ const Layout: FunctionComponent<ILayoutProps> = (props: ILayoutProps) => {
 
                     <CustomProfileImg src={`data:image/jpeg;base64,${userPhoto.photo}`} alt="Image" onClick={() => setIsCollapsed(!isCollapsed)} />
                 }
-                {isProvider && providerPhoto && token &&
+                {isProvider && providerData && token &&
 
-                    <CustomProfileImg src={`data:image/jpeg;base64,${providerPhoto.photo}`} alt="Image" onClick={() => setIsCollapsed(!isCollapsed)} />
+                    <CustomProfileImg src={`data:image/jpeg;base64,${providerData.photo}`} alt="Image" onClick={() => setIsCollapsed(!isCollapsed)} />
                 }
-                {(!token || (isCommunity && !communityPhoto) || (isUser && !userPhoto) || (isProvider && !providerPhoto)) &&
+                {(!token || (isCommunity && !communityPhoto) || (isUser && !userPhoto) || (isProvider && !providerData)) &&
                     <CustomAccountCircleIcon onClick={() => setIsCollapsed(!isCollapsed)} />
                 }
             </TopNav>

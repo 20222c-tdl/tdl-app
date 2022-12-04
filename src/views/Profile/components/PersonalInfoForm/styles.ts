@@ -39,3 +39,17 @@ export const Button = styled.button`
         border: 1px solid ${COLORS.violetRed};
     `};
 `;
+
+export const ImageContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const Label = styled.p`
+  font-size: 16px;
+  font-family: 'Open Sans';
+  margin: 0;
+`;

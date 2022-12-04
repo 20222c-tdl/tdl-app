@@ -87,8 +87,8 @@ export const CustomAccountCircleIcon = styled(AccountCircleIcon)`
 
 export const CustomProfileImg = styled.img`
   cursor: pointer;
-  height: 50px !important;
-  width: 50px !important;
+  height: 55px !important;
+  width: 55px !important;
   border-radius: 50%;
   padding: 3px;
 `;
@@ -116,6 +116,7 @@ export const Block = styled.div`
   ${({ isCollapsed }: { isCollapsed?: boolean }) =>
     isCollapsed
       ? css`
+          pointer-events: none;
           opacity:0;
           width:0;
           height:0;

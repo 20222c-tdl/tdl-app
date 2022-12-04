@@ -1,5 +1,7 @@
 import { AnyAction } from 'redux';
+import { ICard } from 'types/user.types';
 import { IClaimFormData } from 'views/Claims/types';
+import { IPasswordFormData } from 'views/Profile/components/PasswordForm/types';
 import { ILoginFormData } from '../../views/Login/types';
 import { ISignupUserFormData } from '../../views/SignupUser/types';
 import * as constants from '../constants/user.constants';
@@ -336,6 +338,118 @@ export function onGetUserPhotoSucceeded(data: unknown): AnyAction {
 export function onGetUserPhotoFailed(error: unknown): AnyAction {
     return {
         type: constants.USER_ON_GET_PHOTO_FAILED,
+        error
+    };
+}
+
+// onUpdateProfile
+export function onUpdateProfileRequested(data: any, userId: string): AnyAction {
+    return {
+        type: constants.USER_ON_UPDATE_PROFILE_REQUESTED,
+        data,
+        userId
+    };
+}
+
+export function onUpdateProfileSucceeded(data: unknown): AnyAction {
+    return {
+        type: constants.USER_ON_UPDATE_PROFILE_SUCCEEDED,
+        data
+    };
+}
+
+export function onUpdateProfileFailed(error: unknown): AnyAction {
+    return {
+        type: constants.USER_ON_UPDATE_PROFILE_FAILED,
+        error
+    };
+}
+
+// onUpdatePassword
+export function onUpdatePasswordRequested(data: IPasswordFormData, userId: string): AnyAction {
+    return {
+        type: constants.USER_ON_UPDATE_PASSWORD_REQUESTED,
+        data,
+        userId
+    };
+}
+
+export function onUpdatePasswordSucceeded(data: unknown): AnyAction {
+    return {
+        type: constants.USER_ON_UPDATE_PASSWORD_SUCCEEDED,
+        data
+    };
+}
+
+export function onUpdatePasswordFailed(error: unknown): AnyAction {
+    return {
+        type: constants.USER_ON_UPDATE_PASSWORD_FAILED,
+        error
+    };
+}
+
+// onGetCards
+export function onGetCardsRequested(userId: string): AnyAction {
+    return {
+        type: constants.USER_ON_GET_CARDS_REQUESTED,
+        userId
+    };
+}
+
+export function onGetCardsSucceeded(data: unknown): AnyAction {
+    return {
+        type: constants.USER_ON_GET_CARDS_SUCCEEDED,
+        data
+    };
+}
+
+export function onGetCardsFailed(error: unknown): AnyAction {
+    return {
+        type: constants.USER_ON_GET_CARDS_FAILED,
+        error
+    };
+}
+
+// onAddNewCard
+export function onAddNewCardRequested(data: ICard): AnyAction {
+    return {
+        type: constants.USER_ON_ADD_NEW_CARD_REQUESTED,
+        data
+    };
+}
+
+export function onAddNewCardSucceeded(data: unknown): AnyAction {
+    return {
+        type: constants.USER_ON_ADD_NEW_CARD_SUCCEEDED,
+        data
+    };
+}
+
+export function onAddNewCardFailed(error: unknown): AnyAction {
+    return {
+        type: constants.USER_ON_ADD_NEW_CARD_FAILED,
+        error
+    };
+}
+
+// onDeleteCardCard
+export function onDeleteCardCardRequested(cardId: string): AnyAction {
+    return {
+        type: constants.USER_ON_DELETE_CARD_REQUESTED,
+        cardId
+    };
+}
+
+export function onDeleteCardCardSucceeded(data: unknown): AnyAction {
+    return {
+        type: constants.USER_ON_DELETE_CARD_SUCCEEDED,
+        data
+    };
+}
+
+export function onDeleteCardCardFailed(error: unknown): AnyAction {
+    return {
+        type: constants.USER_ON_DELETE_CARD_FAILED,
         error
     };
 }

@@ -11,6 +11,8 @@ export interface UserInterface {
     userReviews: any[];
     changeReviews: boolean;
     userPhoto: any;
+    cards: ICard[];
+    changeCards: boolean;
 }
 
 export interface IUser {
@@ -30,4 +32,11 @@ export interface IJWT {
     sub: string;
     role: string;
 }
-
+export interface ICard {
+    id?: number;
+    userId: string;
+    number: string;
+    name: string;
+    expirationDate: string;
+    cvc: string;
+}

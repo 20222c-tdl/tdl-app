@@ -243,24 +243,47 @@ export function onCreateAServiceFailed(error: unknown): AnyAction {
     };
 }
 
-// onProviderPhoto
-export function onGetProviderPhotoRequested(providerId: string): AnyAction {
+// onEditAService
+export function onEditAServiceRequested(data: IServiceFormData): AnyAction {
     return {
-        type: constants.PROVIDER_ON_GET_PHOTO_REQUESTED,
-        providerId
-    };
-}
-
-export function onGetProviderPhotoSucceeded(data: unknown): AnyAction {
-    return {
-        type: constants.PROVIDER_ON_GET_PHOTO_SUCCEEDED,
+        type: constants.PROVIDER_ON_EDIT_SERVICE_REQUESTED,
         data
     };
 }
 
-export function onGetProviderPhotoFailed(error: unknown): AnyAction {
+export function onEditAServiceSucceeded(data: unknown): AnyAction {
     return {
-        type: constants.PROVIDER_ON_GET_PHOTO_FAILED,
+        type: constants.PROVIDER_ON_EDIT_SERVICE_SUCCEEDED,
+        data
+    };
+}
+
+export function onEditAServiceFailed(error: unknown): AnyAction {
+    return {
+        type: constants.PROVIDER_ON_EDIT_SERVICE_FAILED,
+        error
+    };
+}
+
+// onProviderUpdateProfile
+export function onProviderUpdateProfileRequested(data: any, userId: string): AnyAction {
+    return {
+        type: constants.PROVIDER_ON_UPDATE_PROFILE_REQUESTED,
+        data,
+        userId
+    };
+}
+
+export function onProviderUpdateProfileSucceeded(data: unknown): AnyAction {
+    return {
+        type: constants.PROVIDER_ON_UPDATE_PROFILE_SUCCEEDED,
+        data
+    };
+}
+
+export function onProviderUpdateProfileFailed(error: unknown): AnyAction {
+    return {
+        type: constants.PROVIDER_ON_UPDATE_PROFILE_FAILED,
         error
     };
 }

@@ -1,6 +1,13 @@
-import { ICard } from "views/Profile/types";
+import { ICard } from "types/user.types";
 
 export interface IAddPaymentMethodProps {
-    onSubmit: (formData: ICard) => void;
+    onSubmit: (formData: ICardFormData) => void;
     onCancel: () => void;
+}
+
+export interface ICardFormData {
+    number: string;
+    name: string;
+    expiry: string;
+    cvc: string;
 }
