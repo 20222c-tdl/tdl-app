@@ -1,8 +1,9 @@
 import { AnyAction } from 'redux';
 import { call, put, takeLatest, all } from 'redux-saga/effects';
-import { editClaim, getClaims, initializeUser, loginUser, registerClaim, signupUser, makeReservation, postComment, getProfileInfo, getReservations, cancelReservation, getReviews, leaveAReview, payReservation, getPhoto } from '../../services/user.services';
-import { onCancelReservationFailed, onCancelReservationSucceded, onEditClaimFailed, onEditClaimSucceeded, onGetAllReservationsFailed, onGetAllReservationsSucceeded, onGetProfileInfoFailed, onGetProfileInfoSucceeded, onGetUserPhotoFailed, onGetUserPhotoSucceeded, onGetUserReviewsFailed, onGetUserReviewsSucceeded, onLeaveAReviewFailed, onLeaveAReviewSucceeded, onLoginUserFailed, onLoginUserSucceeded, onMakeReservationFailed, onMakeReservationSucceeded, onPayReservationFailed, onPayReservationSucceeded, onPostCommentFailed, onPostCommentSucceeded, onRegisterAClaimFailed, onRegisterAClaimSucceeded, onSignupUserFailed, onSignupUserSucceeded, onUserGetClaimsFailed, onUserGetClaimsSucceeded, userOnInitializeFailed, userOnInitializeSucceeded } from '../actions/user.actions';
+import { editClaim, getClaims, initializeUser, loginUser, registerClaim, signupUser, makeReservation, postComment, getProfileInfo, getReservations, cancelReservation, getReviews, leaveAReview, payReservation, getPhoto, updateProfile, updatePassword, getCards, addNewCard, deleteCard } from '../../services/user.services';
+import { onAddNewCardFailed, onAddNewCardSucceeded, onCancelReservationFailed, onCancelReservationSucceded, onDeleteCardCardFailed, onDeleteCardCardSucceeded, onEditClaimFailed, onEditClaimSucceeded, onGetAllReservationsFailed, onGetAllReservationsSucceeded, onGetCardsFailed, onGetCardsSucceeded, onGetProfileInfoFailed, onGetProfileInfoSucceeded, onGetUserPhotoFailed, onGetUserPhotoSucceeded, onGetUserReviewsFailed, onGetUserReviewsSucceeded, onLeaveAReviewFailed, onLeaveAReviewSucceeded, onLoginUserFailed, onLoginUserSucceeded, onMakeReservationFailed, onMakeReservationSucceeded, onPayReservationFailed, onPayReservationSucceeded, onPostCommentFailed, onPostCommentSucceeded, onRegisterAClaimFailed, onRegisterAClaimSucceeded, onSignupUserFailed, onSignupUserSucceeded, onUpdatePasswordFailed, onUpdatePasswordSucceeded, onUpdateProfileFailed, onUpdateProfileSucceeded, onUserGetClaimsFailed, onUserGetClaimsSucceeded, userOnInitializeFailed, userOnInitializeSucceeded } from '../actions/user.actions';
 import * as constants from '../constants/user.constants';
+import * as providerConstants from '../constants/providers.constants';
 
 export function* userInitialize(action: AnyAction) {
     try {
@@ -140,10 +141,55 @@ export function* userGetPhoto(action: AnyAction) {
     }
 }
 
+export function* userUpdateProfile(action: AnyAction) {
+    try {
+        const { data } = yield call(updateProfile, action.data, action.userId);
+        yield put(onUpdateProfileSucceeded(data));
+    } catch (error) {
+        yield put(onUpdateProfileFailed(error));
+    }
+}
+
+export function* userUpdatePassword(action: AnyAction) {
+    try {
+        const { data } = yield call(updatePassword, action.data, action.userId);
+        yield put(onUpdatePasswordSucceeded(data));
+    } catch (error) {
+        yield put(onUpdatePasswordFailed(error));
+    }
+}
+
+export function* userGetCards(action: AnyAction) {
+    try {
+        const { data } = yield call(getCards, action.userId);
+        yield put(onGetCardsSucceeded(data));
+    } catch (error) {
+        yield put(onGetCardsFailed(error));
+    }
+}
+
+export function* userAddNewCard(action: AnyAction) {
+    try {
+        const { data } = yield call(addNewCard, action.data);
+        yield put(onAddNewCardSucceeded(data));
+    } catch (error) {
+        yield put(onAddNewCardFailed(error));
+    }
+}
+
+export function* userDeleteCard(action: AnyAction) {
+    try {
+        const { data } = yield call(deleteCard, action.cardId);
+        yield put(onDeleteCardCardSucceeded(data));
+    } catch (error) {
+        yield put(onDeleteCardCardFailed(error));
+    }
+}
+
 export function* watchUsers(): Generator {
     yield all([
         takeLatest(constants.USER_ON_INITIALIZE_REQUESTED, userInitialize),
-        takeLatest([constants.USER_ON_GET_PROFILE_INFO_REQUESTED, constants.USER_ON_LOGIN_SUCCEEDED], userGetProfileInfo),
+        takeLatest([constants.USER_ON_GET_PROFILE_INFO_REQUESTED, constants.USER_ON_LOGIN_SUCCEEDED, providerConstants.PROVIDER_ON_LOGIN_SUCCEEDED], userGetProfileInfo),
         takeLatest(constants.USER_ON_SIGN_UP_REQUESTED, userSignUp),
         takeLatest(constants.USER_ON_LOGIN_REQUESTED, userLogin),
         takeLatest(constants.USER_ON_REGISTER_A_CLAIM_REQUESTED, userRegisterClaim),
@@ -157,6 +203,10 @@ export function* watchUsers(): Generator {
         takeLatest(constants.USER_ON_LEAVE_A_REVIEW_REQUESTED, userLeaveAReview),
         takeLatest(constants.USER_ON_PAY_RESERVATION_REQUESTED, userPayReservation),
         takeLatest(constants.USER_ON_GET_PHOTO_REQUESTED, userGetPhoto),
-
+        takeLatest(constants.USER_ON_UPDATE_PROFILE_REQUESTED, userUpdateProfile),
+        takeLatest(constants.USER_ON_UPDATE_PASSWORD_REQUESTED, userUpdatePassword),
+        takeLatest(constants.USER_ON_GET_CARDS_REQUESTED, userGetCards),
+        takeLatest(constants.USER_ON_ADD_NEW_CARD_REQUESTED, userAddNewCard),
+        takeLatest(constants.USER_ON_DELETE_CARD_REQUESTED, userDeleteCard),
     ])
 }

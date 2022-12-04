@@ -1,38 +1,82 @@
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { onSearchNameRequested } from 'redux/actions/providers.actions';
+import { onProviderUpdateProfileRequested, onSearchNameRequested } from 'redux/actions/providers.actions';
+import { onAddNewCardRequested, onDeleteCardCardRequested, onGetCardsRequested, onUpdatePasswordRequested, onUpdateProfileRequested } from 'redux/actions/user.actions';
+import { ICard } from 'types/user.types';
+import { ICardFormData } from 'views/Profile/components/AddPaymentMethod/types';
+import { IPasswordFormData } from 'views/Profile/components/PasswordForm/types';
+import { IPersonalInfoFormData } from 'views/Profile/components/PersonalInfoForm/types';
 import Profile from 'views/Profile/Profile';
-import { ICard } from 'views/Profile/types';
 import useTypedSelector from '../hooks/useTypedSelector';
 import Layout from '../views/Layout/Layout';
 
 
 const ProfileContainer: FunctionComponent = () => {
     const dispatch = useDispatch();
-    const { user } = useTypedSelector((state) => state.user);
+    const { user, cards, changeCards } = useTypedSelector((state) => state.user);
 
-    const cards = [{
-        id: 3,
-        number: "454331139864",
-        name: "Rocio Tarda",
-        expiry: "17/12/26",
-        cvc: "123",
-    }]
+    useEffect(() => {
+        if (user) {
+            dispatch(onGetCardsRequested(user.id));
+        }
+    }, [dispatch, changeCards, user])
 
-    const onEditProfileClick = (formData: any) => {
-        //dispatch(onUpdateProfileRequested(formData, data.id));
+
+    const getBase64Picture = async (file: any) => {
+        return new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = function () {
+                resolve(reader.result);
+            }
+        });
     }
 
-    const onEditPassClick = (formData: any) => {
-        //dispatch(onUpdatePasswordRequested(formData, data.id));
+    const onEditProfileClick = async (formData: any) => {
+        if (user.role === "user") {
+            const image: any = await getBase64Picture(formData.base64Picture[0]);
+            const data = {
+                firstName: formData.firstName,
+                lastName: formData.lastName,
+                address: formData.address,
+                phoneNumber: formData.phoneNumber,
+                photo: image.split(',')[1],
+            }
+        dispatch(onUpdateProfileRequested(data, user.id));
+        } else {
+            const image: any = await getBase64Picture(formData.base64Picture[0]);
+            const data = {
+                firstName: formData.firstName,
+                lastName: formData.lastName,
+                identityNumber: formData.identityNumber,
+                phoneNumber: formData.phoneNumber,
+                photo: image.split(',')[1],
+            }
+            dispatch(onProviderUpdateProfileRequested(data, user.id));
+        }
     }
 
-    const onRemoveCard = (cardId: number) => {
-        //dispatch(onDeleteCardRequested(data.id, cardId));
+    const onEditPassClick = (formData: IPasswordFormData) => {
+        const data = {
+            oldPassword: formData.oldPassword,
+            newPassword: formData.newPassword
+        }
+        dispatch(onUpdatePasswordRequested(data, user.id));
     }
 
-    const onAddCard = (formData: ICard) => {
-        //dispatch(onAddNewCardRequested(data.id, formData));
+    const onRemoveCard = (cardId: string) => {
+        dispatch(onDeleteCardCardRequested(cardId));
+    }
+
+    const onAddCard = (formData: ICardFormData) => {
+        const data = {
+            userId: user.id,
+            number: formData.number,
+            name: formData.name,
+            expirationDate: formData.expiry,
+            cvc: formData.cvc
+        }
+        dispatch(onAddNewCardRequested(data));
     }
 
     const onSearchNav = (searchName: string) => {
@@ -42,7 +86,7 @@ const ProfileContainer: FunctionComponent = () => {
     return (
         <Layout name={user && user.firstName}
             onSearchNav={onSearchNav}>
-            <Profile
+            {user && <Profile
                 user={user}
                 onEditProfileClick={onEditProfileClick}
                 onEditPassClick={onEditPassClick}
@@ -50,6 +94,7 @@ const ProfileContainer: FunctionComponent = () => {
                 onRemoveCard={onRemoveCard}
                 onAddCard={onAddCard}
             />
+            }
         </Layout>
     )
 }

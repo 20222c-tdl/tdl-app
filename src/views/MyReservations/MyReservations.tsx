@@ -52,7 +52,7 @@ const MyReservations: FunctionComponent<MyReservationsProps> = (props: MyReserva
                                 <Cards
                                     number={card.number || ''}
                                     name={card.name || ''}
-                                    expiry={card.expiry || ''}
+                                    expiry={card.expirationDate || ''}
                                     cvc={card.cvc || ''}
                                 />
                             </Card>

@@ -49,7 +49,7 @@ const AddPaymentMethod = (props: IAddPaymentMethodProps) => {
                         <Field
                             render={Input}
                             label="Valid thru"
-                            name="expire"
+                            name="expiry"
                             validate={requiredValidation}
                             type="text"
                             pattern="\d\d/\d\d"
@@ -61,7 +61,7 @@ const AddPaymentMethod = (props: IAddPaymentMethodProps) => {
                         <Field
                             render={Input}
                             label="CVC"
-                            name="cvv"
+                            name="cvc"
                             validate={requiredValidation}
                             type="text"
                             pattern="\d{3,4}"

@@ -1,18 +1,12 @@
-import { IUser } from "types/user.types";
+import { ICard, IUser } from "types/user.types";
+import { ICardFormData } from "./components/AddPaymentMethod/types";
 
 export interface IProfileProps {
     user: IUser;
     onEditProfileClick: (formData: any) => void;
     onEditPassClick: (formData: any) => void;
     cards: ICard[];
-    onRemoveCard: (cardId: number) => void;
-    onAddCard: (card: ICard) => void;
+    onRemoveCard: (cardId: string) => void;
+    onAddCard: (card: ICardFormData) => void;
 }
 
-export interface ICard {
-    id?: number;
-    number: string;
-    name: string;
-    expiry: string;
-    cvc: string;
-}

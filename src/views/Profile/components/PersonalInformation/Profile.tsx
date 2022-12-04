@@ -30,7 +30,7 @@ const PersonalInfo: FunctionComponent<IPersonalInfoProps> = (props: IPersonalInf
     const [isPersonalInfoCollapsed, setIsPersonalInfoCollapsed] = useState(true);
     const [isPasswordCollapsed, setIsPasswordCollapsed] = useState(true);
 
-    const submitForm = (formData: IPersonalInfoFormData) => {
+    const submitForm = (formData: any) => {
         setIsEditable(false);
         onSubmit(formData);
     }
@@ -40,29 +40,61 @@ const PersonalInfo: FunctionComponent<IPersonalInfoProps> = (props: IPersonalInf
         onSubmitPassword(formData);
     }
 
-    const renderView = () => (
-        <View>
-            <ButtonContainer>
-                <Button onClick={() => setIsEditable(true)}> Edit</Button>
-            </ButtonContainer>
-            <RowDiv>
-                <Label>Name:</Label>
-                <Value>{user.firstName}</Value>
-            </RowDiv>
-            <RowDiv>
-                <Label>Last Name:</Label>
-                <Value>{user.lastName}</Value>
-            </RowDiv>
-            <RowDiv>
-                <Label>Email:</Label>
-                <Value>{user.email}</Value>
-            </RowDiv>
-            <RowDiv>
-                <Label>Phone number:</Label>
-                <Value>{user.phoneNumber}</Value>
-            </RowDiv>
-        </View>
-    )
+    const renderView = () => {
+        return user.role === "user"
+            ?
+            <View>
+                <ButtonContainer>
+                    <Button onClick={() => setIsEditable(true)}> Edit</Button>
+                </ButtonContainer>
+                <RowDiv>
+                    <Label>Name:</Label>
+                    <Value>{user.firstName}</Value>
+                </RowDiv>
+                <RowDiv>
+                    <Label>Last Name:</Label>
+                    <Value>{user.lastName}</Value>
+                </RowDiv>
+                <RowDiv>
+                    <Label>Email:</Label>
+                    <Value>{user.email}</Value>
+                </RowDiv>
+                <RowDiv>
+                    <Label>Address:</Label>
+                    <Value>{user.address}</Value>
+                </RowDiv>
+                <RowDiv>
+                    <Label>Phone number:</Label>
+                    <Value>{user.phoneNumber}</Value>
+                </RowDiv>
+            </View>
+            :
+            <View>
+                <ButtonContainer>
+                    <Button onClick={() => setIsEditable(true)}> Edit</Button>
+                </ButtonContainer>
+                <RowDiv>
+                    <Label>Name:</Label>
+                    <Value>{user.firstName}</Value>
+                </RowDiv>
+                <RowDiv>
+                    <Label>Last Name:</Label>
+                    <Value>{user.lastName}</Value>
+                </RowDiv>
+                <RowDiv>
+                    <Label>Identity number:</Label>
+                    <Value>{user.identityNumber}</Value>
+                </RowDiv>
+                <RowDiv>
+                    <Label>Email:</Label>
+                    <Value>{user.email}</Value>
+                </RowDiv>
+                <RowDiv>
+                    <Label>Phone number:</Label>
+                    <Value>{user.phoneNumber}</Value>
+                </RowDiv>
+            </View>
+    }
 
     const renderPasswordView = () => (
         <>

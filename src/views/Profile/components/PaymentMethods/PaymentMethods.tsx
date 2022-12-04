@@ -50,8 +50,8 @@ const PaymentMethods: FunctionComponent<IPaymentMethodsProps> = (props: IPayment
                                     <Cards
                                         number={card.number || ''}
                                         name={card.name || ''}
-                                        expiry={card.expire || ''}
-                                        cvc={card.cvv || ''}
+                                        expiry={card.expirationDate || ''}
+                                        cvc={card.cvc || ''}
                                         preview={true}
                                         issuer={getCreditCardType(card.number)}
                                     />

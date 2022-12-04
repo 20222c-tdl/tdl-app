@@ -21,7 +21,7 @@ import { getCookie } from 'helpers/cookies';
 import MyReservationsContainer from 'containers/MyReservationsContainer';
 import ProfileContainer from 'containers/ProfileContainer';
 import useTypedSelector from 'hooks/useTypedSelector';
-import { onGetPProfileInfoRequested, onGetProviderPhotoRequested } from 'redux/actions/providers.actions';
+import { onGetPProfileInfoRequested, onGetProviderInfoRequested } from 'redux/actions/providers.actions';
 import ServicesContainer from 'containers/ServicesContainer';
 import ReviewsContainer from 'containers/ReviewsContainer';
 import PlacesManagementContainer from 'containers/PlacesManagementContainer';
@@ -51,7 +51,7 @@ function App() {
       dispatch(onGetUserPhotoRequested(user.id));
     }
     else if (user && user.role === "provider") {
-      dispatch(onGetProviderPhotoRequested(user.id));
+      dispatch(onGetProviderInfoRequested(user.id));
     }
   }, [user])
 

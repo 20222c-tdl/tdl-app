@@ -1,7 +1,8 @@
-import { ICard } from "views/Profile/types";
+import { ICard } from "types/user.types";
+import { ICardFormData } from "../AddPaymentMethod/types";
 
 export interface IPaymentMethodsProps {
-    cards: any | null;
-    onRemoveCard: (cardId: number) => void;
-    onAddCard: (card: ICard) => void;
+    cards: ICard[] | null;
+    onRemoveCard: (cardId: string) => void;
+    onAddCard: (card: ICardFormData) => void;
 }

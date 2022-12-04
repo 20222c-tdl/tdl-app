@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { onSearchNameRequested } from 'redux/actions/providers.actions';
-import { onCancelReservationRequested, onGetAllReservationsRequested, onGetUserReviewsRequested, onLeaveAReviewRequested, onPayReservationRequested } from 'redux/actions/user.actions';
+import { onCancelReservationRequested, onGetAllReservationsRequested, onGetCardsRequested, onGetUserReviewsRequested, onLeaveAReviewRequested, onPayReservationRequested } from 'redux/actions/user.actions';
 import MyReservations from 'views/MyReservations/MyReservations';
 import useTypedSelector from '../hooks/useTypedSelector';
 import Layout from '../views/Layout/Layout';
@@ -9,7 +9,7 @@ import Layout from '../views/Layout/Layout';
 
 const MyReservationsContainer: FunctionComponent = () => {
     const dispatch = useDispatch();
-    const { user, reservations, userReviews, changeReviews, changeReservations } = useTypedSelector((state) => state.user);
+    const { user, reservations, userReviews, changeReviews, changeReservations, cards } = useTypedSelector((state) => state.user);
 
     const [reservationId, setReservationId] = useState("");
     const [providerId, setProviderId] = useState("");
@@ -19,18 +19,15 @@ const MyReservationsContainer: FunctionComponent = () => {
         if (user) {
             dispatch(onGetAllReservationsRequested(user.id))
             dispatch(onGetUserReviewsRequested(user.id))
-            //dispatch(onGetUserCardsRequested(user.id))
         }
     }, [dispatch, user, changeReviews, changeReservations]);
 
+    useEffect(() => {
+        if (user) {
+            dispatch(onGetCardsRequested(user.id));
+        }
+    }, [dispatch, user])
 
-    const cards = [{
-        id: 1,
-        number: "123443520945",
-        name: "Rocio Tarda",
-        expiry: "12/28",
-        cvc: "123",
-    }]
 
     const onLeaveAReview = (formData: any) => {
         const data = {

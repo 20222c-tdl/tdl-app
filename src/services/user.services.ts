@@ -1,4 +1,5 @@
 import { AxiosResponse } from "axios";
+import { ICard } from "types/user.types";
 import { IClaimFormData } from "views/Claims/types";
 import { ILoginFormData } from "../views/Login/types";
 import { ISignupUserFormData } from "../views/SignupUser/types";
@@ -98,6 +99,31 @@ export async function payReservation(reservationId: string): Promise<AxiosRespon
 }
 
 export async function getPhoto(userId: string): Promise<AxiosResponse> {
-    const response = await get(`/user/user/profile/${userId}`);
+    const response = await get(`/users/${userId}/profile`);
+    return response;
+}
+
+export async function updateProfile(data: any, userId: string): Promise<AxiosResponse> {
+    const response = await patch(`/users/${userId}`, data);
+    return response;
+}
+
+export async function updatePassword(data: any, userId: string): Promise<AxiosResponse> {
+    const response = await patch(`/users/password/${userId}`, data);
+    return response;
+}
+
+export async function getCards(userId: string): Promise<AxiosResponse> {
+    const response = await get(`/credit-card/user/${userId}`);
+    return response;
+}
+
+export async function addNewCard(data: ICard): Promise<AxiosResponse> {
+    const response = await post(`/credit-card`, data);
+    return response;
+}
+
+export async function deleteCard(cardId: string): Promise<AxiosResponse> {
+    const response = await requestDelete(`/credit-card/${cardId}`);
     return response;
 }
