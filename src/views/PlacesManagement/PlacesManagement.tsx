@@ -4,7 +4,7 @@ import { requiredValidation } from '../../helpers/validations';
 import { Edit } from '@mui/icons-material';
 import { Modal } from 'components/Modal/Modal';
 import { IPlaceFormData, IPlacesProps } from './types';
-import { Arrow, Button, ButtonContainer, ColumnDiv, Container, CustomForm, Description, EditDiv, Place, PlacesContainer, RowDiv, Subtitle, Title, Text, Box, EmptyContainer, EmptyPlacesIcon } from './styles';
+import { Arrow, Button, ButtonContainer, ColumnDiv, Container, CustomForm, Description, EditDiv, Place, PlacesContainer, RowDiv, Subtitle, Title, Text, Box, EmptyContainer, EmptyPlacesIcon, Label } from './styles';
 import PlaceInfoForm from './components/PlaceInfoForm';
 import Input from 'components/Input/Input';
 
@@ -56,7 +56,19 @@ const PlacesManagement: FunctionComponent<IPlacesProps> = (props: IPlacesProps) 
                                             type="text"
                                         />
                                     </div>
-
+                                    <div>
+                                        <Label>Upload a photo of the place</Label>
+                                        <Field name="base64Picture" validate={requiredValidation}>
+                                            {({ input: { value, onChange, ...input } }) => (
+                                                <input
+                                                    {...input}
+                                                    type="file"
+                                                    onChange={({ target }) => onChange(target.files)} // instead of the default target.value
+                                                    {...props}
+                                                />
+                                            )}
+                                        </Field>
+                                    </div>
                                 </Container>
                                 <ButtonContainer>
                                     <Button type="submit">Create place</Button>

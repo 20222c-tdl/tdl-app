@@ -1,6 +1,7 @@
 import { AxiosResponse } from "axios";
-import { get, post, put } from "./api";
+import { get, patch, post, put } from "./api";
 import { ISignupCommunityFormData } from "../views/SignupCommunity/types";
+import { IPlaceFormData } from "views/PlacesManagement/types";
 
 export async function signupCommunity(formData: ISignupCommunityFormData): Promise<AxiosResponse> {
     const response = await post("/communities", formData);

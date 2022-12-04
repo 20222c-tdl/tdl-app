@@ -1,4 +1,5 @@
 import { AnyAction } from 'redux';
+import { IPlaceFormData } from 'views/PlacesManagement/types';
 import { ILoginFormData } from '../../views/Login/types';
 import { ISignupCommunityFormData } from "../../views/SignupCommunity/types";
 import * as constants from '../constants/community.constants';

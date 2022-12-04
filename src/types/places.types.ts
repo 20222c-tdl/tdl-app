@@ -11,4 +11,5 @@ export interface IPlace {
     id: string;
     name: string;
     description: string;
+    photo: any;
 }

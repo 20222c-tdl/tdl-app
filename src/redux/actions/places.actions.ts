@@ -1,4 +1,5 @@
 import { AnyAction } from 'redux';
+import { IPlace } from 'types/places.types';
 import { IPlaceFormData } from 'views/PlacesManagement/types';
 import * as constants from '../constants/places.constants';
 
@@ -42,6 +43,28 @@ export function onCreateAPlaceSucceeded(data: unknown): AnyAction {
 export function onCreateAPlaceFailed(error: unknown): AnyAction {
     return {
         type: constants.ON_CREATE_PLACE_FAILED,
+        error
+    };
+}
+
+// onEditAPlace
+export function onEditAPlaceRequested(data: any): AnyAction {
+    return {
+        type: constants.ON_EDIT_A_PLACE_REQUESTED,
+        data
+    };
+}
+
+export function onEditAPlaceSucceeded(data: unknown): AnyAction {
+    return {
+        type: constants.ON_EDIT_A_PLACE_SUCCEEDED,
+        data
+    };
+}
+
+export function onEditAPlaceFailed(error: unknown): AnyAction {
+    return {
+        type: constants.ON_EDIT_A_PLACE_FAILED,
         error
     };
 }

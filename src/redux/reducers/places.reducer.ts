@@ -18,6 +18,7 @@ const placesReducer: Reducer = (state = initialState, action: any) => {
                 loading: true
             }
         case constants.ON_CREATE_PLACE_REQUESTED:
+        case constants.ON_EDIT_A_PLACE_REQUESTED:
             return {
                 ...state,
                 loading: true,
@@ -30,6 +31,7 @@ const placesReducer: Reducer = (state = initialState, action: any) => {
                 places: data
             };
         case constants.ON_CREATE_PLACE_SUCCEEDED:
+        case constants.ON_EDIT_A_PLACE_SUCCEEDED:
             return {
                 ...state,
                 loading: false,
@@ -37,6 +39,7 @@ const placesReducer: Reducer = (state = initialState, action: any) => {
             };
         case constants.ON_GET_PLACES_FAILED:
         case constants.ON_CREATE_PLACE_FAILED:
+        case constants.ON_EDIT_A_PLACE_FAILED:
             return {
                 ...state,
                 loading: false,

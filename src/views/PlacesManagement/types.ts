@@ -6,9 +6,12 @@ export interface IPlacesProps {
 }
 
 export interface IPlaceFormData {
-    communityId?: string
+    id?: string;
+    communityId?: string;
     name: string;
     description: string;
+    base64Picture?: any;
+    photo: any;
 }
 
 export interface IPlaceInfoFormdataProps {
