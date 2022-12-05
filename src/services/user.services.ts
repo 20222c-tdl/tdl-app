@@ -51,8 +51,8 @@ export async function getClaims(userId: string): Promise<AxiosResponse> {
     )
 }
 
-export async function editClaim(formData: IClaimFormData): Promise<AxiosResponse> {
-    const response = await patch(`/claims/${formData.id}`, formData);
+export async function editClaim(formData: IClaimFormData, claimId: any): Promise<AxiosResponse> {
+    const response = await patch(`/claims/${claimId}`, formData);
     return (
         response
     )

@@ -62,7 +62,7 @@ export function* userGetClaims(action: AnyAction) {
 
 export function* userEditClaim(action: AnyAction) {
     try {
-        const data: unknown = yield call(editClaim, action.formData);
+        const data: unknown = yield call(editClaim, action.formData, action.claimId);
         yield put(onEditClaimSucceeded(data));
     } catch (error) {
         yield put(onEditClaimFailed(error));

@@ -145,10 +145,11 @@ export function onUserGetClaimsFailed(error: unknown): AnyAction {
 }
 
 // onEditClaim
-export function onEditClaimRequested(formData: IClaimFormData): AnyAction {
+export function onEditClaimRequested(formData: any, claimId: any): AnyAction {
     return {
         type: constants.USER_ON_EDIT_CLAIM_REQUESTED,
-        formData
+        formData,
+        claimId
     };
 }
 

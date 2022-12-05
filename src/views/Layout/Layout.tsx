@@ -1,5 +1,5 @@
 import React, { FunctionComponent, useState } from 'react';
-import LogoImg from 'assets/denunciar.png';
+import LogoImg from 'assets/communityManager.png';
 import history from '../../helpers/history';
 
 import {
@@ -44,7 +44,7 @@ const Layout: FunctionComponent<ILayoutProps> = (props: ILayoutProps) => {
             <TopNav>
                 <RowDiv onClick={() => history.push('/home')}>
                     <Logo src={LogoImg} alt="logo" />
-                    <p>Denunci.AR</p>
+                    <p>Community manager</p>
                 </RowDiv>
                 {isUser &&
                     <SearchContainer>

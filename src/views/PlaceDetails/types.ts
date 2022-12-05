@@ -13,5 +13,5 @@ export interface IReservationPlaceFormData {
     placeId: string | undefined;
     userId: string;
     startingDate: string;
-    endingDate: string;
+    finishingDate: string;
 }

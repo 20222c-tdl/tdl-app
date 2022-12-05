@@ -3,13 +3,12 @@ import { FunctionComponent, useState } from 'react';
 import { Form, Field } from 'react-final-form';
 import { requiredValidation } from '../../helpers/validations';
 import { IClaimFormData, IClaimsProps } from './types';
-import { Arrow, Box, Button, ButtonContainer, Claim, ClaimsContainer, Container, CustomForm, RowDiv, Subtitle, Title, Text, ColumnDiv, Description, EditDiv, Status, StatusText, CommentsButton, CommentsDiv, Comment, CommentButtonContainer, CommentCustomForm, CommentButton, LeaveACommentDiv, TimeText, EmptyContainer, ClaimsIcon } from './styles';
+import { Arrow, Box, Button, ButtonContainer, Claim, ClaimsContainer, Container, CustomForm, RowDiv, Subtitle, Title, Text, ColumnDiv, Description, EditDiv, Status, StatusText, CommentsButton, CommentsDiv, Comment, TimeText, EmptyContainer, ClaimsIcon } from './styles';
 import { Edit } from '@mui/icons-material';
 import CommentIcon from '@mui/icons-material/Comment';
 import { Modal } from 'components/Modal/Modal';
 import ClaimInfoForm from './components/ClaimInfoForm';
 import CommentForm from './components/CommentForm';
-import COLORS from 'helpers/colors';
 import Input from 'components/Input/Input';
 
 
@@ -24,13 +23,6 @@ const Claims: FunctionComponent<IClaimsProps> = (props: IClaimsProps) => {
     const submitForm = (formData: IClaimFormData) => {
         setIsEditable(false);
         onEditClaim(formData);
-    }
-
-    const onHandlePostComment = (formData: any) => {
-        const form = {
-            ...formData,
-            claimId
-        }
     }
 
     const handleNameStatus = (status: any) => {
@@ -182,14 +174,12 @@ const Claims: FunctionComponent<IClaimsProps> = (props: IClaimsProps) => {
                                 >
                                     <ClaimInfoForm onSubmit={submitForm} claim={currentClaim} goBack={() => setIsEditable(false)} />
                                 </Modal>
-
                             </>
                         )
                     })}
 
                 </ClaimsContainer>
             }
-
         </>
     )
 

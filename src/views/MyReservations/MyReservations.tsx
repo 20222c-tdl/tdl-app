@@ -145,7 +145,7 @@ const MyReservations: FunctionComponent<MyReservationsProps> = (props: MyReserva
             {leaveAReviewView}
             <ReservationContainer>
                 <TitleContainer> My reservations </TitleContainer>
-                <SubtitleContainer> My services </SubtitleContainer>
+                <SubtitleContainer> My reserved services</SubtitleContainer>
                 {reservations && reservations.map((reservation: any) => {
                     const isReviewed = userReviews && userReviews.find((review: any) => {
                         return review.hiredServicesId === reservation.hiredServices.id
@@ -239,18 +239,18 @@ const MyReservations: FunctionComponent<MyReservationsProps> = (props: MyReserva
                         <EmptyText isBold>There are no services reservations yet</EmptyText>
                     </EmptyContainer>
                 }
-                <SubtitleContainer> My places </SubtitleContainer>
+                <SubtitleContainer> My reserved places </SubtitleContainer>
                 {placesReservations && placesReservations.map((placeReservation: any) => {
                     return (
-                        <Reservation key={placeReservation.id}>
-                            <ReservationTitles> Reservation date: {placeReservation.startingDate.split('T')[0] + ' ' + placeReservation.startingDate.split('T')[1].split(':')[0] + ':00'}</ReservationTitles>
+                        <Reservation key={placeReservation.reservation.id}>
+                            <ReservationTitles> Reservation date: {placeReservation.reservation.startingDate.split('T')[0] + ' , ' + placeReservation.reservation.startingDate.split('T')[1].split(':')[0] + ':00' + ' - ' + placeReservation.reservation.finishingDate.split('T')[1].split(':')[0] + ':00hs'}</ReservationTitles>
                             <ProviderInfo>
                                 <ProviderTitle> Place's information</ProviderTitle>
                                 <RowDiv>
-                                    <CustomProviderImg src={`data:image/jpeg;base64,${placeReservation.photo}`} alt="Image" />
+                                    <CustomProviderImg src={`data:image/jpeg;base64,${placeReservation.place.photo}`} alt="Image" />
                                     <ColumnProviderDescription>
-                                        <ProviderUsername>{placeReservation.name}</ProviderUsername>
-                                        <ProviderData>{placeReservation.place.description}, </ProviderData>
+                                        <ProviderUsername>{placeReservation.place.name}</ProviderUsername>
+                                        <ProviderData>{placeReservation.place.description} </ProviderData>
                                     </ColumnProviderDescription>
                                 </RowDiv>
                             </ProviderInfo>

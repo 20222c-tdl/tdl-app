@@ -3,7 +3,7 @@ import { Form, Field } from 'react-final-form';
 import Input from '../../components/Input/Input';
 import { requiredValidation } from '../../helpers/validations';
 import { Edit } from '@mui/icons-material';
-import { Arrow, Box, Button, ButtonContainer, ColumnDiv, Container, CustomForm, RowDiv, Service, ServicesContainer, Subtitle, Title, Text, EditDiv, Description } from './styles';
+import { Arrow, Box, Button, ButtonContainer, ColumnDiv, Container, CustomForm, RowDiv, Service, ServicesContainer, Subtitle, Title, Text, EditDiv, Description, EmptyContainer, EmptyIcon } from './styles';
 import { IServiceFormData, IServicesProps } from './types';
 import { Modal } from 'components/Modal/Modal';
 import ServiceInfoForm from './components/ServiceInfoForm';
@@ -109,7 +109,10 @@ const Services: FunctionComponent<IServicesProps> = (props: IServicesProps) => {
             }
             {(providerServices && !providerServices.length)
                 ?
-                <Title>You do not have any service</Title>
+                <EmptyContainer>
+                    <EmptyIcon />
+                    <Title>You do not have any service</Title>
+                </EmptyContainer>
                 :
                 <ServicesContainer>
                     <Title>Your services </Title>
