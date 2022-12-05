@@ -10,6 +10,7 @@ const initialState = {
     claims: null,
     changeClaimsList: false,
     reservations: null,
+    placesReservations: null,
     changeReservations: false,
     userReviews: null,
     changeReviews: false,
@@ -35,6 +36,7 @@ const userReducer: Reducer = (state = {}, action) => {
         case providersConstants.PROVIDER_ON_UPDATE_PROFILE_REQUESTED:
         case constants.USER_ON_UPDATE_PASSWORD_REQUESTED:
         case constants.USER_ON_GET_CARDS_REQUESTED:
+        case constants.USER_ON_GET_PLACES_RESERVATIONS_REQUESTED:
             return {
                 ...state,
                 loading: true
@@ -145,6 +147,12 @@ const userReducer: Reducer = (state = {}, action) => {
                 loading: true,
                 changeCards: true,
             }
+        case constants.USER_ON_GET_PLACES_RESERVATIONS_SUCCEEDED:
+            return {
+                ...state,
+                loading: true,
+                placesReservations: data,
+            }
         case constants.USER_ON_LOGIN_FAILED:
         case constants.USER_ON_LOGIN_SUCCEEDED:
         case constants.USER_ON_INITIALIZE_FAILED:
@@ -170,6 +178,7 @@ const userReducer: Reducer = (state = {}, action) => {
         case constants.USER_ON_GET_CARDS_FAILED:
         case constants.USER_ON_ADD_NEW_CARD_FAILED:
         case constants.USER_ON_DELETE_CARD_FAILED:
+        case constants.USER_ON_GET_PLACES_RESERVATIONS_FAILED:
             return {
                 ...state,
                 loading: false

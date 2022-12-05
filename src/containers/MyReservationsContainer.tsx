@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { onSearchNameRequested } from 'redux/actions/providers.actions';
-import { onCancelReservationRequested, onGetAllReservationsRequested, onGetCardsRequested, onGetUserReviewsRequested, onLeaveAReviewRequested, onPayReservationRequested } from 'redux/actions/user.actions';
+import { onCancelReservationRequested, onGetAllReservationsRequested, onGetCardsRequested, onGetPlacesReservationsRequested, onGetUserReviewsRequested, onLeaveAReviewRequested, onPayReservationRequested } from 'redux/actions/user.actions';
 import MyReservations from 'views/MyReservations/MyReservations';
 import useTypedSelector from '../hooks/useTypedSelector';
 import Layout from '../views/Layout/Layout';
@@ -9,7 +9,7 @@ import Layout from '../views/Layout/Layout';
 
 const MyReservationsContainer: FunctionComponent = () => {
     const dispatch = useDispatch();
-    const { user, reservations, userReviews, changeReviews, changeReservations, cards } = useTypedSelector((state) => state.user);
+    const { user, reservations, userReviews, changeReviews, changeReservations, cards, placesReservations } = useTypedSelector((state) => state.user);
 
     const [reservationId, setReservationId] = useState("");
     const [providerId, setProviderId] = useState("");
@@ -19,6 +19,7 @@ const MyReservationsContainer: FunctionComponent = () => {
         if (user) {
             dispatch(onGetAllReservationsRequested(user.id))
             dispatch(onGetUserReviewsRequested(user.id))
+            dispatch(onGetPlacesReservationsRequested(user.id))
         }
     }, [dispatch, user, changeReviews, changeReservations]);
 
@@ -66,6 +67,7 @@ const MyReservationsContainer: FunctionComponent = () => {
                 cards={cards}
                 setSelectedCard={setSelectedCard}
                 selectedCard={selectedCard}
+                placesReservations={placesReservations}
             />
         </Layout>
     )

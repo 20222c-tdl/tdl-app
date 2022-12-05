@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import history from '../../helpers/history';
-import { ColumnDiv, DescriptionText, EmptyContainer, Place, PlaceIcon, PlacesContainer, PlaceText, TitleContainer } from './styles';
+import { ColumnDiv, CustomPlaceImg, DescriptionText, EmptyContainer, Place, PlaceIcon, PlacesContainer, PlaceText, RowDiv, TitleContainer } from './styles';
 import { IPlacesProps } from './types';
 
 const Places: FunctionComponent<IPlacesProps> = (props: IPlacesProps) => {
@@ -15,8 +15,13 @@ const Places: FunctionComponent<IPlacesProps> = (props: IPlacesProps) => {
                         {places && places.map((place) => {
                             return (
                                 <Place key={place.id} onClick={() => history.push(`/place/${place.id}`)}>
-                                    <PlaceText isBold>{place.name}</PlaceText>
-                                    <DescriptionText>{place.description}</DescriptionText>
+                                    <RowDiv>
+                                        <CustomPlaceImg src={`data:image/jpeg;base64,${place.photo}`} alt="Image" />
+                                        <ColumnDiv>
+                                            <PlaceText isBold>{place.name}</PlaceText>
+                                            <DescriptionText>{place.description}</DescriptionText>
+                                        </ColumnDiv>
+                                    </RowDiv>
                                 </Place>
                             )
                         })}

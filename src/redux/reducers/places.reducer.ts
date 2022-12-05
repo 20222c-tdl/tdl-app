@@ -6,6 +6,7 @@ const initialState = {
     places: [],
     loading: false,
     changePlaces: false,
+    placeData: null,
 }
 
 const placesReducer: Reducer = (state = initialState, action: any) => {
@@ -13,6 +14,8 @@ const placesReducer: Reducer = (state = initialState, action: any) => {
 
     switch (type) {
         case constants.ON_GET_PLACES_REQUESTED:
+        case constants.ON_GET_PLACE_INFO_REQUESTED:
+        case constants.ON_MAKE_PLACE_RESERVATION_REQUESTED:
             return {
                 ...state,
                 loading: true
@@ -37,9 +40,18 @@ const placesReducer: Reducer = (state = initialState, action: any) => {
                 loading: false,
                 changePlaces: true
             };
+        case constants.ON_GET_PLACE_INFO_SUCCEEDED:
+            return {
+                ...state,
+                loading: false,
+                placeData: data
+            };
         case constants.ON_GET_PLACES_FAILED:
         case constants.ON_CREATE_PLACE_FAILED:
         case constants.ON_EDIT_A_PLACE_FAILED:
+        case constants.ON_GET_PLACE_INFO_FAILED:
+        case constants.ON_MAKE_PLACE_RESERVATION_SUCCEEDED:
+        case constants.ON_MAKE_PLACE_RESERVATION_FAILED:
             return {
                 ...state,
                 loading: false,

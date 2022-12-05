@@ -1,4 +1,5 @@
 import { AxiosResponse } from "axios";
+import { IReservationPlaceFormData } from "views/PlaceDetails/types";
 import { IPlaceFormData } from "views/PlacesManagement/types";
 import { post, get, patch, requestDelete } from "./api";
 
@@ -13,4 +14,12 @@ export function onCreatePlace(data: IPlaceFormData) {
 export async function onEditAPlace(data: any): Promise<AxiosResponse> {
     const response = await patch(`/places/${data.id}`, data);
     return response;
+}
+
+export function onGetPlaceData(placeId: string) {
+    return get(`/places/${placeId}`)
+}
+
+export function onPostAReservation(data: IReservationPlaceFormData) {
+    return post(`/place-reservation`, data)
 }

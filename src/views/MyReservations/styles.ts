@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 import COLORS from '../../helpers/colors';
 import EventBusyIcon from '@mui/icons-material/EventBusy';
+import OtherHousesIcon from '@mui/icons-material/OtherHouses';
 
 export const Container = styled.div`
   display: flex;
@@ -30,7 +31,17 @@ export const TitleContainer = styled.div`
   font-size: 30px;
   padding: 10px;
   width: 100%;
-;`
+`;
+
+export const SubtitleContainer = styled.div`
+  border-bottom: 1px solid ${COLORS.grayAlto};
+  text-align: center;
+  font-weight: bold ;
+  font-size: 25px;
+  margin-top: 20px;
+  padding: 10px;
+  width: 80%;
+`;
 
 export const Reservation = styled.div`
     display: flex;
@@ -335,4 +346,10 @@ export const CustomButton = styled.div`
         color: ${COLORS.grayPlaceholder};
         border: 1px solid ${COLORS.grayPlaceholder};
     `};
+`;
+
+
+export const PlaceIcon = styled(OtherHousesIcon)`
+    width: 150px !important;
+    height: 150px !important;
 `;

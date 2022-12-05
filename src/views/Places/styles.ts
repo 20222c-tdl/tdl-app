@@ -1,6 +1,5 @@
 import COLORS from "helpers/colors";
 import styled, { css } from "styled-components";
-import EngineeringIcon from '@mui/icons-material/Engineering';
 import OtherHousesIcon from '@mui/icons-material/OtherHouses';
 
 export const ColumnDiv = styled.div`
@@ -83,4 +82,21 @@ export const DescriptionText = styled.p`
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   color: ${COLORS.greyMystic};
+  overflow: hidden;
+`;
+
+export const RowDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+`;
+
+export const CustomPlaceImg = styled.img`
+  width: 100%;
+  max-width:65px;
+  height: 65px;
+  width: auto;
+  border-radius: 50%;
+  margin-right: 8px;
 `;

@@ -123,7 +123,7 @@ export const RowDiv = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 100%
+  width: 100%;
 `;
 
 export const CalificationText = styled.p`
