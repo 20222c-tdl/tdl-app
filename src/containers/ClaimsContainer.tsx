@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect } from 'react';
+import { FunctionComponent, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import Layout from '../views/Layout/Layout';
 import useTypedSelector from 'hooks/useTypedSelector';
@@ -6,7 +6,6 @@ import { IClaimFormData } from 'views/Claims/types';
 import Claims from 'views/Claims/Claims';
 import { onEditClaimRequested, onPostCommentRequested, onRegisterAClaimRequested, onUserGetClaimsRequested } from 'redux/actions/user.actions';
 import { onSearchNameRequested } from 'redux/actions/providers.actions';
-import { IClaim } from 'types/claims.types';
 
 const ClaimsContainer: FunctionComponent = () => {
     const dispatch = useDispatch();
@@ -35,7 +34,12 @@ const ClaimsContainer: FunctionComponent = () => {
     }
 
     const onEditClaim = (formData: IClaimFormData) => {
-        dispatch(onEditClaimRequested(formData))
+        const data = {
+            type: formData.type,
+            mainIssue: formData.mainIssue,
+            description: formData.description
+        }
+        dispatch(onEditClaimRequested(data, formData.id))
     }
 
     const onPostComment = (formData: any) => {

@@ -1,6 +1,7 @@
 import COLORS from "helpers/colors";
 import styled, { css } from "styled-components";
 import { KeyboardArrowDown } from "@mui/icons-material";
+import EventBusyIcon from '@mui/icons-material/EventBusy';
 
 export const ServicesContainer = styled.div`
   display: flex;
@@ -152,4 +153,19 @@ export const ButtonModal = styled.button`
         color: ${COLORS.black};
         border: 1px solid ${COLORS.cerulean};
     `};
+`;
+
+export const EmptyContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 120px 0 20px 0;
+    height: 100%;
+    width: 100%;
+`;
+
+export const EmptyIcon = styled(EventBusyIcon)`
+    width: 150px !important;
+    height: 150px !important;
 `;

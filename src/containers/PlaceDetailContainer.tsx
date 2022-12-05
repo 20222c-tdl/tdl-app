@@ -59,7 +59,7 @@ const ServicesContainer: FunctionComponent = () => {
             placeId: placeId,
             userId: user.id,
             startingDate: new Date(formattedStartingDate).toISOString(),
-            endingDate: new Date(formattedEndingDate).toISOString()
+            finishingDate: new Date(formattedEndingDate).toISOString()
         }
         dispatch(onMakePlaceReservationRequested(data))
     }

@@ -47,7 +47,7 @@ export const Reservation = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    margin: 20px 15px;
+    margin: 10px 15px;
     width: 90%;
     border-bottom: 1px solid ${COLORS.grayPlaceholder};
     padding: 0 0 10px 0
