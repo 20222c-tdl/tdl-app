@@ -127,3 +127,8 @@ export async function deleteCard(cardId: string): Promise<AxiosResponse> {
     const response = await requestDelete(`/credit-card/${cardId}`);
     return response;
 }
+
+export async function getPlacesReservations(userId: string): Promise<AxiosResponse> {
+    const response = await get(`/place-reservation/user/${userId}`);
+    return response;
+}

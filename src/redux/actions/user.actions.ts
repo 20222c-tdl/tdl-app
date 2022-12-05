@@ -453,3 +453,25 @@ export function onDeleteCardCardFailed(error: unknown): AnyAction {
         error
     };
 }
+
+// onGetPlacesReservations
+export function onGetPlacesReservationsRequested(userId: string): AnyAction {
+    return {
+        type: constants.USER_ON_GET_PLACES_RESERVATIONS_REQUESTED,
+        userId
+    };
+}
+
+export function onGetPlacesReservationsSucceeded(data: unknown): AnyAction {
+    return {
+        type: constants.USER_ON_GET_PLACES_RESERVATIONS_SUCCEEDED,
+        data
+    };
+}
+
+export function onGetPlacesReservationsFailed(error: unknown): AnyAction {
+    return {
+        type: constants.USER_ON_GET_PLACES_RESERVATIONS_FAILED,
+        error
+    };
+}

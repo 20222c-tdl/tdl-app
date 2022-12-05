@@ -9,4 +9,5 @@ export interface MyReservationsProps {
     cards: any;
     setSelectedCard: (card: number) => void;
     selectedCard: number;
+    placesReservations: any[];
 }

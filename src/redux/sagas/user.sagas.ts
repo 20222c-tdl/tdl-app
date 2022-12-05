@@ -1,7 +1,7 @@
 import { AnyAction } from 'redux';
 import { call, put, takeLatest, all } from 'redux-saga/effects';
-import { editClaim, getClaims, initializeUser, loginUser, registerClaim, signupUser, makeReservation, postComment, getProfileInfo, getReservations, cancelReservation, getReviews, leaveAReview, payReservation, getPhoto, updateProfile, updatePassword, getCards, addNewCard, deleteCard } from '../../services/user.services';
-import { onAddNewCardFailed, onAddNewCardSucceeded, onCancelReservationFailed, onCancelReservationSucceded, onDeleteCardCardFailed, onDeleteCardCardSucceeded, onEditClaimFailed, onEditClaimSucceeded, onGetAllReservationsFailed, onGetAllReservationsSucceeded, onGetCardsFailed, onGetCardsSucceeded, onGetProfileInfoFailed, onGetProfileInfoSucceeded, onGetUserPhotoFailed, onGetUserPhotoSucceeded, onGetUserReviewsFailed, onGetUserReviewsSucceeded, onLeaveAReviewFailed, onLeaveAReviewSucceeded, onLoginUserFailed, onLoginUserSucceeded, onMakeReservationFailed, onMakeReservationSucceeded, onPayReservationFailed, onPayReservationSucceeded, onPostCommentFailed, onPostCommentSucceeded, onRegisterAClaimFailed, onRegisterAClaimSucceeded, onSignupUserFailed, onSignupUserSucceeded, onUpdatePasswordFailed, onUpdatePasswordSucceeded, onUpdateProfileFailed, onUpdateProfileSucceeded, onUserGetClaimsFailed, onUserGetClaimsSucceeded, userOnInitializeFailed, userOnInitializeSucceeded } from '../actions/user.actions';
+import { editClaim, getClaims, initializeUser, loginUser, registerClaim, signupUser, makeReservation, postComment, getProfileInfo, getReservations, cancelReservation, getReviews, leaveAReview, payReservation, getPhoto, updateProfile, updatePassword, getCards, addNewCard, deleteCard, getPlacesReservations } from '../../services/user.services';
+import { onAddNewCardFailed, onAddNewCardSucceeded, onCancelReservationFailed, onCancelReservationSucceded, onDeleteCardCardFailed, onDeleteCardCardSucceeded, onEditClaimFailed, onEditClaimSucceeded, onGetAllReservationsFailed, onGetAllReservationsSucceeded, onGetCardsFailed, onGetCardsSucceeded, onGetPlacesReservationsFailed, onGetPlacesReservationsSucceeded, onGetProfileInfoFailed, onGetProfileInfoSucceeded, onGetUserPhotoFailed, onGetUserPhotoSucceeded, onGetUserReviewsFailed, onGetUserReviewsSucceeded, onLeaveAReviewFailed, onLeaveAReviewSucceeded, onLoginUserFailed, onLoginUserSucceeded, onMakeReservationFailed, onMakeReservationSucceeded, onPayReservationFailed, onPayReservationSucceeded, onPostCommentFailed, onPostCommentSucceeded, onRegisterAClaimFailed, onRegisterAClaimSucceeded, onSignupUserFailed, onSignupUserSucceeded, onUpdatePasswordFailed, onUpdatePasswordSucceeded, onUpdateProfileFailed, onUpdateProfileSucceeded, onUserGetClaimsFailed, onUserGetClaimsSucceeded, userOnInitializeFailed, userOnInitializeSucceeded } from '../actions/user.actions';
 import * as constants from '../constants/user.constants';
 import * as providerConstants from '../constants/providers.constants';
 
@@ -186,6 +186,15 @@ export function* userDeleteCard(action: AnyAction) {
     }
 }
 
+export function* userGetPlacesReservations(action: AnyAction) {
+    try {
+        const { data } = yield call(getPlacesReservations, action.userId);
+        yield put(onGetPlacesReservationsSucceeded(data));
+    } catch (error) {
+        yield put(onGetPlacesReservationsFailed(error));
+    }
+}
+
 export function* watchUsers(): Generator {
     yield all([
         takeLatest(constants.USER_ON_INITIALIZE_REQUESTED, userInitialize),
@@ -208,5 +217,6 @@ export function* watchUsers(): Generator {
         takeLatest(constants.USER_ON_GET_CARDS_REQUESTED, userGetCards),
         takeLatest(constants.USER_ON_ADD_NEW_CARD_REQUESTED, userAddNewCard),
         takeLatest(constants.USER_ON_DELETE_CARD_REQUESTED, userDeleteCard),
+        takeLatest(constants.USER_ON_GET_PLACES_RESERVATIONS_REQUESTED, userGetPlacesReservations),
     ])
 }

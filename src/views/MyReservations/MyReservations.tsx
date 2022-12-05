@@ -1,6 +1,6 @@
 import React, { FunctionComponent, useState } from 'react';
 import ReactStars from 'react-stars'
-import { TitleContainer, ReservationContainer, Reservation, RowDiv, CustomProviderImg, ColumnProviderDescription, EmptyContainer, EmptyText, EmptyIcon, Container, ReservationTitles, ProviderInfo, ProviderTitle, ProviderUsername, ProviderData, RowDivProviderUserName, CategoryName, ServicesContainer, ServiceDescription, Service, ServicesHiredTitle, StatusButtonContainer, LeaveReview, CustomForm, FormFields, Label, ButtonContainer, Button, Card, Check, CustomButton, ButtonSaveReview } from './styles';
+import { TitleContainer, ReservationContainer, Reservation, RowDiv, CustomProviderImg, ColumnProviderDescription, EmptyContainer, EmptyText, EmptyIcon, Container, ReservationTitles, ProviderInfo, ProviderTitle, ProviderUsername, ProviderData, RowDivProviderUserName, CategoryName, ServicesContainer, ServiceDescription, Service, ServicesHiredTitle, StatusButtonContainer, LeaveReview, CustomForm, FormFields, Label, ButtonContainer, Button, Card, Check, CustomButton, ButtonSaveReview, PlaceIcon, SubtitleContainer } from './styles';
 import { MyReservationsProps } from './types';
 import { Modal } from 'components/Modal/Modal';
 import { Field, Form } from 'react-final-form';
@@ -14,7 +14,17 @@ import { height } from '@mui/system';
 
 
 const MyReservations: FunctionComponent<MyReservationsProps> = (props: MyReservationsProps) => {
-    const { onLeaveAReview, onCancelReservation, onPay, reservations, userReviews, setReservationId, setProviderId, cards, setSelectedCard, selectedCard } = props;
+    const { onLeaveAReview,
+        onCancelReservation,
+        onPay, reservations,
+        userReviews,
+        setReservationId,
+        setProviderId,
+        cards,
+        setSelectedCard,
+        selectedCard,
+        placesReservations
+    } = props;
     const [isOpenReview, setIsOpenReview] = useState(false);
     const [rating, setRating] = useState(-1);
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -135,6 +145,7 @@ const MyReservations: FunctionComponent<MyReservationsProps> = (props: MyReserva
             {leaveAReviewView}
             <ReservationContainer>
                 <TitleContainer> My reservations </TitleContainer>
+                <SubtitleContainer> My services </SubtitleContainer>
                 {reservations && reservations.map((reservation: any) => {
                     const isReviewed = userReviews && userReviews.find((review: any) => {
                         return review.hiredServicesId === reservation.hiredServices.id
@@ -225,7 +236,31 @@ const MyReservations: FunctionComponent<MyReservationsProps> = (props: MyReserva
                 {(!reservations || !reservations.length) &&
                     <EmptyContainer>
                         <EmptyIcon />
-                        <EmptyText isBold>There are no reservations yet</EmptyText>
+                        <EmptyText isBold>There are no services reservations yet</EmptyText>
+                    </EmptyContainer>
+                }
+                <SubtitleContainer> My places </SubtitleContainer>
+                {placesReservations && placesReservations.map((placeReservation: any) => {
+                    return (
+                        <Reservation key={placeReservation.id}>
+                            <ReservationTitles> Reservation date: {placeReservation.startingDate.split('T')[0] + ' ' + placeReservation.startingDate.split('T')[1].split(':')[0] + ':00'}</ReservationTitles>
+                            <ProviderInfo>
+                                <ProviderTitle> Place's information</ProviderTitle>
+                                <RowDiv>
+                                    <CustomProviderImg src={`data:image/jpeg;base64,${placeReservation.photo}`} alt="Image" />
+                                    <ColumnProviderDescription>
+                                        <ProviderUsername>{placeReservation.name}</ProviderUsername>
+                                        <ProviderData>{placeReservation.place.description}, </ProviderData>
+                                    </ColumnProviderDescription>
+                                </RowDiv>
+                            </ProviderInfo>
+                        </Reservation>
+                    )
+                })}
+                {(!placesReservations || !placesReservations.length) &&
+                    <EmptyContainer>
+                        <PlaceIcon />
+                        <EmptyText isBold>There are no places reserved yet</EmptyText>
                     </EmptyContainer>
                 }
             </ReservationContainer>

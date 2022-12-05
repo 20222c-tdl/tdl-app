@@ -7,6 +7,7 @@ export interface UserInterface {
     claims: IClaimFormData[];
     changeClaimsList: boolean;
     reservations: any[]
+    placesReservations: any[];
     changeReservations: boolean;
     userReviews: any[];
     changeReviews: boolean;
