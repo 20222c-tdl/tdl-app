@@ -19,7 +19,7 @@ const initialState = {
     changeCards: false,
 }
 
-const userReducer: Reducer = (state = {}, action) => {
+const userReducer: Reducer = (state = initialState, action) => {
     const { type, data } = action;
 
     switch (type) {

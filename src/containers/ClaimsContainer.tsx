@@ -2,7 +2,7 @@ import { FunctionComponent, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import Layout from '../views/Layout/Layout';
 import useTypedSelector from 'hooks/useTypedSelector';
-import { IClaimFormData } from 'views/Claims/types';
+import { IClaim, IClaimData, IClaimFormData, ICommentFormData } from 'views/Claims/types';
 import Claims from 'views/Claims/Claims';
 import { onEditClaimRequested, onPostCommentRequested, onRegisterAClaimRequested, onUserGetClaimsRequested } from 'redux/actions/user.actions';
 import { onSearchNameRequested } from 'redux/actions/providers.actions';
@@ -12,7 +12,7 @@ const ClaimsContainer: FunctionComponent = () => {
     const { user, changeClaimsList, claims } = useTypedSelector((state) => state.user);
 
     const claimsSorted = claims && claims.sort(
-        (claim1: any, claim2: any) => {
+        (claim1: IClaimData, claim2: IClaimData) => {
             const date1 = new Date(claim1.createdAt);
             const date2 = new Date(claim2.createdAt);
             return date2.getTime() - date1.getTime();
@@ -33,7 +33,7 @@ const ClaimsContainer: FunctionComponent = () => {
         dispatch(onRegisterAClaimRequested(info));
     }
 
-    const onEditClaim = (formData: IClaimFormData) => {
+    const onEditClaim = (formData: IClaim) => {
         const data = {
             type: formData.type,
             mainIssue: formData.mainIssue,
@@ -42,14 +42,13 @@ const ClaimsContainer: FunctionComponent = () => {
         dispatch(onEditClaimRequested(data, formData.id))
     }
 
-    const onPostComment = (formData: any) => {
+    const onPostComment = (formData: ICommentFormData) => {
         const data = {
             ...formData,
             entityId: user.id,
             role: user.role,
             date: (new Date()).toISOString(),
         }
-
         dispatch(onPostCommentRequested(data))
         dispatch(onUserGetClaimsRequested(user.id));
     }
@@ -61,7 +60,6 @@ const ClaimsContainer: FunctionComponent = () => {
     return (
         <Layout name={user && user.firstName}
             onSearchNav={onSearchNav}>
-
             <Claims
                 onRegisterAClaim={onRegisterAClaim}
                 claims={claimsSorted}

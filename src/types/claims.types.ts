@@ -1,3 +1,6 @@
+import { IClaimComment } from "views/Claims/types";
+import { IUser } from "./user.types";
+
 export interface IClaim {
     id: string;
     userId: string;
@@ -6,8 +9,8 @@ export interface IClaim {
     mainIssue: string;
     description: string;
     status: string;
-    user: any   // TODO debería ser un IUser pero no coincide con lo que trae la API
-    claimComments: any[];
+    user: IUser
+    claimComments: IClaimComment[];
 }
 
 export const CLAIMS_STATUS = Object.freeze([

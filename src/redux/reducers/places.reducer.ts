@@ -9,7 +9,7 @@ const initialState = {
     placeData: null,
 }
 
-const placesReducer: Reducer = (state = initialState, action: any) => {
+const placesReducer: Reducer = (state = initialState, action) => {
     const { type, data } = action;
 
     switch (type) {

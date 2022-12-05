@@ -7,6 +7,7 @@ import useTypedSelector from "../hooks/useTypedSelector";
 import { onSearchNameRequested } from "redux/actions/providers.actions";
 import { onCommunityPostCommentRequested } from "redux/actions/community.actions";
 import { IClaim } from "types/claims.types";
+import { ICommentFormData } from "views/Claims/types";
 
 export const ClaimsManagementContainer: FunctionComponent = () => {
     const dispatch = useDispatch();
@@ -23,8 +24,8 @@ export const ClaimsManagementContainer: FunctionComponent = () => {
 
     useEffect(() => {
         if (claims) {
-            const statesArray: any = [];
-            const opensArray: any = [];
+            const statesArray: string[] = [];
+            const opensArray: boolean[] = [];
 
             for (let i = 0; i < claims.length; i++) {
                 statesArray.push(claims[i].status)
@@ -48,7 +49,7 @@ export const ClaimsManagementContainer: FunctionComponent = () => {
         dispatch(onSearchNameRequested(searchName))
     }
 
-    const onPostComment = (formData: any) => {
+    const onPostComment = (formData: ICommentFormData) => {
         const data = {
             ...formData,
             entityId: user.id,
@@ -57,7 +58,6 @@ export const ClaimsManagementContainer: FunctionComponent = () => {
         }
         setComments(comments.concat(data))
         dispatch(onCommunityPostCommentRequested(data))
-        //dispatch(onGetCommunityClaimsRequested(user.id));
     }
 
     return <Layout name={"Nombre"}

@@ -1,20 +1,22 @@
 import React, { FunctionComponent } from 'react';
-import { IProviderDetailsProps } from './types';
+import { IHiredService, IProviderDetailsProps, IServiceData } from './types';
 import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Button, CalificationReviewText, CalificationText, CategoryName, CircleButton, CircleButtonText, ColumnDiv, ColumnDivPrice, ColumnDivProviderInfo, ColumnDivReview, ColumnReviewsDescription, CustomForm, CustomImg, CustomReviewImg, DescriptionText, EmptyContainer, MonetizationTypeText, NameText, PriceByDurationDiv, PriceText, ProviderContainer, Review, ReviewIcon, ReviewsContainer, ReviewsText, ReviewUsernameTitle, RowDiv, RowFormDiv, Service, ServiceIcon, ServicesColumn, ServicesContainer, ServiceText, ServiceTitle, StarDiv, StarIcon, TitleContainer, TotalPriceContainer, TotalPriceText } from './styles';
 import COLORS from 'helpers/colors';
 
-const ProviderDetails: FunctionComponent<any> = (props: IProviderDetailsProps) => {
+const ProviderDetails: FunctionComponent<IProviderDetailsProps> = (props: IProviderDetailsProps) => {
     const { provider, hiredServices, providerServices, providerReviews, setHiredServices, onMakeReservation, date, setDate } = props;
 
     const getTotalPrice = () => {
         let totalPrice = 0;
-        hiredServices && hiredServices.forEach((service: any, index: number) => {
-            if (service.isFixed && service.duration > 0) {
-                totalPrice += providerServices[index].price;
-            } else {
-                totalPrice += service.duration * providerServices[index].price;
+        hiredServices && hiredServices.forEach((service: IHiredService, index: number) => {
+            if (providerServices[index]) {
+                if (service.isFixed && service.duration > 0) {
+                    totalPrice += providerServices[index].price;
+                } else {
+                    totalPrice += service.duration * providerServices[index].price;
+                }
             }
         });
         return totalPrice;
@@ -22,7 +24,7 @@ const ProviderDetails: FunctionComponent<any> = (props: IProviderDetailsProps) =
 
     const getTotalDuration = () => {
         let totalDuration = 0;
-        hiredServices && hiredServices.forEach((service: any) => {
+        hiredServices && hiredServices.forEach((service: IHiredService) => {
             totalDuration += service.duration;
         });
         return totalDuration;
@@ -39,7 +41,7 @@ const ProviderDetails: FunctionComponent<any> = (props: IProviderDetailsProps) =
                     </ColumnDivProviderInfo>
                     <ColumnDivReview>
                         <StarDiv>
-                            <CalificationText>{providerReviews ? providerReviews.totalRating.toFixed(1) : 0}</CalificationText>
+                            <CalificationText>{providerReviews ? Number(providerReviews.totalRating).toFixed(1) : 0}</CalificationText>
                             <StarIcon />
                         </StarDiv >
                         <ReviewsText>{providerReviews ? providerReviews.reviews.length : 0} REVIEWS</ReviewsText>
@@ -48,18 +50,18 @@ const ProviderDetails: FunctionComponent<any> = (props: IProviderDetailsProps) =
                 <ServicesColumn>
                     <TitleContainer> Services </TitleContainer>
                     <ServicesContainer>
-                        {providerServices && providerServices.map((service: any, index: number) => {
+                        {providerServices && providerServices.map((service: IServiceData, index: number) => {
                             const isByDuration = service.monetizationType === 'BY_THE_HOUR';
-                            const sameService = hiredServices && hiredServices.find((hiredService: any) => {
+                            const sameService = hiredServices && hiredServices.find((hiredService: IHiredService) => {
                                 return hiredService.id === service.id
                             })
                             return sameService && (
                                 <Service key={index} >
                                     <ServiceTitle>{service.title}</ServiceTitle>
-                                    <DescriptionText>{service.Description}</DescriptionText>
+                                    <DescriptionText>{service.description}</DescriptionText>
                                     <RowDiv>
                                         <ColumnDivPrice>
-                                            <PriceText>$ {service.price} { service.monetizationType === "BY_THE_HOUR" && `/per hour`}</PriceText>
+                                            <PriceText>$ {service.price} {service.monetizationType === "BY_THE_HOUR" && `/per hour`}</PriceText>
                                             <MonetizationTypeText>{service.monetizationType === "FIXED" ? "Price fixed" : "Price by duration"}</MonetizationTypeText>
                                         </ColumnDivPrice>
                                         {isByDuration ?
@@ -68,7 +70,7 @@ const ProviderDetails: FunctionComponent<any> = (props: IProviderDetailsProps) =
                                                     {sameService.duration > 0 ?
                                                         <CircleButton onClick={() => {
                                                             const services = [...hiredServices];
-                                                            const index = services.findIndex((hiredService: any) => hiredService.id === service.id);
+                                                            const index = services.findIndex((hiredService: IHiredService) => hiredService.id === service.id);
                                                             services[index].duration -= 1;
                                                             setHiredServices(services);
                                                         }}>
@@ -83,7 +85,7 @@ const ProviderDetails: FunctionComponent<any> = (props: IProviderDetailsProps) =
                                                             ?
                                                             <CircleButton onClick={() => {
                                                                 const services = [...hiredServices];
-                                                                const index = services.findIndex((hiredService: any) => hiredService.id === service.id);
+                                                                const index = services.findIndex((hiredService: IHiredService) => hiredService.id === service.id);
                                                                 services[index].duration += 1;
                                                                 setHiredServices(services);
 
@@ -108,7 +110,7 @@ const ProviderDetails: FunctionComponent<any> = (props: IProviderDetailsProps) =
                                                 <CircleButton isClicked={sameService.duration === 0}
                                                     onClick={() => {
                                                         const services = [...hiredServices];
-                                                        const index = services.findIndex((hiredService: any) => hiredService.id === service.id);
+                                                        const index = services.findIndex((hiredService: IHiredService) => hiredService.id === service.id);
                                                         services[index].duration === 0 ? services[index].duration = providerServices[index].duration || 1 : services[index].duration = 0;
                                                         setHiredServices(services);
                                                     }}>
@@ -174,7 +176,7 @@ const ProviderDetails: FunctionComponent<any> = (props: IProviderDetailsProps) =
                                     <ColumnReviewsDescription>
                                         <RowDiv>
                                             <StarDiv>
-                                                <CalificationReviewText>{reviewObj.review.rating ? reviewObj.review.rating : 0}</CalificationReviewText>
+                                                <CalificationReviewText>{Number(reviewObj.review.rating).toFixed(1) ? Number(reviewObj.review.rating).toFixed(1) : 0}</CalificationReviewText>
                                                 <StarIcon />
                                             </StarDiv >
                                             <ReviewUsernameTitle>{reviewObj.user.firstName} {reviewObj.user.lastName}</ReviewUsernameTitle>

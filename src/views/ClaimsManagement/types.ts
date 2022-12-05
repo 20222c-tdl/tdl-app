@@ -3,7 +3,7 @@ import { ICommunity } from "types/community.types";
 
 export interface IClaimsManagmentProps {
     row: IClaim;
-    onPostComment: (formData: any) => void;
+    onPostComment: (formData: ICommentFormData) => void;
     user: ICommunity;
     comments: any[];
     setComments: any;
@@ -33,4 +33,17 @@ export interface IClaimsViewProps {
 
 export interface ICommentProps {
     type: string;
+}
+
+export interface ICommentFormData {
+    claimId: string;
+    comment: string;
+}
+
+export interface IClaimCommentFormData {
+    claimId: string;
+    comment: string;
+    date: string;
+    entityId: string;
+    role: string;
 }

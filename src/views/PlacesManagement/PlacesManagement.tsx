@@ -3,7 +3,7 @@ import { Form, Field } from 'react-final-form';
 import { requiredValidation } from '../../helpers/validations';
 import { Edit } from '@mui/icons-material';
 import { Modal } from 'components/Modal/Modal';
-import { IPlaceFormData, IPlacesProps } from './types';
+import { IPlaceData, IPlaceFormData, IPlacesProps } from './types';
 import { Arrow, Button, ButtonContainer, ColumnDiv, Container, CustomForm, Description, EditDiv, Place, PlacesContainer, RowDiv, Subtitle, Title, Text, Box, EmptyContainer, EmptyPlacesIcon, Label } from './styles';
 import PlaceInfoForm from './components/PlaceInfoForm';
 import Input from 'components/Input/Input';
@@ -15,7 +15,7 @@ const PlacesManagement: FunctionComponent<IPlacesProps> = (props: IPlacesProps) 
     const [isEditable, setIsEditable] = useState(false);
     const [currentPlace, setCurrentPlace] = useState<any>(null);
 
-    const submitForm = (formData: IPlaceFormData) => {
+    const submitForm = (formData: IPlaceData) => {
         setIsEditable(false);
         onEditPlace(formData);
     }

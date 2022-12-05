@@ -1,3 +1,6 @@
+import { IServiceData } from "views/ProviderDetails/types";
+import { IService } from "views/Services/types";
+import { IUser } from "./user.types";
 
 export interface ProvidersInterface {
     loading: boolean;
@@ -6,12 +9,12 @@ export interface ProvidersInterface {
     allCategories: ICategory[];
     providers: IProvider[];
     allProviders: IProvider[];
-    providerServices: any[];
-    providerReviews: any;
+    providerServices: IServiceData[];
+    providerReviews: IProviderReview[];
     getProfile: boolean;
     changeServices: boolean;
-    providerProfile: any;
-    providerPhoto: any;
+    providerProfile: IProvider;
+    providerPhoto: IProvider;
 }
 
 export interface IProvider {
@@ -26,8 +29,24 @@ export interface IProvider {
     category: ICategory;
     averageCalification: number;
     reviews: IReview[];
-    services: any[]
+    services: IService[]
     photo: any;
+}
+
+export interface IProviderFormData {
+    id: string;
+    email: string;
+    password: string;
+    firstName: string;
+    lastName: string;
+    identityNumber: string;
+    phoneNumber: string;
+    categoryId: string;
+    category: ICategory;
+    averageCalification: number;
+    reviews: IReview[];
+    services: IService[]
+    base64Picture: any;
 }
 
 export interface ICategory {
@@ -40,4 +59,14 @@ export interface IReview {
     comment: string;
     userId: string;
     providerId: string;
+}
+
+export interface IProviderReview {
+    reviews: IProviderReviews[];
+    totalRating: string;
+}
+
+export interface IProviderReviews {
+    review: any;
+    user: IUser;
 }

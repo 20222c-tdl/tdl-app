@@ -2,7 +2,7 @@
 import { FunctionComponent, useState } from 'react';
 import { Form, Field } from 'react-final-form';
 import { requiredValidation } from '../../helpers/validations';
-import { IClaimFormData, IClaimsProps } from './types';
+import { IClaim, IClaimFormData, IClaimsProps } from './types';
 import { Arrow, Box, Button, ButtonContainer, Claim, ClaimsContainer, Container, CustomForm, RowDiv, Subtitle, Title, Text, ColumnDiv, Description, EditDiv, Status, StatusText, CommentsButton, CommentsDiv, Comment, TimeText, EmptyContainer, ClaimsIcon } from './styles';
 import { Edit } from '@mui/icons-material';
 import CommentIcon from '@mui/icons-material/Comment';
@@ -20,12 +20,12 @@ const Claims: FunctionComponent<IClaimsProps> = (props: IClaimsProps) => {
     const [currentClaim, setCurrentClaim] = useState<any>(null);
     const [claimId, setClaimId] = useState<any>(null);
 
-    const submitForm = (formData: IClaimFormData) => {
+    const submitForm = (formData: IClaim) => {
         setIsEditable(false);
         onEditClaim(formData);
     }
 
-    const handleNameStatus = (status: any) => {
+    const handleNameStatus = (status: string) => {
         if (status === "OPEN") return "OPEN";
         if (status === "TAKING_ACTION") return "TAKING ACTION";
         if (status === "RESOLVED") return "RESOLVED";

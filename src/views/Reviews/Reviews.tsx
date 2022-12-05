@@ -9,7 +9,7 @@ const Reviews: FunctionComponent<IReviewsProps> = (props: IReviewsProps) => {
             <RowDivReviews>
                 <TitleContainer> Reviews - Total rating: </TitleContainer>
                 <StarDiv>
-                    <CalificationReviewText>{reviews.totalRating.toFixed(1)}</CalificationReviewText>
+                    <CalificationReviewText>{Number(reviews.totalRating).toFixed(1)}</CalificationReviewText>
                     <StarIconTotal />
                 </StarDiv >
             </RowDivReviews>
@@ -21,7 +21,7 @@ const Reviews: FunctionComponent<IReviewsProps> = (props: IReviewsProps) => {
                             <ColumnReviewsDescription>
                                 <RowDiv>
                                     <StarDiv>
-                                        <CalificationReviewText>{reviewObj.review.rating ? reviewObj.review.rating : 0}</CalificationReviewText>
+                                        <CalificationReviewText>{Number(reviewObj.review.rating).toFixed(1) ? Number(reviewObj.review.rating.toFixed(1)) : 0}</CalificationReviewText>
                                         <StarIcon />
                                     </StarDiv >
                                     <ReviewUsernameTitle>{reviewObj.user.firstName} {reviewObj.user.lastName}</ReviewUsernameTitle>

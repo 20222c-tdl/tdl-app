@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { onCreateAPlaceRequested, onEditAPlaceRequested, onGetPlacesRequested } from 'redux/actions/places.actions';
 import Layout from 'views/Layout/Layout';
 import PlacesManagement from 'views/PlacesManagement/PlacesManagement';
-import { IPlaceFormData } from 'views/PlacesManagement/types';
+import { IPlaceData, IPlaceFormData } from 'views/PlacesManagement/types';
 import useTypedSelector from '../hooks/useTypedSelector';
 
 
@@ -39,7 +39,7 @@ const PlacesManagementContainer: FunctionComponent = () => {
         dispatch(onCreateAPlaceRequested(data));
     }
 
-    const onEditPlace = async (formData: IPlaceFormData) => {
+    const onEditPlace = async (formData: IPlaceData) => {
         const image: any = await getBase64Picture(formData.base64Picture[0]);
         const data = {
             name: formData.name,

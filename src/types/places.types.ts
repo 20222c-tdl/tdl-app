@@ -3,7 +3,7 @@ export interface PlacesInterface {
     places: IPlace[];
     changePlaces: boolean;
     loading: boolean;
-    placeData: any;
+    placeData: IPlace;
 }
 
 

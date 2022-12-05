@@ -1,3 +1,4 @@
+import { IPlace } from "./places.types";
 
 export interface CommunityInterface {
     loading: boolean;
@@ -6,7 +7,7 @@ export interface CommunityInterface {
     communityInfo: ICommunity;
     commentsChanged: boolean;
     changePlaces: boolean;
-    places: any[];
+    places: IPlace[];
     communityPhoto: any;
 }
 

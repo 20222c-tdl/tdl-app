@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useState } from 'react';
+import { FunctionComponent, useState } from 'react';
 import ReactStars from 'react-stars'
 import { TitleContainer, ReservationContainer, Reservation, RowDiv, CustomProviderImg, ColumnProviderDescription, EmptyContainer, EmptyText, EmptyIcon, Container, ReservationTitles, ProviderInfo, ProviderTitle, ProviderUsername, ProviderData, RowDivProviderUserName, CategoryName, ServicesContainer, ServiceDescription, Service, ServicesHiredTitle, StatusButtonContainer, LeaveReview, CustomForm, FormFields, Label, ButtonContainer, Button, Card, Check, CustomButton, ButtonSaveReview, PlaceIcon, SubtitleContainer } from './styles';
 import { MyReservationsProps } from './types';
@@ -10,13 +10,13 @@ import Cards from 'react-credit-cards';
 import { AddCard } from "@mui/icons-material";
 import history from '../../helpers/history';
 import Input from 'components/Input/Input';
-import { height } from '@mui/system';
 
 
 const MyReservations: FunctionComponent<MyReservationsProps> = (props: MyReservationsProps) => {
     const { onLeaveAReview,
         onCancelReservation,
-        onPay, reservations,
+        onPay,
+        reservations,
         userReviews,
         setReservationId,
         setProviderId,

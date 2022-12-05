@@ -1,6 +1,9 @@
 import { AxiosResponse } from "axios";
 import { ICard } from "types/user.types";
-import { IClaimFormData } from "views/Claims/types";
+import { IClaimCommentFormData, IClaimEditFormData, IClaimFormData } from "views/Claims/types";
+import { IReviewData } from "views/MyReservations/types";
+import { IPasswordFormData } from "views/Profile/components/PasswordForm/types";
+import { IReservation } from "views/ProviderDetails/types";
 import { ILoginFormData } from "../views/Login/types";
 import { ISignupUserFormData } from "../views/SignupUser/types";
 import { post, get, patch, requestDelete } from "./api";
@@ -51,21 +54,21 @@ export async function getClaims(userId: string): Promise<AxiosResponse> {
     )
 }
 
-export async function editClaim(formData: IClaimFormData, claimId: any): Promise<AxiosResponse> {
+export async function editClaim(formData: IClaimEditFormData, claimId: string): Promise<AxiosResponse> {
     const response = await patch(`/claims/${claimId}`, formData);
     return (
         response
     )
 }
 
-export async function makeReservation(data: any): Promise<AxiosResponse> {
+export async function makeReservation(data: IReservation): Promise<AxiosResponse> {
     const response = await post(`/hired-services`, data);
     return (
         response
     )
 }
 
-export async function postComment(data: any): Promise<AxiosResponse> {
+export async function postComment(data: IClaimCommentFormData): Promise<AxiosResponse> {
     const response = await post(`/claim-comments`, data);
     return (
         response
@@ -88,7 +91,7 @@ export async function getReviews(userId: string): Promise<AxiosResponse> {
     return response;
 }
 
-export async function leaveAReview(data: any): Promise<AxiosResponse> {
+export async function leaveAReview(data: IReviewData): Promise<AxiosResponse> {
     const response = await post(`/reviews`, data);
     return response;
 }
@@ -108,7 +111,7 @@ export async function updateProfile(data: any, userId: string): Promise<AxiosRes
     return response;
 }
 
-export async function updatePassword(data: any, userId: string): Promise<AxiosResponse> {
+export async function updatePassword(data: IPasswordFormData, userId: string): Promise<AxiosResponse> {
     const response = await patch(`/users/password/${userId}`, data);
     return response;
 }

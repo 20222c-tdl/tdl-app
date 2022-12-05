@@ -62,7 +62,7 @@ export const PlaceContainer = styled.div`
 `;
 
 export const CustomPlaceImg = styled.img`
-  width: 350px;
+  width: 450px;
   margin-right: 8px;
 `;
 
