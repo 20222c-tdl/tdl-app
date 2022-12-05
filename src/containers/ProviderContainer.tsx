@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { onGetAllProvidersReviewsRequested, onGetProviderInfoRequested, onGetProviderServicesRequested, onSearchNameRequested } from 'redux/actions/providers.actions';
 import { onMakeReservationRequested } from 'redux/actions/user.actions';
 import ProviderDetails from 'views/ProviderDetails/ProviderDetails';
+import { IHiredService, IServiceData, IServiceToHire } from 'views/ProviderDetails/types';
 import useTypedSelector from '../hooks/useTypedSelector';
 import Layout from '../views/Layout/Layout';
 
@@ -28,7 +29,7 @@ const ProviderContainer: FunctionComponent = () => {
     }, [dispatch, providerId])
 
     useEffect(() => {
-        const services = providerServices && providerServices.map((service: any) => {
+        const services = providerServices && providerServices.map((service: IServiceData) => {
             return ({
                 ...service,
                 duration: 0,
@@ -39,18 +40,15 @@ const ProviderContainer: FunctionComponent = () => {
     }, [providerServices]);
 
     const onMakeReservation = () => {
-        const servicesToHire: any = [];
-
-        hiredServices.map((service: any) => {
+        const servicesToHire: IServiceToHire[] = [];
+        hiredServices.map((service: IHiredService) => {
             if (service.duration > 0) {
                 servicesToHire.push({
                     serviceId: service.id,
                     hours: service.duration,
                 });
             }
-
         })
-
         const data = {
             userId: user.id,
             providerId: providerId,
@@ -67,7 +65,6 @@ const ProviderContainer: FunctionComponent = () => {
     return (
         <Layout name={user && user.firstName}
             onSearchNav={onSearchNav}>
-
             {
                 providerData && providerServices && <ProviderDetails
                     provider={providerData}

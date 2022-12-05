@@ -1,17 +1,23 @@
 export interface IPlacesProps {
     onPostAPlace: (formData: IPlaceFormData) => void;
     places: any[];
-    onEditPlace: (formData: IPlaceFormData) => void;
+    onEditPlace: (formData: IPlaceData) => void;
     
 }
 
 export interface IPlaceFormData {
-    id?: string;
     communityId?: string;
     name: string;
     description: string;
     base64Picture?: any;
-    photo: any;
+}
+
+export interface IPlaceData {
+    id: string;
+    communityId?: string;
+    name: string;
+    description: string;
+    base64Picture: any;
 }
 
 export interface IPlaceInfoFormdataProps {

@@ -10,7 +10,7 @@ const initialState = {
     communityPhoto: null,
 }
 
-const communityReducer: Reducer = (state = {}, action) => {
+const communityReducer: Reducer = (state = initialState, action) => {
     const { type, data } = action;
 
     switch (type) {

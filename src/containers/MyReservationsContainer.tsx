@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { onSearchNameRequested } from 'redux/actions/providers.actions';
 import { onCancelReservationRequested, onGetAllReservationsRequested, onGetCardsRequested, onGetPlacesReservationsRequested, onGetUserReviewsRequested, onLeaveAReviewRequested, onPayReservationRequested } from 'redux/actions/user.actions';
 import MyReservations from 'views/MyReservations/MyReservations';
+import { IReviewFormData } from 'views/MyReservations/types';
 import useTypedSelector from '../hooks/useTypedSelector';
 import Layout from '../views/Layout/Layout';
 
@@ -30,7 +31,7 @@ const MyReservationsContainer: FunctionComponent = () => {
     }, [dispatch, user])
 
 
-    const onLeaveAReview = (formData: any) => {
+    const onLeaveAReview = (formData: IReviewFormData) => {
         const data = {
             userId: user.id,
             providerId: providerId,

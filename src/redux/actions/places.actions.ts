@@ -1,7 +1,7 @@
 import { AnyAction } from 'redux';
 import { IPlace } from 'types/places.types';
 import { IReservationPlaceFormData } from 'views/PlaceDetails/types';
-import { IPlaceFormData } from 'views/PlacesManagement/types';
+import {IPlaceFormData } from 'views/PlacesManagement/types';
 import * as constants from '../constants/places.constants';
 
 // onGetPlaces
@@ -49,7 +49,7 @@ export function onCreateAPlaceFailed(error: unknown): AnyAction {
 }
 
 // onEditAPlace
-export function onEditAPlaceRequested(data: any): AnyAction {
+export function onEditAPlaceRequested(data: IPlace): AnyAction {
     return {
         type: constants.ON_EDIT_A_PLACE_REQUESTED,
         data

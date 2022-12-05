@@ -1,10 +1,10 @@
-import { IClaimFormData } from "views/Claims/types";
+import { IClaimData, IClaimFormData } from "views/Claims/types";
 
 export interface UserInterface {
     loading: boolean;
     data: any;
     user: IUser;
-    claims: IClaimFormData[];
+    claims: IClaimData[];
     changeClaimsList: boolean;
     reservations: any[]
     placesReservations: any[];
@@ -12,7 +12,7 @@ export interface UserInterface {
     userReviews: any[];
     changeReviews: boolean;
     userPhoto: any;
-    cards: ICard[];
+    cards: ICardData[];
     changeCards: boolean;
 }
 
@@ -27,6 +27,18 @@ export interface IUser {
     role:string;
     photo: any;
 }
+
+export interface IUserFormData {
+    id: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    address: string;
+    communityId: string;
+    phoneNumber: string;
+    role:string;
+    base64Picture: any;
+}
 export interface IJWT {
     id: number;
     exp: number;
@@ -35,6 +47,15 @@ export interface IJWT {
 }
 export interface ICard {
     id?: number;
+    userId: string;
+    number: string;
+    name: string;
+    expirationDate: string;
+    cvc: string;
+}
+
+export interface ICardData {
+    id: number;
     userId: string;
     number: string;
     name: string;

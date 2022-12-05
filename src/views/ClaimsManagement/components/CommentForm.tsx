@@ -2,10 +2,10 @@ import Input from 'components/Input/Input';
 import { requiredValidation } from 'helpers/validations';
 import React from 'react';
 import { Form, Field } from 'react-final-form';
+import { ICommentFormProps } from 'views/Claims/types';
 import {  CommentButton, CommentButtonContainer, CommentCustomForm, LeaveACommentDiv, RowDiv } from '../styles';
 
-
-const CommentForm = (props: any) => {
+const CommentForm = (props: ICommentFormProps) => {
     const { claimId, onPostComment } = props;
 
     const onSubmit = (values:any) =>{

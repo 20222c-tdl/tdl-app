@@ -1,4 +1,5 @@
 import { AnyAction } from 'redux';
+import { IClaimCommentFormData } from 'views/ClaimsManagement/types';
 import { IPlaceFormData } from 'views/PlacesManagement/types';
 import { ILoginFormData } from '../../views/Login/types';
 import { ISignupCommunityFormData } from "../../views/SignupCommunity/types";
@@ -91,7 +92,7 @@ export function onGetCommunityProfileFailed(error: unknown): AnyAction {
 }
 
 // onCommunityPostComment
-export function onCommunityPostCommentRequested(data: any): AnyAction {
+export function onCommunityPostCommentRequested(data: IClaimCommentFormData): AnyAction {
     return {
         type: constants.COMMUNITY_ON_POST_COMMENT_REQUESTED,
         data

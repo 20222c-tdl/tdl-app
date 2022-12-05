@@ -41,7 +41,7 @@ const Home: FunctionComponent<any> = (props: IHomeProps) => {
                                             <RowDiv>
                                                 <ProviderText isBold>{userProvider.firstName} {userProvider.lastName}</ProviderText>
                                                 <StarDiv>
-                                                    <CalificationText>{providerObj.totalRating.toFixed(1)}</CalificationText>
+                                                    <CalificationText>{Number(providerObj.totalRating).toFixed(1)}</CalificationText>
                                                     <StarIcon />
                                                 </StarDiv>
                                             </RowDiv>

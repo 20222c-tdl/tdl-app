@@ -15,7 +15,7 @@ const initialState = {
     providerProfile: null,
 }
 
-const providersReducer: Reducer = (state = {}, action) => {
+const providersReducer: Reducer = (state = initialState, action) => {
     const { type, data } = action;
 
     switch (type) {

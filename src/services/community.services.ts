@@ -1,7 +1,7 @@
 import { AxiosResponse } from "axios";
 import { get, patch, post, put } from "./api";
 import { ISignupCommunityFormData } from "../views/SignupCommunity/types";
-import { IPlaceFormData } from "views/PlacesManagement/types";
+import { IClaimCommentFormData } from "views/ClaimsManagement/types";
 
 export async function signupCommunity(formData: ISignupCommunityFormData): Promise<AxiosResponse> {
     const response = await post("/communities", formData);
@@ -24,7 +24,7 @@ export async function getCommunityInfo(): Promise<AxiosResponse> {
     return response;
 }
 
-export async function postComment(data: any): Promise<AxiosResponse> {
+export async function postComment(data: IClaimCommentFormData): Promise<AxiosResponse> {
     const response = await post(`/claim-comments`, data);
     return (
         response

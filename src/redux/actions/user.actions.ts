@@ -1,7 +1,9 @@
 import { AnyAction } from 'redux';
 import { ICard } from 'types/user.types';
-import { IClaimFormData } from 'views/Claims/types';
+import { IClaimEditFormData, IClaimCommentFormData, IClaimFormData } from 'views/Claims/types';
+import { IReviewData } from 'views/MyReservations/types';
 import { IPasswordFormData } from 'views/Profile/components/PasswordForm/types';
+import { IReservation } from 'views/ProviderDetails/types';
 import { ILoginFormData } from '../../views/Login/types';
 import { ISignupUserFormData } from '../../views/SignupUser/types';
 import * as constants from '../constants/user.constants';
@@ -145,7 +147,7 @@ export function onUserGetClaimsFailed(error: unknown): AnyAction {
 }
 
 // onEditClaim
-export function onEditClaimRequested(formData: any, claimId: any): AnyAction {
+export function onEditClaimRequested(formData: IClaimEditFormData, claimId: string): AnyAction {
     return {
         type: constants.USER_ON_EDIT_CLAIM_REQUESTED,
         formData,
@@ -168,7 +170,7 @@ export function onEditClaimFailed(error: unknown): AnyAction {
 }
 
 // onMakeReservation
-export function onMakeReservationRequested(data: any): AnyAction {
+export function onMakeReservationRequested(data: IReservation): AnyAction {
     return {
         type: constants.USER_ON_MAKE_RESERVATION_REQUESTED,
         data
@@ -190,7 +192,7 @@ export function onMakeReservationFailed(error: unknown): AnyAction {
 }
 
 // onPostComment
-export function onPostCommentRequested(data: any): AnyAction {
+export function onPostCommentRequested(data: IClaimCommentFormData): AnyAction {
     return {
         type: constants.USER_ON_POST_COMMENT_REQUESTED,
         data
@@ -278,7 +280,7 @@ export function onGetUserReviewsFailed(error: unknown): AnyAction {
 }
 
 // onLeaveAReview
-export function onLeaveAReviewRequested(data: any): AnyAction {
+export function onLeaveAReviewRequested(data: IReviewData): AnyAction {
     return {
         type: constants.USER_ON_LEAVE_A_REVIEW_REQUESTED,
         data

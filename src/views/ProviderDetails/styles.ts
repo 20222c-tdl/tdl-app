@@ -200,7 +200,7 @@ export const CircleButton = styled.div`
 
 export const CircleButtonText = styled.div`
   font-size: 30px;
-  line-height: ${(props: ICircleButtonProps) => (props.isMinus ? '18px' : '22px')};
+  line-height: ${(props: ICircleButtonProps) => (props.isMinus ? '18px' : '25px')};
   padding: ${(props: ICircleButtonProps) => (props.isMinus ? '0px 7px' : '0 4px')};
   font-family: 'Montserrat_500Medium';
   color: ${COLORS.black};
